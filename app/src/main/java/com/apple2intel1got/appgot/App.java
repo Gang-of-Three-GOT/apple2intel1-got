@@ -1,4 +1,4 @@
-package com.bitcamp.testproject;
+package com.apple2intel1got.appgot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
