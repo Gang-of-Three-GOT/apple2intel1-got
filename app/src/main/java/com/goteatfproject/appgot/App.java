@@ -1,4 +1,4 @@
-package com.apple2intel1got.appgot;
+package com.goteatfproject.appgot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
