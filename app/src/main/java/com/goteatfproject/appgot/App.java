@@ -7,7 +7,6 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-@Controller
 @EnableTransactionManagement
 @SpringBootApplication
 public class App {
@@ -16,12 +15,6 @@ public class App {
     System.out.println("비트캠프 프로젝트!");
     SpringApplication.run(App.class, args);
   }
-
-  @GetMapping("/")
-  public String welcome() {
-    return "welcome";
-  }
-
 }
 
 
