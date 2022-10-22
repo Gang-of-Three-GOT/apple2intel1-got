@@ -1,7 +1,5 @@
 @charset "UTF-8";
 
-
-
 /*-----------------header---------------------*/
 html { 
   font-size:100%;
@@ -139,7 +137,4 @@ input {
 
   
   background-position:left center;
-}
-.btn{
-
 }

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8">
+<title>EAT-F</title>
+<meta name="viewport" content="width=divice-width,initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+<!--header-->
+<div class="col1 logo-section">
+            <div class="logo">
+                <a href="index.html"><img class = "logo" src="#" alt="EAT-F 메인페이지"></a></h1>
+            </div>
+            </div> 
+
+        <div class="col2 search-section">
+           <div class="serchbar">
+            <input type="text" placeholder="검색어 입력하세요">
+            <a href="#"><img class = "search-img" src="#" alt="#none"></a></h1>
+          </div>
+        </div>      
+
+        <div class="col3 login-section">
+            <ul class="login-aside">
+                <li><a href="회원가입" th:href="@{/register/add}">회원가입</a></li>
+                <li><a href="#">로그인</a></li>
+                <li><a href="#">고객센터</a></li>
+                </ul>
+            </div> 
+
+<!--nav-menu-->    
+    <div class="col4 nav-section">
+        <ul class="nav-menu">
+        <li><a href="#">파티게시판</a></li>
+        <li><a href="#">피드게시판</a></li>
+        <li><a href="#">이벤트게시판</a></li>
+        </ul>
+</div> 
+
+<!--header end-->     
+
+<!--main content 1-->   
+  
+    <div class="content1">
+        <div class="col7">7</div>
+        <div class="col8">8</div>
+        <div class="col9">9</div>
+</div>       
+
+<div class="content1 c1-aside">
+    <div class="col7">7</div>
+    <div class="col8">8</div>
+    <div class="col9">9</div>
+</div>     
+    
+<!--main content 2-->   
+
+    <div class="content2">
+        <div class="col7">10</div>
+        <div class="col8">11</div>
+        <div class="col9">12</div>
+</div>   
+
+<!--main content 3-->   
+
+<div class="content3">
+<div class="col10">13</div>
+<div class="col11">14</div>
+<div class="col12">15</div>
+</div>
+
+
+</div>
+</body>
+
+<!-- footer-->   
+<footer>
+<div class="footer">
+<div class="col13">16</div>
+<div class="col14">17</div>
+<div class="col15">18</div>
+</div>    
+</footer>
+    
+ 
+</html>
+  
+
+
+<!--
+<body>
+    <div class="grid-container">
+    <div class="headerbox">
+        <div class="col1-h1">
+        <h2>Header</h2>
+              <div class="col-hearder col1-h2">
+            <h2>Header2</h2>
+                 <div class="col-hearder col1-h3">
+                <h2>Header3</h2>
+                <div class="col-hearder col1-h4">
+                    <h2>Header4</h2>
+                    <div class="col-hearder col1-h5">
+                        <h2>Header5</h2>
+                        <div class="col-hearder col1-h6">
+                            <h2>Header6</h2>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    </div>
+    
+        <div class="left" style="background-color:#aaa;">Column</div>
+    <div class="middle" style="background-color:#bbb;">Column</div>  
+    <div class="right" style="background-color:#ccc;">Column</div>
+    
+    <div class="footer">
+      <p>Footer</p>
+    </div>
+  </div>
+</body>  
+  </html>
+  -->
