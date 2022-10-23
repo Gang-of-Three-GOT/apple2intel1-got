@@ -1,2 +1,2 @@
-# apple2intel1-got
+# goteatf-project
 bitcamp got project
