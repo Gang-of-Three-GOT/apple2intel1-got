@@ -20,7 +20,7 @@ public class User {
   private Date birth;
   private String tel;
   private String gender;
-  private Date inD2ate;
+  private Date inDate;
   private String postNum;
   private String mainAddr;
   private String subAddr;

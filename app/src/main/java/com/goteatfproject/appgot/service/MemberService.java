@@ -5,6 +5,8 @@ import java.util.List;
 
 public interface MemberService {
 
+  void add(User user) throws Exception;
+
   List<User> list() throws Exception;
 
 }

@@ -6,16 +6,26 @@
 </head>
 <body>
 <ul>
+<!--  <li th:text="${user.no}"></li>-->
   <li th:text="${user.id}"></li>
-  <li th:text="${user.password}"></li>
-  <li th:text="${user.password2}"></li>
+  <li th:text="${user.pwd}"></li>
+<!--  <li th:text="${user.grade}"></li>-->
+  <li th:text="${user.grade}"></li>
   <li th:text="${user.name}"></li>
   <li th:text="${user.nick}"></li>
-  <li th:text="${user.email}"></li>
-  <li th:text="${user.post}"></li>
-  <li th:text="${user.address}"></li>
-  <li th:text="${user.phone}"></li>
-  <li th:text="${user.hobby}"></li>
+<!--  <li th:text="${user.birth}"></li>-->
+  <li th:text="${user.tel}"></li>
+<!--  <li th:text="${user.gender}"></li>-->
+  <li th:text="${user.inDate}"></li>
+  <li th:text="${user.postNum}"></li>
+  <li th:text="${user.mainAddr}"></li>
+<!--  <li th:text="${user.subAddr}"></li>-->
+  <li th:text="${user.interest == ''} ? '(입력안함)' : ${user.interest}"></li>
+<!--  <li th:text="${user.outState}"></li>-->
+<!--  <li th:text="${user.outDate}"></li>-->
+<!--  <li th:text="${user.pImg}"></li>-->
+<!--  <li th:text="${user.intro}"></li>-->
+
 </ul>
 </body>
 </html>

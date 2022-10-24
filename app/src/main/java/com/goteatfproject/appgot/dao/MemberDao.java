@@ -7,6 +7,8 @@ import org.apache.ibatis.annotations.Mapper;
 @Mapper
 public interface MemberDao {
 
+  int insert(User user);
+
   List<User> findAll();
 
 }

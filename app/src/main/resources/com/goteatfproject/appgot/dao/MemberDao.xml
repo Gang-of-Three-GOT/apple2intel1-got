@@ -12,10 +12,17 @@
     <result column="cdt" property="createdDate"/>
   </resultMap>
 
-<!--  <insert id="insert" parameterType="member">-->
-<!--    insert into app_member(name,email,pwd) -->
-<!--    values(#{name},#{email},sha2(#{password},256))-->
-<!--  </insert>-->
+  <insert id="insert" useGeneratedKeys="true" parameterType="user">
+<!--    insert into member-->
+<!--    values(#{no},#{id},sha2(#{pwd},256), #{grade}, #{name},-->
+<!--    #{nick}, #{birth}, #{tel}, #{gender}, #{inDate}, #{postNum},-->
+<!--    #{mainAddr}, #{subAddr}, #{interest}, #{outState}, #{outDate},-->
+<!--    #{pImg}, #{intro})-->
+    insert into member (id, pwd, grade, name, nick, tel, in_date, postnum, mainaddr,
+    interest)
+    values(#{id},sha2(#{pwd},256), 0, #{name}, #{nick}, #{tel}, now(),
+    #{postNum}, #{mainAddr}, #{interest})
+  </insert>
 
 <!--  <select id="findByNo" resultMap="memberMap">-->
 <!--    select -->

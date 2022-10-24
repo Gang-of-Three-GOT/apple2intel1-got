@@ -37,7 +37,8 @@
   </div>
 
   <div class="container">
-    <form th:action="@{/register/save}" method="post" onsubmit="formCheck()">
+<!-- TODO 변경   <form th:action="@{/register/save}" method="post" onsubmit="formCheck()">-->
+    <form th:action="@{/register/add}" method="post" onsubmit="formCheck()">
 
       <div class="required-top">
         <span class="required">*</span>필수입력사항
@@ -68,7 +69,8 @@
           <div class="new-nemo4">
             <div class="new-nemo5">
 
-              <input class="input" type="text" id="email" name="email" placeholder="이메일 입력">
+<!-- TODO name 수정             <input class="input" type="text" id="email" name="email" placeholder="이메일 입력">-->
+              <input class="input" type="text" id="email" name="id" placeholder="이메일 입력">
               <!-- <div class="new-email-select1"> -->
               <!-- <div class="new-email-select2"> -->
               <!-- <span style="float:right;"> -->
@@ -105,7 +107,8 @@
         <div class="new-nemo3">
           <div class="new-nemo4">
             <div class="new-nemo5">
-              <input class="input" type="password" id="password" name="password" placeholder="비밀번호 입력">
+<!--   TODO password 수정           <input class="input" type="password" id="password" name="password" placeholder="비밀번호 입력">-->
+              <input class="input" type="password" id="password" name="pwd" placeholder="비밀번호 입력">
             </div>
           </div>
         </div>
@@ -119,7 +122,7 @@
         <div class="new-nemo3">
           <div class="new-nemo4">
             <div class="new-nemo5">
-              <input class="input" type="password" id="password2" name="password2" placeholder="비밀번호 입력">
+              <input class="input" type="password" id="password2" name="pwd2" placeholder="비밀번호 입력">
             </div>
           </div>
         </div>
@@ -168,7 +171,7 @@
         <div class="new-nemo3">
           <div class="new-nemo4">
             <div class="new-nemo5">
-              <input class="input" type="text" id="post" name="post">
+              <input class="input" type="text" id="post" name="postNum">
             </div>
           </div>
         </div>
@@ -186,7 +189,7 @@
         <div class="new-nemo3">
           <div class="new-nemo4">
             <div class="new-nemo5">
-              <input class="input" type="text" id="address" name="address" placeholder="상세주소 입력">
+              <input class="input" type="text" id="address" name="mainAddr" placeholder="상세주소 입력">
             </div>
           </div>
         </div>
@@ -199,7 +202,7 @@
         <div class="new-nemo3">
           <div class="new-nemo4">
             <div class="new-nemo5">
-              <input class="input" type="text" id="phone" name="phone" placeholder="휴대폰 입력">
+              <input class="input" type="text" id="phone" name="tel" placeholder="휴대폰 입력">
             </div>
           </div>
         </div>
@@ -219,7 +222,7 @@
         <div class="new-nemo3">
           <div class="new-nemo4">
             <div class="new-nemo5">
-              <input class="input" type="text" id="hobby" name="hobby" placeholder="관심사 선택">
+              <input class="input" type="text" id="hobby" name="interest" placeholder="관심사 선택">
             </div>
           </div>
         </div>

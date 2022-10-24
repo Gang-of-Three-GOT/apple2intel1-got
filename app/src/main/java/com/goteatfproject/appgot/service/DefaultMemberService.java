@@ -12,6 +12,11 @@ public class DefaultMemberService implements MemberService {
   @Autowired
   MemberDao memberDao;
 
+  @Override
+  public void add(User user) throws Exception {
+    memberDao.insert(user);
+  }
+
   public List<User> list() throws Exception {
     return memberDao.findAll();
   }

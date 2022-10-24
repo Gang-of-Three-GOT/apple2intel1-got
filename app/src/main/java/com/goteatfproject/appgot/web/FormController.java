@@ -24,9 +24,15 @@ public class FormController {
     return "form";
   }
 
-  @PostMapping("/save")
-  public String save(User user) throws Exception {
-    return "memberInfo";
+//  @PostMapping("/save")
+//  public String save(User user) throws Exception {
+//    return "memberInfo";
+//  }
+
+  @PostMapping("/add")
+  public String add(User user) throws Exception {
+    memberService.add(user);
+    return "redirect:list";
   }
 
   @GetMapping("list")
