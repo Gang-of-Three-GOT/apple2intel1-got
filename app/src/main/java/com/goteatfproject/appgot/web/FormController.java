@@ -1,7 +1,9 @@
 package com.goteatfproject.appgot.web;
 
+import com.goteatfproject.appgot.service.MemberService;
 import com.goteatfproject.appgot.vo.User;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -10,13 +12,26 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @RequestMapping("/register")
 public class FormController {
 
+  MemberService memberService;
+
+  public FormController(MemberService memberService) {
+    System.out.println("FormController() 호출됨!");
+    this.memberService = memberService;
+  }
+
   @GetMapping ("/add")
-  public String add() {
+  public String add() throws Exception {
     return "form";
   }
 
   @PostMapping("/save")
-  public String save(User user) {
+  public String save(User user) throws Exception {
     return "memberInfo";
+  }
+
+  @GetMapping("list")
+  public String list(Model model) throws Exception {
+    model.addAttribute("users", memberService.list());
+    return "list";
   }
 }

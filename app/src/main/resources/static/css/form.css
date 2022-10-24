@@ -170,7 +170,7 @@ header { position:relative; border-bottom:1px solid #d8d8d8;  }
 }
 
 .new-nemo2 {
-  width: 100px;
+  width: 120px;
   padding-top: 12px;
 }
 
@@ -286,6 +286,11 @@ header { position:relative; border-bottom:1px solid #d8d8d8;  }
   display: block;
   width: 100%;
 } */
+
+.email-error-box {
+  font-size: 14px;
+  margin-top: -4px;
+}
 
 * {
   box-sizing: border-box;

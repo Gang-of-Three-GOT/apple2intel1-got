@@ -37,7 +37,7 @@
   </div>
 
   <div class="container">
-    <form th:action="@{/register/save}" method="post">
+    <form th:action="@{/register/save}" method="post" onsubmit="formCheck()">
 
       <div class="required-top">
         <span class="required">*</span>필수입력사항
@@ -75,18 +75,22 @@
               <!-- </span> -->
               <!-- </div> -->
               <!-- </div> -->
+
+            </div>
+            <div class="">
+            <p class="email-error-box" id="email-error"></p>
             </div>
           </div>
         </div>
-        <div class="new-test6">
-          <div calss="new-test5">
-            <select class="email-select">
-              <option value="naver">@naver.com</option>
-              <option value="daum">@daum.net</option>
-              <option value="gmail">@gmail.com</option>
-            </select> <!--강제로 줄여라..-->
-          </div>
-        </div>
+<!--        <div class="new-test6">-->
+<!--          <div calss="new-test5">-->
+<!--            <select class="email-select">-->
+<!--              <option value="naver">@naver.com</option>-->
+<!--              <option value="daum">@daum.net</option>-->
+<!--              <option value="gmail">@gmail.com</option>-->
+<!--            </select> &lt;!&ndash;강제로 줄여라..&ndash;&gt;-->
+<!--          </div>-->
+<!--        </div>-->
         <div class="new-nemo6">
           <button class="new-nemo7">
             <span class="new-nemo8">중복확인</span>
@@ -221,7 +225,7 @@
         </div>
       </div>
       <div class="newbutton2">
-        <button class="newbutton1">
+        <button class="newbutton1" type="submit">
           <span class="newbutton">가입하기</span>
         </button>
       </div>
@@ -229,7 +233,10 @@
   </div>
 
 
+<script src="/js/form.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
 
 </body>
+
 
 </html>

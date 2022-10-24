@@ -13,10 +13,6 @@ public class App {
     System.out.println("비트캠프 프로젝트!");
     SpringApplication.run(App.class, args);
   }
-<<<<<<< HEAD
-
-=======
->>>>>>> dbbe94cea65ada81828d4f5432404b293c8e1612
 }
 
 
