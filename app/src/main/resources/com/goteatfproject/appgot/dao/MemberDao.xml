@@ -19,9 +19,9 @@
 <!--    #{mainAddr}, #{subAddr}, #{interest}, #{outState}, #{outDate},-->
 <!--    #{pImg}, #{intro})-->
     insert into member (id, pwd, grade, name, nick, tel, in_date, postnum, mainaddr,
-    interest)
-    values(#{id},sha2(#{pwd},256), 0, #{name}, #{nick}, #{tel}, now(),
-    #{postNum}, #{mainAddr}, #{interest})
+    interest, out_state)
+    values(#{id},sha2(#{password},256), 0, #{name}, #{nick}, #{tel}, now(),
+    #{postNum}, #{mainAddr}, #{interest}, 0)
   </insert>
 
 <!--  <select id="findByNo" resultMap="memberMap">-->

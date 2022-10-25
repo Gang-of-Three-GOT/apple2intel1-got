@@ -12,8 +12,8 @@ public class User {
 
   private int no;
   private String id;
-  private String pwd;
-  private String pwd2;
+  private String password;
+  private String password2;
   private boolean grade;
   private String name;
   private String nick;

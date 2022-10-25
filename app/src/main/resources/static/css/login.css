@@ -45,7 +45,7 @@ body::before {
   background-color: transparent;
   border: none;
   border-bottom: 1px solid #999;
-  font-size: 18px; color:#fff;
+  font-size: 18px; color: #ff7878;
   outline: none;
 }
 

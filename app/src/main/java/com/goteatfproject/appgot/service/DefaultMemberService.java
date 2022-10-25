@@ -17,6 +17,16 @@ public class DefaultMemberService implements MemberService {
     memberDao.insert(user);
   }
 
+  @Override
+  public User get(int no) throws Exception {
+    return memberDao.findByNo(no);
+  }
+
+  @Override
+  public User get(String email, String password) throws Exception {
+    return memberDao.findByEmailPassword(email, password);
+  }
+
   public List<User> list() throws Exception {
     return memberDao.findAll();
   }
