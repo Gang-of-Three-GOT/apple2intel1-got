@@ -23,8 +23,8 @@ public class DefaultMemberService implements MemberService {
   }
 
   @Override
-  public User get(String email, String password) throws Exception {
-    return memberDao.findByEmailPassword(email, password);
+  public User get(String id, String password) throws Exception {
+    return memberDao.findByEmailPassword(id, password);
   }
 
   public List<User> list() throws Exception {

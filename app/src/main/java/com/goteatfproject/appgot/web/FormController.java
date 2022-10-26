@@ -21,7 +21,7 @@ public class FormController {
 
   @GetMapping ("/add")
   public String add() throws Exception {
-    return "form";
+    return "member/form";
   }
 
 //  @PostMapping("/save")
@@ -35,9 +35,9 @@ public class FormController {
     return "redirect:list";
   }
 
-  @GetMapping("list")
+  @GetMapping("/list")
   public String list(Model model) throws Exception {
     model.addAttribute("users", memberService.list());
-    return "list";
+    return "member/list";
   }
 }

@@ -10,7 +10,7 @@ import org.springframework.boot.autoconfigure.domain.EntityScan;
 @Getter @Setter @ToString
 public class User {
 
-  private int no;
+  private int mno;
   private String id;
   private String password;
   private String password2;
@@ -20,14 +20,14 @@ public class User {
   private Date birth;
   private String tel;
   private String gender;
-  private Date inDate;
-  private String postNum;
-  private String mainAddr;
+  private Date createdDate;
+  private String post;
+  private String addr;
   private String subAddr;
   private String interest;
   private boolean outState;
   private Date outDate;
-  private String pImg;
+  private String profile;
   private String intro;
 
 }

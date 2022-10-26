@@ -14,6 +14,6 @@ public interface MemberDao {
 
   List<User> findAll();
 
-  User findByEmailPassword(@Param("email") String email, @Param("password") String password);
+  User findByEmailPassword(@Param("id") String id, @Param("password") String password);
 
 }

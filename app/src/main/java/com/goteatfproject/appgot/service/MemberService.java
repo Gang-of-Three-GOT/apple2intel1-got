@@ -9,7 +9,7 @@ public interface MemberService {
 
   User get(int no) throws Exception;
 
-  User get(String email, String password) throws Exception;
+  User get(String id, String password) throws Exception;
 
   List<User> list() throws Exception;
 

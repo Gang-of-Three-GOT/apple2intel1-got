@@ -1,0 +1,140 @@
+@charset "UTF-8";
+
+/*-----------------header---------------------*/
+html { 
+  font-size:100%;
+}
+
+body {
+  font-family:"나눔고딕", NanumGothic, "맑은고딕", MalgunGothic, "Apple SD Gothic Neo", sans-serif;
+  line-height: 1.7;
+  color: #432;
+}
+
+a {
+  text-decoration: none;
+}
+img {
+  max-width: 100%;
+}
+/*-----header------------*/
+
+.page-header {
+  display: flex;
+  justify-content: space-between;
+  position:relative; border-bottom:1px solid #d8d8d8;  
+  }
+
+  .wrapper {
+    display: flex;
+    padding: 0 4%;
+   
+    
+    
+  }
+
+
+/*-----logo------------*/
+.logo {
+  display: block;
+  /*margin: left; */ /*TODO 주석처리*/
+}
+
+/*-----search------------*/
+.search-bar {
+  position: relative;
+  width: 400px;
+  margin-top: 20px;
+}
+
+input {
+  width: 100%;
+  border: 1px solid #bbb;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-size: 15px;
+}
+
+.search-img {
+  position : absolute;
+  width: 17px;
+  top: 10px;
+  right: 12px;
+  margin: 0;
+}
+
+/*-----고객센터------------*/
+.aside-nav {
+  display: flex;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+  margin-top: 20px;
+  list-style: none;
+}
+
+.aside-nav li {
+  margin-left: 20px;
+}
+
+.aside-nav a {
+  color: #432;
+}
+
+.aside-nav a:hover {
+  color: #0bd;
+}
+
+
+
+
+/*-----------------main content---------------------*/
+
+.main-menu {
+  display: flex;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+ 
+  list-style: none;
+  justify-content: center;
+    
+
+}
+.main-menu ul {
+  margin : auto;
+}
+.main-menu li {
+  margin-left: 200px;
+  margin-right: 200px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+.main-menu a {
+  color: #432;
+}
+.main-menu a:hover {
+  color: #0bd;
+}
+
+
+/*-----------------grid---------------------*/
+.grid1 {
+  display: grid;
+  max-width: 1800px;
+  margin:0 auto;
+  padding: 0 5%;
+  gap: 5px;
+  grid-template-columns: repeat(4, minmax(360px, 1fr));
+    margin-top: 2%;
+  
+}
+.hashtag-button { 
+  display:block;
+  width:auto;
+  line-height:30px;
+  text-align:center;
+  /* 이미지 크기를 30*30 정사각형으로 지정하는 경우 */
+  padding-left:40px; /* 이미지와 글자사이 10px의 간격을 줌 */
+
+  
+  background-position:left center;
+}
