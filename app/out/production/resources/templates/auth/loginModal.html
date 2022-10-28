@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="/css/auth/loginModal.css">
+
+  </head>
+  <body>
+    <div class="modal">
+      <div class="modal_body">
+        <div calss="login_container">
+          <form action="">
+            <div class="row">
+              <h2 style="text-align: center">원모아 로그인</h2>
+
+              <div class="col">
+                <input
+                  type="text"
+                  name="username"
+                  placeholder="Username"
+                  required
+                />
+                <input
+                  type="password"
+                  name="password"
+                  placeholder="Password"
+                  required
+                />
+                <input type="submit" value="Login" />
+                <a href="#" class="kakao btn">
+                  <button type="button">kakao 로그인</button>
+                </a>
+                <a href="#" class="naver btn">
+                  <button type="button">네이버 로그인</button>
+                </a>
+                <a href="#" class="google btn">
+                  <button type="button">구글 로그인</button>
+                </a>
+              </div>
+            </div>
+            <div class="bottom-container">
+              <div class="row">
+                <div class="col">
+                  <a href="#" style="color: black" class="btn">Sign up</a>
+                </div>
+                <div class="col">
+                  <a href="#" style="color: black" class="btn"
+                    >Forgot password?</a>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+<!--    <button class="btn-open-popup">로그인</button>-->
+
+    <script>
+      const modal = document.querySelector(".modal");
+      const btnOpenPopup = document.querySelector(".btn-open-popup");
+
+      btnOpenPopup.addEventListener("click", () => {
+        modal.style.display = "block";
+        modal.classList.toggle("show");
+      });
+    </script>
+
+  </body>
+</html>

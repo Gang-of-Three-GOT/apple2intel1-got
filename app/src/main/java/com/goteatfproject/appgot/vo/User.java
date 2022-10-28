@@ -6,11 +6,11 @@ import lombok.Setter;
 import lombok.ToString;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 
-@EntityScan
+
 @Getter @Setter @ToString
 public class User {
 
-  private int mno;
+  private int no;
   private String id;
   private String password;
   private String password2;

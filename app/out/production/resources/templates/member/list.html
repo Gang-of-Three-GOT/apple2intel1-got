@@ -21,10 +21,10 @@ tr:hover {
   </tr>
   
   <tr th:each="user : ${users}">
-    <td th:text="${user.mno}">회원번호</td>
+    <td th:text="${user.no}">회원번호</td>
     <td>
       <a href='detail?no=1'
-        th:href="@{detail(no=${user.mno})}"
+        th:href="@{detail(no=${user.no})}"
         th:text="${user.name}">회원이름</a>
     </td>
     <td th:text="${user.id}">회원이메일</td>
