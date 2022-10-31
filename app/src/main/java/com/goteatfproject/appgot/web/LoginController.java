@@ -40,6 +40,9 @@ public class LoginController {
 
       User user = memberService.get(id, password);
 
+    System.out.println("password = " + password);
+    System.out.println("userpassword = " + user.getPassword());
+
       if (user != null) {
         session.setAttribute("loginMember", user);
       }

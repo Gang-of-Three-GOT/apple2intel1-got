@@ -1,13 +1,10 @@
 package com.goteatfproject.appgot.web;
 
-import com.goteatfproject.appgot.service.MemberService;
 import com.goteatfproject.appgot.service.NoticeService;
 import com.goteatfproject.appgot.vo.Notice;
-import com.goteatfproject.appgot.vo.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.util.HashMap;
@@ -44,7 +41,7 @@ public class NoticeController {
   @GetMapping("/list")
   public String list(Model model) throws Exception {
     model.addAttribute("notices", noticeService.list());
-    return "notice/list";
+    return "notice/noticeList";
   }
 
   @GetMapping("/detail")

@@ -5,33 +5,28 @@
 <head>
   <meta charset="UTF-8">
   <title>EAT-F : LOGIN</title>
-  <link rel="stylesheet" href="/css/login.css">
-
+  <link rel="stylesheet" href="/css/auth/login.css">
 </head>
+
 <body>
 <section class="login-form">
-  <img src="/images/eatf-logo.png" class="logo"/>
+<!--  onclick="location.href='/'-->
+  <a th:href="@{/}"><img src="/images/eatf-logo.png" class="logo"/></a>
   <!-- <h1>EAT-F</h1> -->
   <form th:action="@{/auth/login}" method="post">
     <div class="int-area">
-      <input type="email" name="id" id="email"
-             autocomplete="off" required
-             th:value="${id}"
-      >
+      <input type="email" name="id" id="email" autocomplete="off" required th:value="${id}">
       <label for="id">이메일</label>
     </div>
     <div class="int-area">
-      <input type="password" name="password" id="pwd"
-             autocomplete="off" required>
+      <input type="password" name="password" id="pwd" autocomplete="off" required>
       <label for="pwd">비밀번호</label>
     </div>
     <input type="hidden" name="toURL" value="${param.toURL}"> <!-- TODO urt -->
     <div class="btn-area">
-      <button id="btn"
-              type="submit">로그인
-      </button>
+      <button id="btn" type="submit">로그인</button>
     </div>
-    <input type="checkbox" name="saveEmail">이메일 저장<br>
+    <input id="save_id" type="checkbox" name="saveEmail">이메일 저장<br>
   </form>
   </div>
   <div class="caption1">
@@ -43,6 +38,7 @@
 </section>
 
 <script src="http://code.jquery.com/jquery-3.4.1.min.js"></script>
+
 <script>
   let email = $('#email');
   let pwd = $('#pwd');
@@ -62,7 +58,6 @@
     }
   })
 </script>
-
 
 </body>
 </html>
