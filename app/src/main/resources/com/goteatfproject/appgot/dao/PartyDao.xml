@@ -20,7 +20,7 @@
     <result column="post" property="post"/>
     <result column="addr" property="address"/>
     <result column="img" property="image"/>
-    <result column="public" property="public"/>
+    <result column="public" property="pub"/>
     <result column="createdate" property="createDate"/>
     <result column="viewcnt" property="viewCount"/>
 
@@ -45,114 +45,121 @@
 <!--  </resultMap>-->
 
 
-  <select id="findAll" resultMap="boardMap">
+  <select id="findAll" resultMap="partyMap">
     select
-    pno,
-    mno,
-    meal,
-    title,
-    nick,
-    gender,
-    max,
-    time,
-    age,
-    limit,
-    viewcnt,
-    img,
-    createdate
+    p.pno,
+    m.mno,
+    p.meal,
+    p.title,
+    m.nick,
+    p.gender,
+    p.max,
+    p.time,
+    p.age,
+    p.limit,
+    p.viewcnt,
+    p.img,
+    p.createdate
     from
-    party
-    join member m
+    party p
+    join member m on p.mno = m.mno
     order by
     pno desc
   </select>
 
-  <select id="findByNo" resultMap="boardMap">
+  <select id="findByNo" resultMap="partyMap">
     select
-    b.bno,
-    b.title,
-    b.cont,
-    b.cdt,
-    b.vw_cnt,
+    p.pno,
     m.mno,
-    m.name,
-    bf.bfno,
-    bf.filepath
+    p.meal,
+    p.food,
+    p.title,
+    p.cont,
+    m.nick,
+    p.gender,
+    p.max,
+    p.time,
+    p.age,
+    p.limit,
+    p.loc,
+    p.addr,
+    p.viewcnt,
+    p.img,
+    p.createdate
     from
-    app_board b
-    join app_member m on b.mno = m.mno
-    left outer join app_board_file bf on b.bno=bf.bno
-    where
-    b.bno=#{value}
+    party p
+    join member m on p.mno = m.mno
+    order by
+    pno desc
   </select>
 
-  <select id="findFilesByBoard" resultMap="attachedFileMap">
-    select
-    bfno,
-    filepath,
-    bno
-    from
-    app_board_file
-    where
-    bno = #{value}
-  </select>
+<!--  <select id="findFilesByBoard" resultMap="attachedFileMap">-->
+<!--    select-->
+<!--    bfno,-->
+<!--    filepath,-->
+<!--    bno-->
+<!--    from-->
+<!--    app_board_file-->
+<!--    where-->
+<!--    bno = #{value}-->
+<!--  </select>-->
 
-  <insert id="insert" parameterType="board"
-          useGeneratedKeys="true" keyColumn="bno" keyProperty="no">
-    insert into app_board(title,cont,mno)
+  <insert id="insert" parameterType="party"
+          useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
+    insert into party(title,cont,mno)
     values(#{title},#{content},#{writer.no})
   </insert>
 
-  <update id="update" parameterType="board">
-    update app_board set
+  <update id="update" parameterType="party">
+    update party set
     title=#{title},
     cont=#{content}
-    where bno=#{no}
+    where pno=#{no}
   </update>
 
   <delete id="delete">
-    delete from app_board
-    where bno=#{value}
+    delete from party
+    where pno=#{value}
   </delete>
 
   <delete id="deleteByMember">
-    delete from app_board
-    where mno=#{value}
+    delete from party
+    where pno=#{value}
   </delete>
 
-  <insert id="insertFiles" parameterType="board">
-    insert into app_board_file(filepath,bno)
-    values
-    <foreach collection="attachedFiles" item="file" separator=",">
-      (#{file.filepath},#{no})
-    </foreach>
-  </insert>
+<!--  <insert id="insertFiles" parameterType="board">-->
+<!--    insert into app_board_file(filepath,bno)-->
+<!--    values-->
+<!--    <foreach collection="attachedFiles" item="file" separator=",">-->
+<!--      (#{file.filepath},#{no})-->
+<!--    </foreach>-->
+<!--  </insert>-->
 
-  <delete id="deleteFiles">
-    delete from app_board_file
-    where bno=#{value}
-  </delete>
+<!--  <delete id="deleteFiles">-->
+<!--    delete from app_board_file-->
+<!--    where bno=#{value}-->
+<!--  </delete>-->
 
-  <delete id="deleteFilesByMemberBoards">
-    delete from app_board_file
-    where bno in (select bno from app_board where mno = #{value})
-  </delete>
+<!--  <delete id="deleteFilesByMemberBoards">-->
+<!--    delete from app_board_file-->
+<!--    where bno in (select bno from app_board where mno = #{value})-->
+<!--  </delete>-->
 
-  <delete id="deleteFile">
-    delete from app_board_file
-    where bfno=#{value}
-  </delete>
+<!--  <delete id="deleteFile">-->
+<!--    delete from app_board_file-->
+<!--    where bfno=#{value}-->
+<!--  </delete>-->
 
-  <select id="findFileByNo" resultMap="attachedFileMap">
-    select
-    bfno,
-    filepath,
-    bno
-    from
-    app_board_file
-    where
-    bfno = #{value}
-  </select>
+<!--  <select id="findFileByNo" resultMap="attachedFileMap">-->
+<!--    select-->
+<!--    bfno,-->
+<!--    filepath,-->
+<!--    bno-->
+<!--    from-->
+<!--    app_board_file-->
+<!--    where-->
+<!--    bfno = #{value}-->
+<!--  </select>-->
 
 </mapper>
 
