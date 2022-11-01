@@ -11,12 +11,7 @@ import java.sql.Date;
 public class Notice {
 
   private int no;
-
   private String title;
-
   private String content;
-
-  private Date createdate;
-
-  private String fileName;
+  private Date createDate;
 }
