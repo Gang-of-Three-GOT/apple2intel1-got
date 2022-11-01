@@ -7,18 +7,8 @@
   <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
   <resultMap type="party" id="partyMap">
     <id column="pno" property="no"/>
-    <result column="meal" property="meal"/>
-    <result column="food" property="food"/>
-    <result column="title" property="title"/>
     <result column="cont" property="content"/>
-    <result column="nick" property="nick"/>
-    <result column="gender" property="gender"/>
-    <result column="max" property="max"/>
-    <result column="time" property="time"/>
-    <result column="age" property="age"/>
-    <result column="limit" property="limit"/>
     <result column="loc" property="location"/>
-    <result column="post" property="post"/>
     <result column="addr" property="address"/>
     <result column="viewcnt" property="viewCnt"/>
     <result column="img" property="image"/>
@@ -47,18 +37,24 @@
 
 
   <select id="findAll" resultMap="partyMap">
-      select
-    p.title,
-    p.limit,
-    p.nick,
-    p.age,
-    p.gender,
-    p.max,
-    p.viewcnt,
-    p.img,
-    p.createdate
-      from
-    party p
+<!--      select-->
+<!--    p.title,-->
+<!--    p.meal,-->
+<!--    p.limit,-->
+<!--    p.nick,-->
+<!--    p.age,-->
+<!--    p.gender,-->
+<!--    p.max,-->
+<!--    p.viewcnt,-->
+<!--    p.img,-->
+<!--    p.createdate-->
+<!--      from-->
+<!--    party p-->
+    select
+      meal
+    from
+      party
+<!--    where pno = 1-->
   </select>
 
   <!--  <select id="findByNo" resultMap="partyMap">-->

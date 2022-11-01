@@ -63,6 +63,11 @@ public class NoticeController {
     return "notice/noticeOne";
   }
 
+  @GetMapping("/myPage")
+  public String myPage() throws Exception {
+    return "mypage/jang";
+  }
+
   // 1:1 문의 등록
 //  @PostMapping("/noticeAdd")
 //  public String oneAdd(
