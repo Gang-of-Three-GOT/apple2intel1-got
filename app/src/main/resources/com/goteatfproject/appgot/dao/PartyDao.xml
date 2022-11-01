@@ -59,7 +59,7 @@
     p.createdate
       from
     party p
-  </select>
+  </select> test
 
   <!--  <select id="findByNo" resultMap="partyMap">-->
   <!--    select-->
