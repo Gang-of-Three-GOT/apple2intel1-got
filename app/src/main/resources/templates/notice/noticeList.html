@@ -126,38 +126,76 @@
   <!-- Page content wrapper-->
   <div id="page-content-wrapper">
     <!-- Top navigation-->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">
-      <div class="container-fluid">
-        <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">
-            <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>
-            <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
-              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                <a class="dropdown-item" href="#!">Action</a>
-                <a class="dropdown-item" href="#!">Another action</a>
-                <div class="dropdown-divider"></div>
-                <a class="dropdown-item" href="#!">Something else here</a>
-              </div>
-            </li>
-          </ul>
-        </div>
-      </div>
-    </nav>
+<!--    <nav class="navbar navbar-expand-lg navbar-light bg-light border-bottom">-->
+<!--      <div class="container-fluid">-->
+<!--        <button class="btn btn-primary" id="sidebarToggle">Toggle Menu</button>-->
+<!--        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>-->
+<!--        <div class="collapse navbar-collapse" id="navbarSupportedContent">-->
+<!--          <ul class="navbar-nav ms-auto mt-2 mt-lg-0">-->
+<!--            <li class="nav-item active"><a class="nav-link" href="#!">Home</a></li>-->
+<!--            <li class="nav-item"><a class="nav-link" href="#!">Link</a></li>-->
+<!--            <li class="nav-item dropdown">-->
+<!--              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>-->
+<!--              <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">-->
+<!--                <a class="dropdown-item" href="#!">Action</a>-->
+<!--                <a class="dropdown-item" href="#!">Another action</a>-->
+<!--                <div class="dropdown-divider"></div>-->
+<!--                <a class="dropdown-item" href="#!">Something else here</a>-->
+<!--              </div>-->
+<!--            </li>-->
+<!--          </ul>-->
+<!--        </div>-->
+<!--      </div>-->
+<!--    </nav>-->
     <!-- Page content-->
     <div class="container-fluid">
-      <h1 class="mt-4">Simple Sidebar</h1>
-      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>
-      <p>
-        Make sure to keep all page content within the
-        <code>#page-content-wrapper</code>
-        . The top navbar is optional, and just for demonstration. Just create an element with the
-        <code>#sidebarToggle</code>
-        ID which will toggle the menu when clicked.
-      </p>
+      <h2 class="mt-4">공지사항</h2>
+
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">번호</th>
+          <th scope="col">카테고리</th>
+          <th scope="col">제목</th>
+          <th scope="col">작성자</th>
+          <th scope="col">작성일</th>
+          <th scope="col">조회수</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr>
+          <th scope="row">1</th>
+          <td>Mark</td>
+          <td>Otto</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+          <td>@mdo</td>
+        </tr>
+        <tr>
+          <th scope="row">2</th>
+          <td>Jacob</td>
+          <td>Thornton</td>
+          <td>@fat</td>
+          <td>@fat</td>
+          <td>@fat</td>
+        </tr>
+        <tr>
+          <th scope="row">3</th>
+          <td colspan="2">Larry the Bird</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+          <td>@twitter</td>
+        </tr>
+        </tbody>
+      </table>
+<!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
+<!--      <p>-->
+<!--        Make sure to keep all page content within the-->
+<!--        <code>#page-content-wrapper</code>-->
+<!--        . The top navbar is optional, and just for demonstration. Just create an element with the-->
+<!--        <code>#sidebarToggle</code>-->
+<!--        ID which will toggle the menu when clicked.-->
+<!--      </p>-->
     </div>
   </div>
 </div>
@@ -175,47 +213,3 @@
 </html>
 <!---------------------------------------------------------------->
 <!-- 과거 -->
-
-<!--<!DOCTYPE html>-->
-<!--<html>-->
-<!--<head>-->
-<!--<meta charset="UTF-8">-->
-<!--<title>EAT-F | Notice</title>-->
-<!--<style>-->
-<!--tr:hover {-->
-<!--  background-color: navy;-->
-<!--  color: white;-->
-<!--}-->
-<!--</style>-->
-<!--</head>-->
-<!--<body>-->
-<!--  <h1>공지사항 list</h1>-->
-<!--  <a href='form'>새 글</a>-->
-<!--  <table border='1'>-->
-<!--    <tr>-->
-<!--      <th>번호</th>-->
-<!--      <th>제목</th>-->
-<!--&lt;!&ndash;      <th>조회수</th>&ndash;&gt;-->
-<!--&lt;!&ndash;      <th>작성자</th>&ndash;&gt;-->
-<!--      <th>등록일</th>-->
-<!--    </tr>-->
-<!--    <tr data-th-each="notice : ${notices}">-->
-<!--      <td data-th-text="${notice.no}">100</td>-->
-<!--      <td>-->
-<!--        <a href='detail?no=1'-->
-<!--          data-th-href="@{detail(no=${notice.no})}"-->
-<!--          data-th-text="${notice.title == ''} ? '(제목없음)' : ${notice.title}">제목</a>-->
-<!--      </td>-->
-<!--&lt;!&ndash;      <td data-th-text="${board.viewCount}">17</td>&ndash;&gt;-->
-<!--&lt;!&ndash;      <td data-th-text="${board.writer.name}">홍길동</td>&ndash;&gt;-->
-<!--      <td data-th-text="${notice.createdate}">2022-1-1</td>-->
-<!--    </tr>-->
-
-<!--  </table>-->
-<!--  <p><a href='../'>메인</a></p>-->
-<!--</body>-->
-<!--</html>-->
-
-
-
-<!-- -->
