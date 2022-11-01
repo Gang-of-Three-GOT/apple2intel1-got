@@ -6,7 +6,6 @@ import lombok.ToString;
 
 import java.sql.Date;
 
-
 @Getter @Setter @ToString
 public class Party {
 
@@ -15,6 +14,7 @@ public class Party {
   private String food;
   private String title;
   private String content;
+  private String nick;
   private String gender;
   private int max;
   private Date time;
@@ -23,7 +23,8 @@ public class Party {
   private String location;
   private String post;
   private String address;
+  private int viewCnt;
   private String image;
   private String pub;
-  private Date createdate;
+  private Date createDate;
 }
