@@ -57,9 +57,9 @@
   <div class="line-3"></div>
   <!-------------------------------구분선-------------------------->
   <div class="line-3"></div>
-  <div class="line-3"></div>
-  <!-------------------------------구분선-------------------------->
-  <div class="container text-center">
+  <div class="line-2"></div>
+  <!-------------------------------구분선(마이페이지 프로필 소개란)-------------------------->
+  <!-- <div class="container text-center">
     <div id="mypageProfileSection">
       <div class="row">
         <div class="col-3">
@@ -76,9 +76,8 @@
         </div>
       </div>
     </div>
-  </div>
+  </div> -->
   <!-------------------------------구분선-------------------------->
-  <div class="line-3"></div>
   <div class="d-flex align-items-start">
     <div class="nav flex-column nav-pills me-3" id="v-pills-tab" role="tablist" aria-orientation="vertical">
       <button class="nav-link" id="v-pills-myprofile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-myprofile"
@@ -102,69 +101,493 @@
 
       <button class="nav-link" id="v-pills-myaddress-tab" data-bs-toggle="pill" data-bs-target="#v-pills-myaddress"
         type="button" role="tab" aria-controls="v-pills-myaddress" aria-selected="false">주소지 관리</button>
-    </div>
+     </div>
     <div class="tab-content" id="v-pills-tabContent">
-      <div class="tab-pane fade" id="v-pills-myprofile" role="tabpanel"
-        aria-labelledby="v-pills-myprofile-tab" tabindex="0">
+      <div class="tab-pane fade" id="v-pills-myprofile" role="tabpanel" aria-labelledby="v-pills-myprofile-tab" tabindex="0">
         <h1>개인 정보 수정</h1>
         <hr>
-        <form action='update' method="post">
-          <table border='1'>
-            <tr>
-              <th>번호</th><td><input name='no' type='number' 
-              value='1' data-th-value="${member.no}"
-               readonly></td>
-            </tr>
-            <tr>
-              <th>이름</th><td><input name='name' type='text' 
-              value='이름'
-              data-th-value="${member.name}" 
-              size='60'></td>
-            </tr>
-            <tr>
-              <th>이메일</th><td><input name='email' type='email' 
-              value='$이메일' data-th-value="${member.email}"
-               size='60'></td>
-            </tr>
-            <tr>
-              <th>암호</th><td><input name='password' type='password' size='10'></td>
-            </tr>
-            <tr>
-              <th>등록일</th><td data-th-text="${member.createdDate}">2022-10-20</td>
-            </tr>
-          </table>
-          <p>
-            <button type='submit'>변경</button>
-            <a href='delete?no=1'
-              data-th-href="@{delete(no=${member.no})}">삭제</a>
-          </p>
-          </form>
-        
-      </div>
-      <div class="tab-pane fade" id="v-pills-mylist" role="tabpanel" aria-labelledby="v-pills-mylist-tab" tabindex="0">
-        게시물 관리 컨텐츠
-      </div>
-      <div class="tab-pane fade" id="v-pills-myjoin" role="tabpanel" aria-labelledby="v-pills-myjoin-tab" tabindex="0">
-        참여 내역 컨텐츠
-      </div>
-      <div class="tab-pane fade" id="v-pills-myreservation" role="tabpanel" aria-labelledby="v-pills-myreservation-tab"
-        tabindex="0">
-        예약 내역 컨텐츠
-      </div>
-      <div class="tab-pane fade" id="v-pills-myfollow" role="tabpanel" aria-labelledby="v-pills-myfollow-tab"
-        tabindex="0">
-        팔로우 관리 컨텐츠
-      </div>
-      <div class="tab-pane fade" id="v-pills-myinquiry" role="tabpanel" aria-labelledby="v-pills-myinquiry-tab"
-        tabindex="0">
-        1:1 문의 내역 컨텐츠
-      </div>
-      <div class="tab-pane fade" id="v-pills-myaddress" role="tabpanel" aria-labelledby="v-pills-myaddress-tab"
-        tabindex="0">
-        주소지 관리 컨텐츠
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="email"><span class="required"></span> 아이디(이메일)</label>
+            <!-- 필수 -->
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                <input class="input" type="text" id="email" name="id" placeholder="이메일 고정" readonly>
+              </div>
+              <div class="">
+                <p class="email-error-box" id="email-error"></p>
+              </div>
+            </div>
+          </div>
+
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="password"><span class="required">*</span>현재 비밀번호</label>
+            <!-- 필수 -->
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                
+                <input class="input" type="password" id="password" name="password" placeholder="현재 비밀번호 입력">
+              </div>
+            </div>
+          </div>
+          <div class="new-nemo6"></div>
+        </div>
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="password"><span class="required">*</span>새 비밀번호</label>
+            <!-- 필수 -->
+          </div>
+
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                
+                <input class="input" type="password" id="password" name="password" placeholder="새 비밀번호 입력">
+              </div>
+            </div>
+          </div>
+          <div class="new-nemo6"></div>
+        </div>
+
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="password2"><span class="required">*</span>새 비밀번호확인</label>
+            <!-- 필수 -->
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                <input class="input" type="password" id="password2" name="password2" placeholder="새 비밀번호 입력">
+              </div>
+            </div>
+          </div>
+          <div class="new-nemo6"></div>
+        </div>
+
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="name"><span class="required"></span>이름</label>
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                <input class="input" type="text" id="name" name="name" placeholder="이름 입력">
+              </div>
+            </div>
+          </div>
+          <div class="new-nemo6"></div>
+        </div>
+
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="nick"><span class="required">*</span> 닉네임</label>
+            <!-- 중복 확인 필수-->
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                <input class="input" type="text" id="nick" name="nick" placeholder="닉네임 입력">
+              </div>
+            </div>
+          </div>
+          <div class="new-nemo6">
+            <button class="new-nemo7">
+              <span class="new-nemo8">중복확인</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="phone"><span class="required">*</span>휴대폰</label>
+            <!-- 휴대폰 인증 필수-->
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                <input class="input" type="text" id="phone" name="tel" placeholder="휴대폰 입력">
+              </div>
+            </div>
+          </div>
+          <div class="new-nemo-tel">
+            <div class="new-nemo6-2">
+              <button class="new-nemo7">
+                <span class="new-nemo8">인증확인</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="new-nemo1">
+          <div class="new-nemo2">
+            <label class="new-lable" for="hobby">관심사</label>
+          </div>
+          <div class="new-nemo3">
+            <div class="new-nemo4">
+              <div class="new-nemo5">
+                <input class="input" type="text" id="hobby" name="interest" placeholder="관심사 선택">
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="newbutton2">
+          <button class="newbutton1" type="submit">
+            <span class="newbutton">탈퇴하기</span>
+          </button>
+          <button class="newbutton1" type="submit">
+            <span class="newbutton">회원정보수정</span>
+          </button>
+        </div>
+        </form>
       </div>
     </div>
+
+    <div class="tab-pane fade" id="v-pills-mylist" role="tabpanel" aria-labelledby="v-pills-mylist-tab" tabindex="0">
+      <h1>게시물 관리</h1>
+      <p>
+        <button type="button" class="btn btn-outline-dark"
+          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">수정</button>
+        <button type="button" class="btn btn-outline-dark"
+          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">카테고리</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성일</th>
+            <th scope="col">좋아요 수</th>
+            <th scope="col">조회수</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="tab-pane fade" id="v-pills-myjoin" role="tabpanel" aria-labelledby="v-pills-myjoin-tab" tabindex="0">
+      <h1>참여 내역</h1>
+      <p>
+        <button type="button" class="btn btn-outline-dark"
+          style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">카테고리</th>
+            <th scope="col">제목</th>
+            <th scope="col">작성일</th>
+            <th scope="col">좋아요 수</th>
+            <th scope="col">조회수</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="v-pills-myreservation" role="tabpanel" aria-labelledby="v-pills-myreservation-tab" tabindex="0">
+      <h1>예약 내역</h1>
+      <p>
+        <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">수정</button>
+        <button type="button" class="btn btn-link">문의하기</button>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">예약번호</th>
+            <th scope="col">주최자 아이디</th>
+            <th scope="col">인원</th>
+            <th scope="col">금액</th>
+            <th scope="col">예약일</th>
+            <th scope="col">상태</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="tab-pane fade" id="v-pills-myfollow" role="tabpanel" aria-labelledby="v-pills-myfollow-tab" tabindex="0">
+      <h1>팔로우 관리</h1>
+      <p>
+        <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">그룹</th>
+            <th scope="col">아이디</th>
+            <th scope="col">상태메시지</th>
+            <th scope="col">추가일</th>
+            <th scope="col">최근 피드</th>
+            <th scope="col">상태</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="tab-pane fade" id="v-pills-myinquiry" role="tabpanel" aria-labelledby="v-pills-myinquiry-tab" tabindex="0">
+      <h1>1:1 문의 내역</h1>
+      <p>
+        <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">등록</button>
+        <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">수정</button>
+        <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">삭제</button>
+      </p>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">유형</th>
+            <th scope="col">제목</th>
+            <th scope="col">만족도 조사</th>
+            <th scope="col">작성일</th>
+            <th scope="col">답변 상태</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="tab-pane fade" id="v-pills-myaddress" role="tabpanel" aria-labelledby="v-pills-myaddress-tab" tabindex="0">
+      <h1>주소지 관리</h1>
+      <div style="border:1px solid">
+        <p>
+          기본주소지 관리
+          <button type="button" class="btn btn-outline-dark" style="--bs-btn-padding-y: \.25rem; --bs-btn-padding-x: \.5rem; --bs-btn-font-size: \.75rem;">수정</button>
+        </p>
+        <input type="text" readonly class="form-control-plaintext" id="staticAddress" value="기본주소 Data 불러오기">
+      </div>
+      <table class="table table-hover">
+        <thead>
+          <tr>
+            <th scope="col">번호</th>
+            <th scope="col">유형</th>
+            <th scope="col">제목</th>
+            <th scope="col">만족도 조사</th>
+            <th scope="col">작성일</th>
+            <th scope="col">답변 상태</th>
+          </tr>
+        </thead>
+        <tbody class="table-group-divider">
+          <tr>
+            <th scope="row">1</th>
+            <td>Mark</td>
+            <td>Otto</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+            <td>@mdo</td>
+          </tr>
+          <tr>
+            <th scope="row">2</th>
+            <td>Jacob</td>
+            <td>Thornton</td>
+            <td>@fat</td>
+            <td>@fat</td>
+            <td>@fat</td>
+          </tr>
+          <tr>
+            <th scope="row">3</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+          <tr>
+            <th scope="row">4</th>
+            <td>Larry the Bird</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+            <td>@twitter</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
+  </div>
+
 
 
   <!-------------------------------구분선-------------------------->

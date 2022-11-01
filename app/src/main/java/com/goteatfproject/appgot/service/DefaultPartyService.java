@@ -20,10 +20,4 @@
 //    return partyDao.findAll();
 //  }
 //
-//  @Override
-//  public Party get(int no) throws Exception {
-//    return partyDao.findByNo(no);
-//  }
-//
-//
 //}
