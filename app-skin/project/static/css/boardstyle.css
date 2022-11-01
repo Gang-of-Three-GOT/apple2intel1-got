@@ -102,3 +102,16 @@
   #breadcrumb {
     font-size: xx-large;
   }
+
+  #mypageProfileSection {
+    width : 1000;
+    height: 20;
+    background-color: #fff;
+    border: 1px solid grey;
+  }
+
+  #mypageTextArea {
+    margin-top: 8px;
+  }
+  
+  
