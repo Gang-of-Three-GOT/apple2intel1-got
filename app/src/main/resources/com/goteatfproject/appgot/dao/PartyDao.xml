@@ -51,9 +51,19 @@
 <!--      from-->
 <!--    party p-->
     select
-      meal
+    p.title,
+    p.meal,
+    p.`limit`,
+    p.nick,
+    p.age,
+    p.gender,
+    p.max,
+    p.viewcnt,
+    p.img,
+    p.createdate
     from
-      party
+    party p
+    join member m on m.mno = p.mno
 <!--    where pno = 1-->
   </select>
 

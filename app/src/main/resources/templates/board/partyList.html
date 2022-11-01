@@ -148,11 +148,13 @@
         <div class="col-12">
             <div class="row row-cols-1 row-cols-md-4 g-4">
                <!--1번 카드-->
-                <div class="card">
-                <div class="card-header bg-transparent border-secondary"th:each="party : ${parties}" th:text="${party.meal}"><span class="badge bg-warning">New</span></h1> </div>
+              <th:block th:each="party : ${parties}">
+              <div class="card">
+              <div class="card-header bg-transparent border-secondary" th:text="${party.meal}"><span class="badge bg-warning">New</span></h1> </div>
+<!--              <div class="card-header bg-transparent border-secondary"><span class="badge bg-warning">New</span></h1> </div>-->
                 <img src="/images/1.jpg" class="card-img-top" alt="...">
                 <div class="card-body text-small">
-                  <h5 class="card-title">제목:#</h5>
+                  <h5 class="card-title" th:text="${party.title}"></h5>
                   <p class="card-text">작성자:#</p>
                   <div class="card-footer bg-transparent border-secondary">#</div>
                     <div class="btn-group">
@@ -194,10 +196,10 @@
                             </div>
                           </div>
                           <a class="btn btn-primary" data-bs-toggle="modal" href="#exampleModalToggle" role="button">참여</a>
-
                       </div>
                 </div>
               </div>
+              </th:block>
               <!--2번 카드-->
                 <div class="card">
                     <div class="card-header bg-transparent border-success">[저녁파티] <span class="badge bg-warning">New</span></h1> </div>
