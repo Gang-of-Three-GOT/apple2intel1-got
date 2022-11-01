@@ -48,8 +48,4 @@
 48,dbwls@gmail.com,wkddbwls48,1,장유진,유진,1998-02-25,010-2345-6836,여,2022-08-12,06612,서울시 서초구,서초동 1305,드라마,0,
 49,coqls@gmail.com,wjdcoqls49,1,정채빈,채빈,1999-07-30,010-2345-6837,여,2022-08-13,06735,서울시 서초구,서초동 1366,코딩,0,
 50,ehdrn@naver.com,tjehdrn50,1,서동구,동구,1997-12-24,010-2345-6838,남,2022-08-30,20010,서울시 서초구,,게임,0,
-
-
-
-load data local infile 'C:/Users/sijy1/git/goteatf-project/app/doc/member.csv' into table gottestdb.member fields terminated by ',';
-
+51,admin@test.com,1111,1,서동구,동구,1997-12-24,010-2345-6838,남,2022-08-30,20010,서울시 서초구,,게임,0,
