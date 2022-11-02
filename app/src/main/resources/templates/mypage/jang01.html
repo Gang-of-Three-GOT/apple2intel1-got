@@ -130,7 +130,7 @@
         type="button" role="tab" aria-controls="v-pills-myprofile" aria-selected="false">개인 정보 수정</button>
 
       <button class="nav-link" id="v-pills-mylist-tab" data-bs-toggle="pill" data-bs-target="#v-pills-mylist"
-        type="button" role="tab" aria-controls="v-pills-mylist" aria-selected="true">게시물 관리</button>
+        type="button" role="tab" aria-controls="v-pills-mylist" aria-selected="true">파티게시물 관리</button>
 
       <button class="nav-link" id="v-pills-myjoin-tab" data-bs-toggle="pill" data-bs-target="#v-pills-myjoin"
         type="button" role="tab" aria-controls="v-pills-myjoin" aria-selected="true">참여 내역</button>
@@ -294,8 +294,9 @@
       </div>
     </div>
 
-    <div class="tab-pane fade" id="v-pills-mylist" role="tabpanel" aria-labelledby="v-pills-mylist-tab" tabindex="0">
-      <h1>게시물 관리</h1>
+    <div class="tab-pane fade" id="v-pills-mylist" role="tabpanel" 
+    aria-labelledby="v-pills-mylist-tab" tabindex="0" onclick="location.href='/notice/myPartylist'">
+      <h1>파티게시판 관리</h1>
       <p>
         <button type="button" class="btn btn-outline-dark"
           style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .5rem; --bs-btn-font-size: .75rem;">수정</button>
@@ -305,47 +306,20 @@
       <table class="table table-hover">
         <thead>
           <tr>
-            <th scope="col">번호</th>
-            <th scope="col">카테고리</th>
             <th scope="col">제목</th>
             <th scope="col">작성일</th>
-            <th scope="col">좋아요 수</th>
             <th scope="col">조회수</th>
           </tr>
         </thead>
         <tbody class="table-group-divider">
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
-            <td>@mdo</td>
+          <tr th:each="party : ${parties}">
+            <th scope="row"></th>
+ <!--            <td th:text="${party.title == ''} ? '(제목없음)' : ${party.title}">파티구함</td> -->
+            <td th:text="${party.title}">파티구함</td>
+            <td th:text="${party.viewCnt}">300</td>
+            <td th:text="${party.createdDate}">2022-11-11</td>
           </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-            <td>Thornton</td>
-            <td>@fat</td>
-            <td>@fat</td>
-            <td>@fat</td>
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-          </tr>
-          <tr>
-            <th scope="row">4</th>
-            <td>Larry the Bird</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-            <td>@twitter</td>
-          </tr>
+       
         </tbody>
       </table>
     </div>
