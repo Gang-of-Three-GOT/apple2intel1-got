@@ -56,8 +56,8 @@
                 <img src="/images/1.jpg" alt="춘데렐라" width="32" height="32">
               </div>
               <div class="details">
-                <p class="name">춘데렐라</p>
-                <p class="location">이태원</p>
+                <p class="name" th:text="${feed.writer.nick}"></p>
+                <p class="location"th:text="${feed.writer.addr}"></p>
               </div>
             </div>
             <div class="post-right">
@@ -195,10 +195,9 @@
           <!--          </div>-->
           <!--        </div>
                   </div>
-                  </th:block>
-
-          -->
+              -->
       </div>
+        </th:block>
 
 
 
@@ -298,7 +297,7 @@
         </div>
 
 
-
+      </div>
       </div>
      </section>
   </div>

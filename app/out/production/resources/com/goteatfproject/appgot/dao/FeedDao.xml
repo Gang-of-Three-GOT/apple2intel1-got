@@ -9,18 +9,44 @@
     <id column="fno" property="no"/>
       <result column="title" property="title"/>
       <result column="cont" property="content"/>
+      <result column="date" property="date"/>
 
+    <association property="writer" javaType="user">
+      <id column="mno" property="no"/>
+      <result column="nick" property="nick"/>
+      <result column="addr" property="addr"/>
+    </association>
 
   </resultMap>
 
 
   <select id="findAll" resultMap="feedMap">
       select
-    fno,
-    title,
-    cont
+    f.fno,
+    m.mno,
+    m.nick,
+    m.addr,
+    f.title,
+    f.cont,
+    f.date
     from
-    feed
+    feed f
+    join member m on m.mno = f.mno
+
+<!--    select-->
+<!--    p.title,-->
+<!--    p.meal,-->
+<!--    p.`limit`,-->
+<!--    p.nick,-->
+<!--    p.age,-->
+<!--    p.gender,-->
+<!--    p.max,-->
+<!--    p.viewcnt,-->
+<!--    p.img,-->
+<!--    p.createdate-->
+<!--    from-->
+<!--    party p-->
+<!--    join member m on m.mno = p.mno-->
 
   </select>
 
