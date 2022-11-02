@@ -55,9 +55,11 @@
 </div>
 
 <h2>파티게시판</h2>
+
+    <th:block th:each="feed : ${feeds}">
 <div class="hashtag-button">
-    <button type="btn" onclick="">점심파티</button>
-    <button type="btn" onclick="">점심파티</button>
+    <button type="btn" onclick="" th:text="${feed.title}">점심파티</button>
+    <button type="btn" onclick="" th:text="${feed.cont}">점심파티</button>
     <button type="btn" onclick="">점심파티</button>
     <button type="btn" onclick="">점심파티</button>
     <button type="btn" onclick="">점심파티</button>
@@ -69,6 +71,7 @@
     <button type="btn" onclick="">점심파티</button>
     <button type="btn" onclick="">점심파티</button>
 </div>
+    </th:block>
 <div container-s1>
 <div class="wrapper grid1">
 <div class="item big-box">
