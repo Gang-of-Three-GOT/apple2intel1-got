@@ -104,22 +104,27 @@
 
 <!--<div id="summernote"><p>Hello Summernote</p></div>-->
 
-<!--<table border='1'>-->
-<!--  <tr>-->
-<!--    <th>제목</th><td><input name='title' type='text' size='60'></td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <th>내용</th><td><textarea name='content' rows='10' cols='60'></textarea></td>-->
-<!--  </tr>-->
-<!--  <tr>-->
-<!--    <th>첨부파일</th><td><input name='files' type="file" multiple></td>-->
-<!--  </tr>-->
-<!--</table>-->
+<table border='1'>
+  <tr>
+    <th>제목</th><td><input name='title' type='text' size='60'></td>
+  </tr>
+  <tr>
+    <th>내용</th><td><textarea name='content' rows='10' cols='60'></textarea></td>
+  </tr>
+  <tr>
+    <th>첨부파일</th><td><input name='files' type="file" multiple></td>
+  </tr>
+</table>
 
-<div id="summernote"><p>Hello Summernote 확인</p></div>
-
-
+<!--<div id="summernote"><p>Hello Summernote 확인</p></div>-->
 <!-- 서머노트 end -->
+
+<!------------ 취소 다음 ------------>
+
+<button type="button" class="btn btn-outline-secondary">취소</button>
+<button type="button" class="btn btn-outline-secondary">다음</button>
+
+<!------------ 취소 다음 end------------>
 
 <!-------------------------------구분선-------------------------->
 <div class="line-3"></div>
@@ -149,7 +154,7 @@
 <!-- 서머노트 -->
 <script>
   $(document).ready(function() {
-    $('#summernote').summernote({
+    $('textarea').summernote({
       height: 400, width: 800, });
   });
 </script>
