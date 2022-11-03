@@ -12,5 +12,7 @@ public class Feed {
   private int no;
   private String title;
   private String content;
+  private Date date;
+  private User writer;
 
 }
