@@ -73,19 +73,7 @@ public class NoticeController {
     return "notice/noticeOne";
   }
 
-  // 마이페이지
-  @GetMapping("/myPage")
-  public String myPage() throws Exception {
-    // model.addAttribute("parties", myPageService.list());
-    return "mypage/jang";
-  }
 
-  // 마이페이지
-  @GetMapping("/myPartylist")
-  public String myPartylist(Model model) throws Exception {
-    model.addAttribute("parties", partyService.list());
-    return "mypage/jang";
-  }
 
   // 1:1 문의 등록
   //  @PostMapping("/noticeAdd")
