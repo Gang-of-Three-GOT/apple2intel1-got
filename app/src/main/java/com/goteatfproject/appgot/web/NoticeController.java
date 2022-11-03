@@ -13,12 +13,8 @@ import com.goteatfproject.appgot.service.PartyService;
 
 public class NoticeController {
 
-
-
   NoticeService noticeService;
   PartyService partyService;
-
-
 
   public NoticeController(NoticeService noticeService,PartyService partyService) {
     System.out.println("NoticeController() 호출됨!");
