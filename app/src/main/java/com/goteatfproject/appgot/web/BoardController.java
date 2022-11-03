@@ -29,11 +29,5 @@ public class BoardController {
     return "board/partyList";
   }
 
-  // 파티 리스트 게시물 등록
-
-  @GetMapping("/partyAdd")
-  public String add() throws Exception {
-    return "board/partyAdd";
-  }
 
 }

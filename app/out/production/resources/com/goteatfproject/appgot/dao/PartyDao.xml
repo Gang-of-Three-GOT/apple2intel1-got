@@ -51,7 +51,6 @@
 <!--      from-->
 <!--    party p-->
     select
-    p.pno,
     p.title,
     p.meal,
     p.`limit`,

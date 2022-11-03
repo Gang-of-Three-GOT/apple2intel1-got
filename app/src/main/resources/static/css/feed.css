@@ -47,27 +47,27 @@ header .search-box input{ /* 검색바 텍스트 박스 */
   color: #8e8e8e;
 } 
 
-header nav ul{ /* 피드 세부 아이콘 */
+header ul{ /* 피드 세부 아이콘 */
   list-style: none;
   display: flex;
 }
 
-header nav ul li{
+header ul li{
   margin-right: 20px;
 }
 
-header nav ul li:last-child{
+header ul li:last-child{
   margin-right: 0;
 }
 
-header nav ul li a img{
+header ul li a img{
   width: 22px;
   height: 22px;
   border-radius: 50%;
   object-fit: cover;
 }
 
-header nav ul li a i{
+header ul li a i{
   font-size: 22px;
   color: rgba(38,38,38,1);
 }
@@ -90,6 +90,9 @@ section{
   background-color: white;
   border: 1px solid rgba(219,219,219,1);
   border-radius: 3px;
+  /*기로 스크롤*/
+  overflow: auto;
+  white-space: nowrap;
 }
 
 .story .stories{
@@ -100,6 +103,7 @@ section{
   border-radius: 50%;
   border: 2px solid #c62d8f;
   object-fit: cover;
+  margin: 3px;
 }
 
 .story .stories p{

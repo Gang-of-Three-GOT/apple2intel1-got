@@ -13,8 +13,12 @@ import com.goteatfproject.appgot.service.PartyService;
 
 public class NoticeController {
 
+
+
   NoticeService noticeService;
   PartyService partyService;
+
+
 
   public NoticeController(NoticeService noticeService,PartyService partyService) {
     System.out.println("NoticeController() 호출됨!");
@@ -44,7 +48,6 @@ public class NoticeController {
   //    return "redirect:list";
   //  }
 
-  // 공지사항 리스트
   @GetMapping("/list")
   public String list(Model model) throws Exception {
     model.addAttribute("notices", noticeService.list());
@@ -70,7 +73,19 @@ public class NoticeController {
     return "notice/noticeOne";
   }
 
+  // 마이페이지
+  @GetMapping("/myPage")
+  public String myPage() throws Exception {
+    // model.addAttribute("parties", myPageService.list());
+    return "mypage/jang";
+  }
 
+  // 마이페이지
+  @GetMapping("/myPartylist")
+  public String myPartylist(Model model) throws Exception {
+    model.addAttribute("parties", partyService.list());
+    return "mypage/jang";
+  }
 
   // 1:1 문의 등록
   //  @PostMapping("/noticeAdd")
