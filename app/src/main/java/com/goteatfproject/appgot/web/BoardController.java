@@ -1,5 +1,8 @@
 package com.goteatfproject.appgot.web;
 
+import com.goteatfproject.appgot.vo.Party;
+import com.goteatfproject.appgot.vo.User;
+import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -32,7 +35,12 @@ public class BoardController {
   // 파티 리스트 게시물 등록
 
   @GetMapping("/partyAdd")
-  public String add() throws Exception {
+  public String add(Party party, HttpSession session) throws Exception {
+
+    party.setWriter((User) session.getAttribute("loginMember"));
+
+    partyService.
+
     return "board/partyAdd";
   }
 

@@ -27,4 +27,6 @@ public class Party {
   private String image;
   private String pub;
   private Date createDate;
+
+  private User Writer;
 }
