@@ -27,6 +27,145 @@
   <div class="container">
     <div
         class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+      <a class="navbar-brand" th:href="@{/}"> <!-- TODO 추가 - 5 주소변경 -->
+        <img src="/images/logo.png" alt="Bootstrap" width="100" height="88">
+      </a>
+      <!-------------------------------구분선-------------------------->
+      <div class="col-2"></div>
+
+      <form class="col-12 col-lg-4 mb-3 mb-lg-0 me-lg-4" role="search">
+        <input type="search" class="form-control" placeholder="Search..." aria-label="Search">
+      </form>
+
+      <!-------------------------------구분선-------------------------->
+      <div class="col-2"></div>
+
+      <div th:if="${session.loginMember == null}" class="d-grid me-lg-4 gap-2">
+        <button type="button" onclick="location.href='/auth/login'" class="btn btn-secondary"
+                data-bs-toggle="button">로그인
+        </button>
+      </div>
+
+      <div th:if="${session.loginMember != null}" class="d-grid me-lg-4 gap-2">
+        <button type="button" onclick="location.href='/auth/logout'" class="btn btn-secondary"
+                data-bs-toggle="button">로그아웃
+        </button>
+      </div>
+
+      <div class="dropdown text-end me-lg-4">
+        <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle"
+           data-bs-toggle="dropdown" aria-expanded="false">
+          <img src="/images/mypage.png" alt="mdo" width="32" height="32" class="rounded-circle">
+        </a>
+
+        <ul class="dropdown-menu text-small ">
+          <li th:if="${session.loginMember != null}"><a class="dropdown-item" href="#">New
+            project...</a></li>
+          <li th:if="${session.loginMember != null}"><a class="dropdown-item" href="#">Settings</a>
+          </li>
+          <li th:if="${session.loginMember != null}"><a class="dropdown-item" href="#">Profile</a>
+          </li>
+          <li>
+            <hr class="dropdown-divider">
+          </li>
+          <li th:if="${session.loginMember == null}"><a class="dropdown-item"
+                                                        th:href="@{/auth/login}">Sign in</a></li>
+          <!--          </li>-->
+          <li th:if="${session.loginMember != null}"><a class="dropdown-item"
+                                                        th:href="@{/auth/logout}">Sign out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</header>
+<!-------------------------------구분선-------------------------->
+<div class="line-3"></div>
+<div class="line-3"></div>
+<!------------------------------nav------------------------------>
+<nav class="navbar navbar-expand-lg border-bottom bg-light" aria-label="Tenth navbar example">
+  <div class="container-fluid">
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+            data-bs-target="#navbarsExample08" aria-controls="navbarsExample08"
+            aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse justify-content-md-center " id="navbarsExample08">
+      <ul class="navbar-nav fw-bold text-dark ">
+        <li class="nav-item p-1">
+          <a class="nav-link" aria-current="page" th:href="@{/board/partyList}">파티게시판</a>
+        </li>
+        <li class="nav-item p-1">
+          <a class="nav-link" href="#">피드게시판</a>
+        </li>
+        <li class="nav-item p-1">
+          <a class="nav-link" href="#">이벤트게시판</a>
+        </li>
+        <li class="nav-item dropdown p-1">
+          <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown"
+             aria-expanded="false">고객센터</a>
+          <ul class="dropdown-menu">
+            <li><a class="dropdown-item" th:href="@{/notice/list}">공지사항</a></li>
+            <li><a class="dropdown-item" th:href="@{/notice/myPage}">마이페이지</a></li>
+            <li><a class="dropdown-item" th:href="@{/notice/noticeOne}">1:1 문의</a></li>
+            <li><a class="dropdown-item" href="#">자주 묻는 질문</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>
+<!-------------------------------구분선-------------------------->
+<div class="a-example-divider"></div>
+<!-- 부트스트랩 -->
+
+<!-- 부트스트랩 왼쪽 사이드바 -->
+<div class="d-flex" id="wrapper">
+  <!-- Sidebar-->
+  <div class="border-end bg-white" id="sidebar-wrapper">
+    <div class="sidebar-heading border-bottom bg-light">마이페이지</div>
+    <div class="list-group list-group-flush">
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="">개인 정보 수정</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="@{/notice/myPratyList}">파티게시물 관리</a> 
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="">참여내역</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="">예약 내역</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="">팔로우 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="">1:1 문의 내역</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3"
+         th:href="">주소지 관리</a>
+    </div>
+  </div>
+  <!-- Page content wrapper-->
+  <div id="page-content-wrapper">
+    <div class="container-fluid">
+      <h2 class="mt-4">파티게시물 관리</h2>
+
+      <!--  테이블 부트스트랩   -->
+      <table class="table table-hover">
+        <thead>
+        <tr>
+          <th scope="col">번호</th>
+          <th scope="col">제목</th>
+          <th scope="col">작성일</th>
+          <th scope="col">조회수</th>
+        </tr>
+        </thead>
+        <tbody class="table-group-divider">
+        <tr th:each="party : ${parties}">
+          <th scope="row" th:text="${party.no}"></th>
+          <td th:text="${party.title}"></td>
+          <td th:text="${party.createDate}"></td>
+          <td th:text="${party.viewCnt}"></td>
+        </tr>
+        </tbody>
+      </table>
+=======
       <a class="navbar-brand" th:href="@{/static}"> <!-- TODO 추가 - 5 주소변경 -->
         <img src="/images/logo.png" alt="Bootstrap" width="100" height="88">
       </a>
@@ -165,6 +304,7 @@
 <!--          <td th:text="${party.viewCnt}">300</td>-->
 <!--          <td th:text="${party.createdDate}">2022-11-11</td>-->
 <!--        </tr>-->
+>>>>>>> branch 'main' of https://github.com/Gang-of-Three-GOT/goteatf-project.git
       <!--  테이블 부트스트랩 end   -->
 
       <!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
