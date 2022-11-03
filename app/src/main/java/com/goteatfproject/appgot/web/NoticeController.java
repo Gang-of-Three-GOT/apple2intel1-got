@@ -48,6 +48,7 @@ public class NoticeController {
   //    return "redirect:list";
   //  }
 
+  // 공지사항 리스트
   @GetMapping("/list")
   public String list(Model model) throws Exception {
     model.addAttribute("notices", noticeService.list());
@@ -73,18 +74,18 @@ public class NoticeController {
     return "notice/noticeOne";
   }
 
-  // 마이페이지
+  // 마이페이지 메인
   @GetMapping("/myPage")
   public String myPage() throws Exception {
     // model.addAttribute("parties", myPageService.list());
-    return "mypage/jang";
+    return "notice/myPartyList";
   }
 
-  // 마이페이지
-  @GetMapping("/myPartylist")
-  public String myPartylist(Model model) throws Exception {
+  // 마이페이지 파티게시물 관리
+  @GetMapping("/myPartyList")
+  public String myPartyList(Model model) throws Exception {
     model.addAttribute("parties", partyService.list());
-    return "mypage/jang";
+    return "notice/myPartyList"; // TODO 추가 - 3 이름변경
   }
 
   // 1:1 문의 등록

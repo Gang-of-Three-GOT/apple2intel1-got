@@ -14,14 +14,13 @@
     <result column="img" property="image"/>
     <result column="public" property="pub"/>
     <result column="createdate" property="createDate"/>
-
-
   </resultMap>
 
 
   <select id="findAll" resultMap="partyMap">
 
     select
+      p.pno,
 	    p.title,
 	    p.viewcnt,
 	    p.createdate 
