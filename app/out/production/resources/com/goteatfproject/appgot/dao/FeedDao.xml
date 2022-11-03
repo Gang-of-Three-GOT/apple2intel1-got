@@ -87,11 +87,11 @@
   <!--    bno = #{value}-->
   <!--  </select>-->
 
-  <!--  <insert id="insert" parameterType="party"-->
-  <!--          useGeneratedKeys="true" keyColumn="pno" keyProperty="no">-->
-  <!--    insert into party(title,cont,mno)-->
-  <!--    values(#{title},#{content},#{writer.no})-->
-  <!--  </insert>-->
+    <insert id="insert" parameterType="feed"
+            useGeneratedKeys="true" keyColumn="fno" keyProperty="no">
+      insert into party(title,cont,mno)
+      values(#{title},#{content},#{writer.no})
+    </insert>
 
   <!--  <update id="update" parameterType="party">-->
   <!--    update party set-->
