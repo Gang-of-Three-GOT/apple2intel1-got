@@ -108,7 +108,7 @@
   <div class="border-end bg-white" id="sidebar-wrapper">
     <div class="sidebar-heading border-bottom bg-light">고객센터</div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@{/myPartylist}">파티게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="@{/notice/myPartylist}">파티게시물 관리</a>
       <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/notice/noticeOne}">1:1 문의</a>
     </div>
   </div>
@@ -118,41 +118,35 @@
     <div class="container-fluid">
       <h2 class="mt-4">파티게시물 관리</h2>
 
-<!--  테이블 부트스트랩   -->
+    <!--  테이블 부트스트랩   -->
       <table class="table table-hover">
-        <thead>
+              <thead>
         <tr>
+       <!--  <th scope="col">번호</th> -->
           <th scope="col">제목</th>
           <th scope="col">작성일</th>
           <th scope="col">조회수</th>
         </tr>
         </thead>
         <tbody class="table-group-divider">
-        <tr>
-          <th scope="row">1</th>
-          <td>-</td>
-          <td>제목</td>
-          <td>작성일</td>
-          <td>조회수</td>
-        </tr>
         <tr th:each="party : ${parties}">
-          <th scope="row">2</th>
-          <td th:text="${party.title}">파티구함</td>
-          <td th:text="${party.viewCnt}">300</td>
-          <td th:text="${party.createdDate}">2022-11-11</td>
+         <!-- <th scope="row" th:text="${party.no}"></th> -->
+          <td th:text="${party.title}"></td>
+          <td th:text="${party.createDate}"></td>
+          <td th:text="${party.viewCnt}"></td>
         </tr>
         </tbody>
       </table>
       <!--  테이블 부트스트랩 end   -->
 
-<!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
-<!--      <p>-->
-<!--        Make sure to keep all page content within the-->
-<!--        <code>#page-content-wrapper</code>-->
-<!--        . The top navbar is optional, and just for demonstration. Just create an element with the-->
-<!--        <code>#sidebarToggle</code>-->
-<!--        ID which will toggle the menu when clicked.-->
-<!--      </p>-->
+  <!--      <p>The starting state of the menu will appear collapsed on smaller screens, and will appear non-collapsed on larger screens. When toggled using the button below, the menu will change.</p>-->
+  <!--      <p>-->
+  <!--        Make sure to keep all page content within the-->
+  <!--        <code>#page-content-wrapper</code>-->
+  <!--        . The top navbar is optional, and just for demonstration. Just create an element with the-->
+  <!--        <code>#sidebarToggle</code>-->
+  <!--        ID which will toggle the menu when clicked.-->
+  <!--      </p>-->
     </div>
   </div>
 </div>
