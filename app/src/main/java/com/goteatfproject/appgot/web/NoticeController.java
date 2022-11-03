@@ -13,12 +13,8 @@ import com.goteatfproject.appgot.service.PartyService;
 
 public class NoticeController {
 
-
-
   NoticeService noticeService;
   PartyService partyService;
-
-
 
   public NoticeController(NoticeService noticeService,PartyService partyService) {
     System.out.println("NoticeController() 호출됨!");
@@ -74,19 +70,7 @@ public class NoticeController {
     return "notice/noticeOne";
   }
 
-  // 마이페이지 메인
-  @GetMapping("/myPage")
-  public String myPage() throws Exception {
-    // model.addAttribute("parties", myPageService.list());
-    return "notice/myPartyList";
-  }
 
-  // 마이페이지 파티게시물 관리
-  @GetMapping("/myPartyList")
-  public String myPartyList(Model model) throws Exception {
-    model.addAttribute("parties", partyService.list());
-    return "notice/myPartyList"; // TODO 추가 - 3 이름변경
-  }
 
   // 1:1 문의 등록
   //  @PostMapping("/noticeAdd")
