@@ -34,14 +34,14 @@ public class BoardController {
 
   // 파티 리스트 게시물 등록
 
-  @GetMapping("/partyAdd")
-  public String add(Party party, HttpSession session) throws Exception {
-
-    party.setWriter((User) session.getAttribute("loginMember"));
-
-    partyService.
-
-    return "board/partyAdd";
-  }
+//  @GetMapping("/partyAdd")
+//  public String add(Party party, HttpSession session) throws Exception {
+//
+//    party.setWriter((User) session.getAttribute("loginMember"));
+//
+//    partyService.
+//
+//    return "board/partyAdd";
+//  }
 
 }
