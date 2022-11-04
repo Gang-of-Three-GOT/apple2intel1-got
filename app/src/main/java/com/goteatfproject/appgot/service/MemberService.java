@@ -1,16 +1,16 @@
 package com.goteatfproject.appgot.service;
 
-import com.goteatfproject.appgot.vo.User;
+import com.goteatfproject.appgot.vo.Member;
 import java.util.List;
 
 public interface MemberService {
 
-  void add(User user) throws Exception;
+  void add(Member member) throws Exception;
 
-  User get(int no) throws Exception;
+  Member get(int no) throws Exception;
 
-  User get(String id, String password) throws Exception;
+  Member get(String id, String password) throws Exception;
 
-  List<User> list() throws Exception;
+  List<Member> list() throws Exception;
 
 }

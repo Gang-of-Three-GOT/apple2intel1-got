@@ -1,8 +1,5 @@
 package com.goteatfproject.appgot.web;
 
-import com.goteatfproject.appgot.vo.Party;
-import com.goteatfproject.appgot.vo.User;
-import javax.servlet.http.HttpSession;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;

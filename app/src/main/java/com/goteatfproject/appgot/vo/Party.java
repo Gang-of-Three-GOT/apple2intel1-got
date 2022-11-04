@@ -28,5 +28,5 @@ public class Party {
   private String pub;
   private Date createDate;
 
-  private User Writer;
+  private Member Writer;
 }

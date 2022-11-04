@@ -1,7 +1,7 @@
 package com.goteatfproject.appgot.web;
 
 import com.goteatfproject.appgot.service.MemberService;
-import com.goteatfproject.appgot.vo.User;
+import com.goteatfproject.appgot.vo.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -30,8 +30,8 @@ public class FormController {
 //  }
 
   @PostMapping("/add")
-  public String add(User user) throws Exception {
-    memberService.add(user);
+  public String add(Member member) throws Exception {
+    memberService.add(member);
     return "redirect:list";
   }
 

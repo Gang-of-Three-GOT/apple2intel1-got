@@ -1,6 +1,7 @@
 package com.goteatfproject.appgot.dao;
 
-import com.goteatfproject.appgot.vo.User;
+import com.goteatfproject.appgot.vo.Member;
+
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
@@ -8,12 +9,12 @@ import org.apache.ibatis.annotations.Param;
 @Mapper
 public interface MemberDao {
 
-  int insert(User user);
+  int insert(Member member);
 
-  User findByNo(int no);
+  Member findByNo(int no);
 
-  List<User> findAll();
+  List<Member> findAll();
 
-  User findByEmailPassword(@Param("id") String id, @Param("password") String password);
+  Member findByEmailPassword(@Param("id") String id, @Param("password") String password);
 
 }

@@ -1,9 +1,7 @@
 package com.goteatfproject.appgot.service;
 
-import com.goteatfproject.appgot.dao.MemberDao;
 import com.goteatfproject.appgot.dao.NoticeDao;
 import com.goteatfproject.appgot.vo.Notice;
-import com.goteatfproject.appgot.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

@@ -3,6 +3,8 @@ package com.goteatfproject.appgot.web;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
+import com.goteatfproject.appgot.vo.Member;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.CookieValue;
@@ -10,7 +12,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import com.goteatfproject.appgot.service.MemberService;
-import com.goteatfproject.appgot.vo.User;
 
 @Controller
 @RequestMapping("/auth")
@@ -38,13 +39,13 @@ public class LoginController {
       HttpServletResponse response,
       HttpSession session) throws Exception {
 
-    User user = memberService.get(id, password);
+    Member member = memberService.get(id, password);
 
     System.out.println("password = " + password);
     //    System.out.println("userpassword = " + user.getPassword());
 
-    if (user != null) {
-      session.setAttribute("loginMember", user);
+    if (member != null) {
+      session.setAttribute("loginMember", member);
     }
 
     Cookie cookie = new Cookie("id", id);
