@@ -5,7 +5,7 @@
 <mapper namespace="com.goteatfproject.appgot.dao.MemberDao">
 
   <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
-  <resultMap type="user" id="memberMap">
+  <resultMap type="member" id="memberMap">
     <id column="mno" property="no"/>
     <result column="name" property="name"/>
     <result column="id" property="id"/>
@@ -13,7 +13,7 @@
 <!--    <result column="cdt" property="createdDate"/>-->
   </resultMap>
 
-  <insert id="insert" useGeneratedKeys="true" parameterType="user">
+  <insert id="insert" useGeneratedKeys="true" parameterType="member">
 <!--    insert into member-->
 <!--    values(#{no},#{id},sha2(#{pwd},256), #{grade}, #{name},-->
 <!--    #{nick}, #{birth}, #{tel}, #{gender}, #{inDate}, #{postNum},-->

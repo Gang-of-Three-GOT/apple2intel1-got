@@ -43,7 +43,6 @@ public class FeedController {
     model.addAttribute("feeds", feedService.list());
     return "feed/Feed";
 
-
   }
 
 }

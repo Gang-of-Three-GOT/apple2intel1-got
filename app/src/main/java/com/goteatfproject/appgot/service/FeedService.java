@@ -9,4 +9,6 @@ public interface FeedService {
 
   List<Feed> list() throws Exception;
 
+  void add(Feed feed) throws Exception;
+
 }

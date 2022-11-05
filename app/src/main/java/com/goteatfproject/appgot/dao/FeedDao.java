@@ -12,4 +12,6 @@ public interface FeedDao {
 
   List<Feed> findAll();
 
+  int insert(Feed feed);
+
 }
