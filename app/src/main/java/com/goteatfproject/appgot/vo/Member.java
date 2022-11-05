@@ -21,7 +21,7 @@ public class Member {
   private String gender;
   private Date createdDate;
   private String post;
-  private String addr;
+  private String address;
   private String subAddr;
   private String interest;
   private boolean outState;
