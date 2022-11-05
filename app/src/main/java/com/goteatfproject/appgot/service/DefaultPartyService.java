@@ -10,7 +10,7 @@ import java.util.List;
 
 @Service
 public class DefaultPartyService implements PartyService {
- 
+
   @Autowired
   PartyDao partyDao;
 

@@ -9,7 +9,7 @@ public interface PartyService {
 
   List<Party> list() throws Exception;
 
-
+  
   Party get(int no);
 }
 
