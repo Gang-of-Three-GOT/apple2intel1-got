@@ -14,7 +14,5 @@ public class Feed {
   private String content;
   private Date date;
   private Member writer;
-
-  // ㄱㅣㅅㅇㅇㅇ으ㅡㄹ르으람ㄴㅇㄹㅁㄴ테스트
-
+  
 }
