@@ -5,6 +5,7 @@ import lombok.Setter;
 import lombok.ToString;
 
 import java.sql.Date;
+import java.util.List;
 
 @Getter @Setter @ToString
 public class Feed {
@@ -14,5 +15,6 @@ public class Feed {
   private String content;
   private Date date;
   private Member writer;
-  
+
+
 }

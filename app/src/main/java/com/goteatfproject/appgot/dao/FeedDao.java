@@ -1,5 +1,6 @@
 package com.goteatfproject.appgot.dao;
 
+import com.goteatfproject.appgot.vo.AttachedFile;
 import com.goteatfproject.appgot.vo.Feed;
 import com.goteatfproject.appgot.vo.Party;
 import org.apache.ibatis.annotations.Mapper;

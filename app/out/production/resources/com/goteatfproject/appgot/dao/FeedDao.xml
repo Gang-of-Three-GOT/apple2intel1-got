@@ -89,7 +89,7 @@
 
     <insert id="insert" parameterType="feed"
             useGeneratedKeys="true" keyColumn="fno" keyProperty="no">
-      insert into party(title,cont,mno)
+      insert into feed(title,cont,mno)
       values(#{title},#{content},#{writer.no})
     </insert>
 
