@@ -9,7 +9,7 @@ import java.sql.Date;
 @Getter @Setter @ToString
 public class Party {
 
-  private int no; 
+  private int no;
   private String meal;
   private String food;
   private String title;
@@ -28,5 +28,5 @@ public class Party {
   private String pub;
   private Date createDate;
 
-  private Member Writer;
+  private Member writer;
 }

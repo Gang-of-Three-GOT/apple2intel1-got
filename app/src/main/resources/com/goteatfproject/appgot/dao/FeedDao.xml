@@ -1,150 +1,150 @@
-<?xml version="1.0" encoding="UTF-8" ?>
-<!DOCTYPE mapper
-    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.goteatfproject.appgot.dao.FeedDao">
+<!--<?xml version="1.0" encoding="UTF-8" ?>-->
+<!--<!DOCTYPE mapper-->
+<!--    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"-->
+<!--    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">-->
+<!--<mapper namespace="com.goteatfproject.appgot.dao.FeedDao">-->
 
-  <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. -->
-  <resultMap type="feed" id="feedMap">
-    <id column="fno" property="no"/>
-      <result column="title" property="title"/>
-      <result column="cont" property="content"/>
-      <result column="date" property="date"/>
+<!--  &lt;!&ndash; 자바 객체의 프로퍼티와 컬럼 이름을 연결한다. &ndash;&gt;-->
+<!--  <resultMap type="feed" id="feedMap">-->
+<!--    <id column="fno" property="no"/>-->
+<!--      <result column="title" property="title"/>-->
+<!--      <result column="cont" property="content"/>-->
+<!--      <result column="date" property="date"/>-->
 
-    <association property="writer" javaType="member">
-      <id column="mno" property="no"/>
-      <result column="nick" property="nick"/>
-      <result column="addr" property="addr"/>
-    </association>
+<!--    <association property="writer" javaType="member">-->
+<!--      <id column="mno" property="no"/>-->
+<!--      <result column="nick" property="nick"/>-->
+<!--      <result column="addr" property="addr"/>-->
+<!--    </association>-->
 
-  </resultMap>
+<!--  </resultMap>-->
 
 
-  <select id="findAll" resultMap="feedMap">
-      select
-    f.fno,
-    m.mno,
-    m.nick,
-    m.addr,
-    f.title,
-    f.cont,
-    f.date
-    from
-    feed f
-    join member m on m.mno = f.mno
-
-<!--    select-->
-<!--    p.title,-->
-<!--    p.meal,-->
-<!--    p.`limit`,-->
-<!--    p.nick,-->
-<!--    p.age,-->
-<!--    p.gender,-->
-<!--    p.max,-->
-<!--    p.viewcnt,-->
-<!--    p.img,-->
-<!--    p.createdate-->
+<!--  <select id="findAll" resultMap="feedMap">-->
+<!--      select-->
+<!--    f.fno,-->
+<!--    m.mno,-->
+<!--    m.nick,-->
+<!--    m.addr,-->
+<!--    f.title,-->
+<!--    f.cont,-->
+<!--    f.date-->
 <!--    from-->
-<!--    party p-->
-<!--    join member m on m.mno = p.mno-->
+<!--    feed f-->
+<!--    join member m on m.mno = f.mno-->
 
-  </select>
+<!--&lt;!&ndash;    select&ndash;&gt;-->
+<!--&lt;!&ndash;    p.title,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.meal,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.`limit`,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.nick,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.age,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.gender,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.max,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.viewcnt,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.img,&ndash;&gt;-->
+<!--&lt;!&ndash;    p.createdate&ndash;&gt;-->
+<!--&lt;!&ndash;    from&ndash;&gt;-->
+<!--&lt;!&ndash;    party p&ndash;&gt;-->
+<!--&lt;!&ndash;    join member m on m.mno = p.mno&ndash;&gt;-->
 
-  <!--  <select id="findByNo" resultMap="partyMap">-->
-  <!--    select-->
-  <!--    p.pno,-->
-  <!--    m.mno,-->
-  <!--    p.meal,-->
-  <!--    p.food,-->
-  <!--    p.title,-->
-  <!--    p.cont,-->
-  <!--    m.nick,-->
-  <!--    p.gender,-->
-  <!--    p.max,-->
-  <!--    p.time,-->
-  <!--    p.age,-->
-  <!--    p.limit,-->
-  <!--    p.loc,-->
-  <!--    p.addr,-->
-  <!--    p.viewcnt,-->
-  <!--    p.img,-->
-  <!--    p.createdate-->
-  <!--    from-->
-  <!--    party p-->
-  <!--    join member m on p.mno = m.mno-->
-  <!--    order by-->
-  <!--    pno desc-->
-  <!--  </select>-->
+<!--  </select>-->
 
-  <!--  <select id="findFilesByBoard" resultMap="attachedFileMap">-->
-  <!--    select-->
-  <!--    bfno,-->
-  <!--    filepath,-->
-  <!--    bno-->
-  <!--    from-->
-  <!--    app_board_file-->
-  <!--    where-->
-  <!--    bno = #{value}-->
-  <!--  </select>-->
+<!--  &lt;!&ndash;  <select id="findByNo" resultMap="partyMap">&ndash;&gt;-->
+<!--  &lt;!&ndash;    select&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.pno,&ndash;&gt;-->
+<!--  &lt;!&ndash;    m.mno,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.meal,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.food,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.title,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.cont,&ndash;&gt;-->
+<!--  &lt;!&ndash;    m.nick,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.gender,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.max,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.time,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.age,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.limit,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.loc,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.addr,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.viewcnt,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.img,&ndash;&gt;-->
+<!--  &lt;!&ndash;    p.createdate&ndash;&gt;-->
+<!--  &lt;!&ndash;    from&ndash;&gt;-->
+<!--  &lt;!&ndash;    party p&ndash;&gt;-->
+<!--  &lt;!&ndash;    join member m on p.mno = m.mno&ndash;&gt;-->
+<!--  &lt;!&ndash;    order by&ndash;&gt;-->
+<!--  &lt;!&ndash;    pno desc&ndash;&gt;-->
+<!--  &lt;!&ndash;  </select>&ndash;&gt;-->
 
-    <insert id="insert" parameterType="feed"
-            useGeneratedKeys="true" keyColumn="fno" keyProperty="no">
-      insert into party(title,cont,mno)
-      values(#{title},#{content},#{writer.no})
-    </insert>
+<!--  &lt;!&ndash;  <select id="findFilesByBoard" resultMap="attachedFileMap">&ndash;&gt;-->
+<!--  &lt;!&ndash;    select&ndash;&gt;-->
+<!--  &lt;!&ndash;    bfno,&ndash;&gt;-->
+<!--  &lt;!&ndash;    filepath,&ndash;&gt;-->
+<!--  &lt;!&ndash;    bno&ndash;&gt;-->
+<!--  &lt;!&ndash;    from&ndash;&gt;-->
+<!--  &lt;!&ndash;    app_board_file&ndash;&gt;-->
+<!--  &lt;!&ndash;    where&ndash;&gt;-->
+<!--  &lt;!&ndash;    bno = #{value}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </select>&ndash;&gt;-->
 
-  <!--  <update id="update" parameterType="party">-->
-  <!--    update party set-->
-  <!--    title=#{title},-->
-  <!--    cont=#{content}-->
-  <!--    where pno=#{no}-->
-  <!--  </update>-->
+<!--    <insert id="insert" parameterType="feed"-->
+<!--            useGeneratedKeys="true" keyColumn="fno" keyProperty="no">-->
+<!--      insert into party(title,cont,mno)-->
+<!--      values(#{title},#{content},#{writer.no})-->
+<!--    </insert>-->
 
-  <!--  <delete id="delete">-->
-  <!--    delete from party-->
-  <!--    where pno=#{value}-->
-  <!--  </delete>-->
+<!--  &lt;!&ndash;  <update id="update" parameterType="party">&ndash;&gt;-->
+<!--  &lt;!&ndash;    update party set&ndash;&gt;-->
+<!--  &lt;!&ndash;    title=#{title},&ndash;&gt;-->
+<!--  &lt;!&ndash;    cont=#{content}&ndash;&gt;-->
+<!--  &lt;!&ndash;    where pno=#{no}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </update>&ndash;&gt;-->
 
-  <!--  <delete id="deleteByMember">-->
-  <!--    delete from party-->
-  <!--    where pno=#{value}-->
-  <!--  </delete>-->
+<!--  &lt;!&ndash;  <delete id="delete">&ndash;&gt;-->
+<!--  &lt;!&ndash;    delete from party&ndash;&gt;-->
+<!--  &lt;!&ndash;    where pno=#{value}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </delete>&ndash;&gt;-->
 
-  <!--  <insert id="insertFiles" parameterType="board">-->
-  <!--    insert into app_board_file(filepath,bno)-->
-  <!--    values-->
-  <!--    <foreach collection="attachedFiles" item="file" separator=",">-->
-  <!--      (#{file.filepath},#{no})-->
-  <!--    </foreach>-->
-  <!--  </insert>-->
+<!--  &lt;!&ndash;  <delete id="deleteByMember">&ndash;&gt;-->
+<!--  &lt;!&ndash;    delete from party&ndash;&gt;-->
+<!--  &lt;!&ndash;    where pno=#{value}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </delete>&ndash;&gt;-->
 
-  <!--  <delete id="deleteFiles">-->
-  <!--    delete from app_board_file-->
-  <!--    where bno=#{value}-->
-  <!--  </delete>-->
+<!--  &lt;!&ndash;  <insert id="insertFiles" parameterType="board">&ndash;&gt;-->
+<!--  &lt;!&ndash;    insert into app_board_file(filepath,bno)&ndash;&gt;-->
+<!--  &lt;!&ndash;    values&ndash;&gt;-->
+<!--  &lt;!&ndash;    <foreach collection="attachedFiles" item="file" separator=",">&ndash;&gt;-->
+<!--  &lt;!&ndash;      (#{file.filepath},#{no})&ndash;&gt;-->
+<!--  &lt;!&ndash;    </foreach>&ndash;&gt;-->
+<!--  &lt;!&ndash;  </insert>&ndash;&gt;-->
 
-  <!--  <delete id="deleteFilesByMemberBoards">-->
-  <!--    delete from app_board_file-->
-  <!--    where bno in (select bno from app_board where mno = #{value})-->
-  <!--  </delete>-->
+<!--  &lt;!&ndash;  <delete id="deleteFiles">&ndash;&gt;-->
+<!--  &lt;!&ndash;    delete from app_board_file&ndash;&gt;-->
+<!--  &lt;!&ndash;    where bno=#{value}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </delete>&ndash;&gt;-->
 
-  <!--  <delete id="deleteFile">-->
-  <!--    delete from app_board_file-->
-  <!--    where bfno=#{value}-->
-  <!--  </delete>-->
+<!--  &lt;!&ndash;  <delete id="deleteFilesByMemberBoards">&ndash;&gt;-->
+<!--  &lt;!&ndash;    delete from app_board_file&ndash;&gt;-->
+<!--  &lt;!&ndash;    where bno in (select bno from app_board where mno = #{value})&ndash;&gt;-->
+<!--  &lt;!&ndash;  </delete>&ndash;&gt;-->
 
-  <!--  <select id="findFileByNo" resultMap="attachedFileMap">-->
-  <!--    select-->
-  <!--    bfno,-->
-  <!--    filepath,-->
-  <!--    bno-->
-  <!--    from-->
-  <!--    app_board_file-->
-  <!--    where-->
-  <!--    bfno = #{value}-->
-  <!--  </select>-->
+<!--  &lt;!&ndash;  <delete id="deleteFile">&ndash;&gt;-->
+<!--  &lt;!&ndash;    delete from app_board_file&ndash;&gt;-->
+<!--  &lt;!&ndash;    where bfno=#{value}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </delete>&ndash;&gt;-->
 
-</mapper>
+<!--  &lt;!&ndash;  <select id="findFileByNo" resultMap="attachedFileMap">&ndash;&gt;-->
+<!--  &lt;!&ndash;    select&ndash;&gt;-->
+<!--  &lt;!&ndash;    bfno,&ndash;&gt;-->
+<!--  &lt;!&ndash;    filepath,&ndash;&gt;-->
+<!--  &lt;!&ndash;    bno&ndash;&gt;-->
+<!--  &lt;!&ndash;    from&ndash;&gt;-->
+<!--  &lt;!&ndash;    app_board_file&ndash;&gt;-->
+<!--  &lt;!&ndash;    where&ndash;&gt;-->
+<!--  &lt;!&ndash;    bfno = #{value}&ndash;&gt;-->
+<!--  &lt;!&ndash;  </select>&ndash;&gt;-->
+
+<!--</mapper>-->
 
 
 
