@@ -13,7 +13,7 @@ public interface PartyDao {
 
   Party findByNo(int no);
 
-}
+} 
 
 //
 //  int insert(Party party);
