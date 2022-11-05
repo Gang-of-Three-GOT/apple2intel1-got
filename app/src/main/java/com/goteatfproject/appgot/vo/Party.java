@@ -8,7 +8,7 @@ import java.sql.Date;
 
 @Getter @Setter @ToString
 public class Party {
-
+ 
   private int no; 
   private String meal;
   private String food;

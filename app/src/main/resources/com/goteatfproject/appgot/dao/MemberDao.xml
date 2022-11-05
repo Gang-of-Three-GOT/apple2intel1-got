@@ -25,7 +25,7 @@
     #{post}, #{addr}, #{interest}, 0)
 
 
-
+ 
 
     insert into member (id, pwd, grade, name, nick, tel, createddate, post,
     addr, interest, outstate)
