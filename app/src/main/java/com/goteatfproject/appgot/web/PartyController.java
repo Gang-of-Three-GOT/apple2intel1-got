@@ -29,7 +29,7 @@ import com.goteatfproject.appgot.vo.AttachedFile;
 public class PartyController {
 
   PartyService partyService;
-  ServletContext sc; 
+  ServletContext sc;
 
   public PartyController(PartyService partyService) {
     System.out.println("PartyController() 호출됨!!");
