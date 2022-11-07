@@ -2,7 +2,6 @@ package com.goteatfproject.appgot.service;
 
 import com.goteatfproject.appgot.dao.MemberDao;
 import com.goteatfproject.appgot.vo.Member;
-
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

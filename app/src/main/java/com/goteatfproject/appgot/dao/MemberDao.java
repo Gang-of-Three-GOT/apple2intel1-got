@@ -1,7 +1,6 @@
 package com.goteatfproject.appgot.dao;
 
 import com.goteatfproject.appgot.vo.Member;
-
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
