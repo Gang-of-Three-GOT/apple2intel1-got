@@ -1,13 +1,14 @@
 package com.goteatfproject.appgot.service;
 
-import com.goteatfproject.appgot.dao.FeedDao;
-import com.goteatfproject.appgot.dao.PartyDao;
-import com.goteatfproject.appgot.vo.Feed;
-import com.goteatfproject.appgot.vo.Party;
+import java.util.List;
+import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
+import com.goteatfproject.appgot.dao.FeedDao;
+import com.goteatfproject.appgot.vo.Criteria;
+import com.goteatfproject.appgot.vo.Feed;
+import com.goteatfproject.appgot.vo.FeedAttachedFile;
 
 @Service
 public class DefaultFeedService implements FeedService {
@@ -20,4 +21,88 @@ public class DefaultFeedService implements FeedService {
     return feedDao.findAll();
   }
 
+  @Transactional
+  @Override
+  public void add(Feed feed) throws Exception {
+    if(feedDao.insert(feed) == 0) {
+      throw new Exception("게시글 등록 실패");
+    }
+    if(feed.getFeedAttachedFiles().size() > 0) {
+      feedDao.insertFiles(feed);
+    }
+  }
+
+  @Override
+  public List<Map<String, Object>> selectFeedList(Criteria cri) {
+    return feedDao.selectFeedList(cri);
+  }
+
+  // 추가
+  @Override
+  public Feed get(int no) throws Exception {
+    return feedDao.findByNo(no);
+  }
+
+  @Override
+  public List<Feed> simpleProfile(int no) throws Exception {
+    return feedDao.simpleProfile(no);
+  }
+
+
+  @Override
+  public List<Feed> randomlist() throws Exception {
+    return feedDao.randomfindAll();
+  }
+
+  @Override
+  public List<Feed> followFindAll(int no) throws Exception {
+    return feedDao.followFindAll(no);
+  }
+
+  @Override
+  public List<Feed> selectListByNick(String nick) throws Exception {
+    return feedDao.selectListByNick(nick);
+  }
+
+  @Transactional
+  @Override
+  public boolean update(Feed feed) throws Exception {
+
+    if (feedDao.update(feed) == 0) {
+      return false;
+    }
+
+    if (feed.getFeedAttachedFiles().size() > 0) {
+      feedDao.insertFiles(feed);
+    }
+    return true;
+  }
+
+  @Transactional
+  @Override
+  public boolean delete(int no) throws Exception {
+    feedDao.deleteFiles(no);
+    return feedDao.delete(no) > 0;
+  }
+
+  @Override
+  public FeedAttachedFile getFeedAttachedFile(int fileNo) throws Exception {
+    return feedDao.findFileByNo(fileNo);
+  }
+
+  @Override
+  public boolean deleteFeedAttachedFile(int fileNo) throws Exception {
+    return feedDao.deleteFile(fileNo) > 0;
+  }
+
+  // 마이페이지 피드게시글 본인 작성 글 리스트
+  @Override
+  public List<Map<String, Object>> selectFeedListByNo(Map<String, Object> map) {
+    return feedDao.selectFeedListByNo(map);
+  }
+
+  @Override
+  public Feed getMyFeedListDetail(int no) throws Exception {
+    return feedDao.findByMyFeedListDetail(no);
+  }
 }
