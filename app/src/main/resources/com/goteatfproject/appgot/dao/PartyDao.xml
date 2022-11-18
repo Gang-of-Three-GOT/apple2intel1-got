@@ -26,16 +26,17 @@
   <resultMap type="party" id="partyMap">
     <id column="pno" property="no"/>
     <result column="meal" property="meal"/>
+    <result column="food" property="food"/>
     <result column="title" property="title"/>
-<!--    <result column="nick" property="nick"/>-->
     <result column="cont" property="content"/>
     <result column="lit" property="limit"/>
+    <result column="max" property="max"/>
     <result column="loc" property="location"/>
     <result column="addr" property="address"/>
     <result column="viewcnt" property="viewCnt"/>
     <result column="gender" property="gender"/>
     <result column="age" property="age"/>
-    <result column="img" property="image"/>
+    <result column="thumbnail" property="thumbnail"/>
     <result column="createdate" property="createDate"/>
     <!-- select 결과에서 mno와 name이 있으면 mno와 name을 담을 user객체를 만들어서
           그 user객체에다가 mno값은 no에 name값은 name프러퍼티에 담은 다음에 그 member 객체를
@@ -45,6 +46,12 @@
           <id column="mno" property="no"/>
           <result column="nick" property="nick"/>
         </association>
+
+    <association property="commentList" javaType="comment"> <!-- comment객체는 party객체의 setter commentList에 담아 -->
+      <id column="prno" property="partyReplyNo"/>
+    </association>
+
+
 
     <!--    &lt;!&ndash; 조인 결과에서 같은 게시글에 대해 여러 개의 첨부 파일 데이터를 담을 경우 &ndash;&gt;-->
     <!-- AttachedFile객체는 Party객체의 attachedFiles 필드에 담아-->
@@ -62,7 +69,81 @@
       <result column="path" property="filepath"/>
     <result column="filename" property="fileName"/>
     <result column="savename" property="saveName"/>
+    <result column="pno" property="partyNo"/>
+
     </resultMap>
+
+  <resultMap type="comment" id="commentMap">
+    <id column="prno" property="partyReplyNo"/>
+    <result column="pno" property="partyNo"/>
+    <result column="cont" property="commentCont"/>
+    <result column="date" property="date"/>
+
+    <association property="writer" javaType="member"> <!-- member객체는 party객체의 setter writer에 담아 -->
+      <id column="mno" property="no"/>
+      <result column="nick" property="nick"/>
+    </association>
+  </resultMap>
+
+  <!-- 댓글 테스트 -->
+<!-- 댓글 작성 -->
+  <insert id="insertComment" parameterType="comment">
+    insert into party_reply (mno, pno, cont, date)
+    values (#{writer.no}, #{partyNo}, #{commentCont}, now())
+  </insert>
+
+<!-- 댓글 출력 -->
+  <select id="selectCommentList" resultMap="commentMap">
+    select
+      pr.prno,
+      pr.pno,
+      pr.cont,
+      pr.date,
+      pr.pub,
+      m.nick,
+      m.mno
+    from
+      party_reply pr
+      join member m on pr.mno = m.mno
+    where pno = #{partyNo}
+  </select>
+
+  <update id="updateComment" parameterType="comment">
+    update
+      party_reply
+    set
+      cont = #{commentCont}
+    where
+    prno = #{partyReplyNo}
+    and
+    mno = #{writer.no}
+  </update>
+
+  <delete id="deleteComment">
+    delete from
+      party_reply
+    where
+      prno = #{partyReplyNo}
+<!--    and-->
+<!--      mno = #{writer.no}-->
+  </delete>
+
+
+<!--  <update id="partyJoinCount" parameterType="party">-->
+<!--    update-->
+<!--    party-->
+<!--    set max = max + 1-->
+<!--    where (lit, pno) in-->
+<!--    (select-->
+<!--    p.lit, v.vno-->
+<!--    from party p-->
+<!--    join volunteer v on p.pno = v.vno-->
+<!--    where-->
+<!--    vno = #{urlNo})-->
+<!--  </update>-->
+
+
+<!--  -->
 
 
 <!--  Member writer = new Member();-->
@@ -72,43 +153,34 @@
 <!--  board.setWriter(writer);-->
 
     <insert id="insert" parameterType="party"
-            useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
+        useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
 <!--      insert into party(title,cont,mno)-->
 <!--      values(#{title},#{content},#{writer.no})-->
       insert into party(mno, meal, food, title, cont, gender, max, time, age,
-      lit, loc, post, addr, viewcnt, createdate)
+      lit, loc, post, addr, viewcnt, createdate, thumbnail)
       values(#{writer.no}, #{meal}, #{food}, #{title}, #{content}, #{gender}, #{max},
-      #{time}, #{age}, #{limit}, #{location}, '', #{address}, 0, now())
+      #{time}, #{age}, #{limit}, #{location}, '', #{address}, 0, now(), #{thumbnail})
     </insert>
 
 
-    <insert id="insertFiles" parameterType="party">
-      insert into party_file(path, pno, filename, savename)
-<!--      insert into party_file(path, pno)-->
-      values
-      <!--  여러 파일 들어가면 첨부파일 , 사용해서 구분-->
-      <foreach collection="attachedFiles" item="file" separator=",">
-        (#{file.filepath}, #{no}, #{file.fileName}, #{file.saveName})
-<!--        (#{file.filepath}, #{no})-->
-      </foreach>
-    </insert>
+
 
 
 
   <!-- resultMap : 컬럼과 프로퍼티의 연결을 정의한 resultMap="id" -->
   <!-- resultType : 오리지널 클래스 이름-->
-  <select id="findAll" resultMap="partyMap">
+<!--  기존 리스트-->
+    <select id="findAll" resultMap="partyMap">
     select
     p.pno,
     p.title,
     p.meal,
     p.lit,
-<!--    p.nick,-->
     p.age,
     p.gender,
     p.max,
     p.viewcnt,
-    p.img,
+    p.thumbnail,
     p.createdate,
     m.mno,
     m.nick
@@ -119,26 +191,81 @@
     pno desc
   </select>
 
-    <select id="findByNo" resultMap="partyMap">
+<!-- 파티게시물 출력 : 카테고리 추가 -->
+  <select id="findAll2" resultMap="partyMap">
+    select
+    p.pno,
+    p.title,
+    p.meal,
+    p.lit,
+    p.age,
+    p.gender,
+    p.max,
+    p.viewcnt,
+    p.createdate,
+    p.thumbnail,
+    p.food,
+    m.mno,
+    m.nick,
+    pf.path
+    from
+    party p
+    join member m on m.mno = p.mno
+    left outer join party_file pf on p.pno = pf.pno
+    <!--meal = all일 경우 if문 실행안되면서 전체 컬럼 값 출력 -->
+    <if test="meal != 'all'">
+      where p.meal = #{meal}
+    </if>
+    <if test="food != null">
+      and p.food = #{food}
+    </if>
+    <!-- 회원번호를 기준으로 그룹으로 묶어서 첨부파일을 한개만 나오게 하기 위함-->
+    group by pno
+    order by
+    pno desc
+  </select>
+
+  <!-- 페이징 -->
+    <select id="selectPartyList" resultMap="partyMap" parameterType="hashmap">
+      <![CDATA[
       select
       p.pno,
-<!--      p.meal,-->
-<!--      p.food,-->
       p.title,
-<!--      p.cont,-->
-<!--      p.gender,-->
-<!--      p.max,-->
-<!--      p.time,-->
-<!--      p.age,-->
-<!--      p.lit,-->
-<!--      p.addr,-->
+      p.meal,
+      p.lit,
+      p.age,
+      p.gender,
+      p.max,
       p.viewcnt,
+      p.thumbnail,
       p.createdate,
-      m.nick,
-      m.mno
+      m.mno,
+      m.nick
       from
       party p
       join member m on m.mno = p.mno
+      order by
+      pno desc
+      LIMIT #{pageStart}, #{perPageNum}
+      ]]>
+    </select>
+
+    <select id="findByNo" resultMap="partyMap">
+      select
+      p.pno,
+      p.title,
+      p.viewcnt,
+      p.createdate,
+      p.lit,
+      p.max,
+      m.nick,
+      m.mno,
+      pf.pfileno,
+      pf.path
+      from
+      party p
+      join member m on m.mno = p.mno
+      left outer join party_file pf on p.pno = pf.pno
       where
       p.pno = #{value}
     </select>
@@ -156,25 +283,60 @@
       where pno = #{value}
     </delete>
 
-  <!--  <select id="findFilesByBoard" resultMap="attachedFileMap">-->
-  <!--    select-->
-  <!--    bfno,-->
-  <!--    filepath,-->
-  <!--    bno-->
-  <!--    from-->
-  <!--    app_board_file-->
-  <!--    where-->
-  <!--    bno = #{value}-->
-  <!--  </select>-->
+<!-- 파일첨부관련 -->
+
+  <insert id="insertFiles" parameterType="party">
+    insert into party_file(path, pno, filename, savename)
+    <!--      insert into party_file(path, pno)-->
+    values
+    <!--  여러 파일 들어가면 첨부파일 , 사용해서 구분-->
+    <foreach collection="attachedFiles" item="file" separator=",">
+      (#{file.filepath}, #{no}, #{file.fileName}, #{file.saveName})
+      <!--        (#{file.filepath}, #{no})-->
+    </foreach>
+  </insert>
+
+    <select id="findFileByNo" resultMap="attachedFileMap">
+      select
+        pfileno,
+        path,
+        pno
+      from
+        party_file
+      where
+        pfileno = #{value}
+    </select>
+
+    <select id="findFilesByParty" resultMap="attachedFileMap">
+      select
+      pfileno,
+      path,
+      bno
+      from
+      party_file
+      where
+      pno = #{value}
+    </select>
+
+    <delete id="deleteFile">
+      delete from party_file
+      where pfileno = #{value}
+    </delete>
+
+    <delete id="deleteFiles">
+      delete from party_file
+      where pno = #{value}
+    </delete>
+
+    <delete id="deleteFilesByMemberBoards">
+      delete from party_file
+      where pno in (select pno from party where mno = #{value})
+    </delete>
 
 
 
 
 
-  <!--  <delete id="delete">-->
-  <!--    delete from party-->
-  <!--    where pno=#{value}-->
-  <!--  </delete>-->
 
   <!--  <delete id="deleteByMember">-->
   <!--    delete from party-->
@@ -183,31 +345,12 @@
 
 
 
-  <!--  <delete id="deleteFiles">-->
-  <!--    delete from app_board_file-->
-  <!--    where bno=#{value}-->
-  <!--  </delete>-->
 
-  <!--  <delete id="deleteFilesByMemberBoards">-->
-  <!--    delete from app_board_file-->
-  <!--    where bno in (select bno from app_board where mno = #{value})-->
-  <!--  </delete>-->
 
-  <!--  <delete id="deleteFile">-->
-  <!--    delete from app_board_file-->
-  <!--    where bfno=#{value}-->
-  <!--  </delete>-->
 
-  <!--  <select id="findFileByNo" resultMap="attachedFileMap">-->
-  <!--    select-->
-  <!--    bfno,-->
-  <!--    filepath,-->
-  <!--    bno-->
-  <!--    from-->
-  <!--    app_board_file-->
-  <!--    where-->
-  <!--    bfno = #{value}-->
-  <!--  </select>-->
+
+
+
 
 </mapper>
 

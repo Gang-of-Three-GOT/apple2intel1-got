@@ -5,18 +5,18 @@ import lombok.Setter;
 import lombok.ToString;
 
 @Getter @Setter @ToString
-public class AttachedFile {
+public class FeedAttachedFile {
 
   private int no;
   private String fileName;
   private String filepath;
   private String saveName;
-  private int partyNo;
+  private int feedNo;
 
-  public AttachedFile() {}
+  public FeedAttachedFile() {}
 
-  // PartyController - attachedFiles.add(new AttachedFile(filename));
-  public AttachedFile(String filepath) {
+  // FeedController - feedAttachedFiles.add(new FeedAttachedFile(filename));
+  public FeedAttachedFile(String filepath) {
     this.filepath = filepath;
   }
 
