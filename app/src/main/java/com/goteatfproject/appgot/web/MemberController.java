@@ -9,25 +9,20 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/register")
-public class FormController {
+@RequestMapping("/member")
+public class MemberController {
 
   MemberService memberService;
 
-  public FormController(MemberService memberService) {
-    System.out.println("FormController() 호출됨!");
+  public MemberController(MemberService memberService) {
+    System.out.println("MemberController() 호출됨!");
     this.memberService = memberService;
   }
 
   @GetMapping ("/add")
   public String add() throws Exception {
-    return "member/form";
+    return "member/memberForm";
   }
-
-//  @PostMapping("/save")
-//  public String save(User user) throws Exception {
-//    return "memberInfo";
-//  }
 
   @PostMapping("/add")
   public String add(Member member) throws Exception {
@@ -37,7 +32,17 @@ public class FormController {
 
   @GetMapping("/list")
   public String list(Model model) throws Exception {
-    model.addAttribute("users", memberService.list());
-    return "member/list";
+    model.addAttribute("members", memberService.list());
+    return "member/memberList";
   }
+
+//  @GetMapping("/list")
+//  public ModelAndView memberList() {
+//    ModelAndView mv = new ModelAndView("/member/list");
+//
+//    List<Map<String, Object>> members = memberService.list();
+//    mv.addObject("members", members);
+//
+//    return mv;
+//  }
 }

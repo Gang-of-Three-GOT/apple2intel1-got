@@ -23,6 +23,8 @@ public class Party {
 //  @JsonProperty("time")
 //  @JsonFormat(shape= Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
   @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//  @JsonProperty("time")
+//  @JsonFormat(shape= Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
   private Date time;
   private int age;
   private int limit;
@@ -30,11 +32,17 @@ public class Party {
   private String post;
   private String address;
   private int viewCnt;
-  private String image;
-  private String pub;
+  private boolean pub;
   private Date createDate;
+  private String thumbnail;
 
   private Member writer;
 
   private List<AttachedFile> attachedFiles;
+
+  private Comment commentList;
+
+  private Volunteer volunteerLink;
+
+
 }

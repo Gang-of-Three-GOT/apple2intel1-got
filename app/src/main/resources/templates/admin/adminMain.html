@@ -83,7 +83,7 @@
     <div class="collapse navbar-collapse justify-content-md-center " id="navbarsExample08">
       <ul class="navbar-nav fw-bold text-dark ">
         <li class="nav-item p-1">
-          <a class="nav-link" aria-current="page" th:href="@{/board/partyList}">파티게시판</a>
+          <a class="nav-link" aria-current="page" th:href="@{/party/list}">파티게시판</a>
         </li>
         <li class="nav-item p-1">
           <a class="nav-link" href="#">피드게시판</a>
@@ -113,82 +113,146 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar-->
   <div class="border-end bg-white" id="sidebar-wrapper">
-    <div class="sidebar-heading border-bottom bg-light">마이페이지</div>
+    <div class="sidebar-heading border-bottom bg-light">관리자페이지</div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myProfile}">개인 정보 수정</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myPartyList}">파티게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myFeedList}">피드게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">참여내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">예약 내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">팔로우 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">1:1 문의 내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">주소지 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/}">사이트 바로가기</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminPartyList}">파티게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminFeedList}">피드게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">이벤트게시물 관리</a>
     </div>
   </div>
   <!-- Page content wrapper-->
   <div id="page-content-wrapper">
     <div class="container-fluid">
-      <h2 class="mt-4">파티게시물 관리</h2>
+      <h2 class="mt-4">관리자페이지 메인</h2>
 
       <!--  테이블 부트스트랩   -->
-      <table class="table table-hover">
-        <thead>
-        <tr>
-          <th scope="col">번호</th>
-          <th scope="col">제목</th>
-          <th scope="col">내용</th>
-          <th scope="col">작성일</th>
-          <th scope="col">조회수</th>
-        </tr>
-        </thead>
-        <tbody class="table-group-divider">
-<!--        <tr th:each="party : ${parties}">-->
-        <tr th:each="party : ${myPartyList}">
-          <th scope="row" th:text="${party.no}"></th>
-          <td th:text="${party.title}"></td>
-          <td th:text="${party.content}"></td>
-          <td th:text="${party.createDate}"></td>
-          <td th:text="${party.viewCnt}"></td>
-        </tr>
-        </tbody>
-      </table>
 
+      <div class="container">
+        <div class="row">
+          <div class="col-4">
+            <table class="table">
+              <button type="button" class="btn btn-primary position-relative">
+                전체회원
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                th:each="member : ${members}"
+                th:text="${memberStat.count}">
+            <span class="visually-hidden">unread messages</span>
+          </span>
+              </button>
+              <thead>
+              <tr>
+                <th scope="col">no</th>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">location</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="member : ${members}">
+                <th scope="row" th:text="${member.no}"></th>
+                <td th:text="${member.id}"></td>
+                <td th:text="${member.name}"></td>
+                <td th:text="${member.address}"></td>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+          <div class="col-1"></div>
+  
+          <div class="col-4">
+            <table class="table">
+              <button type="button" class="btn btn-primary position-relative">
+                신규회원
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+          22+
+          <span class="visually-hidden">unread messages</span>
+        </span>
+              </button>
+              <thead>
+              <tr>
+                <th scope="col">no</th>
+                <th scope="col">id</th>
+                <th scope="col">name</th>
+                <th scope="col">location</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>admin@test.com</td>
+                <td>king</td>
+                <td>@Gimpo</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>Jacob</td>
+                <td>Thornton</td>
+                <td>@fat</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td colspan="2">Larry the Bird</td>
+                <td>@twitter</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+  
+  
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <table class="table">
+              <button type="button" class="btn btn-primary position-relative">
+                신규게시물
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                  22+
+            <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+              <thead>
+              <tr>
+                <th scope="col">no</th>
+                <th scope="col">title</th>
+                <th scope="col">id</th>
+                <th scope="col">content</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr>
+                <th scope="row">1</th>
+                <td>[점심파티] 점심짬뽕 드실분?</td>
+                <td>전주식당MD</td>
+                <td>"오늘 얼큰하게 차돌짬뽕 먹으러 갈까요?</td>
+              </tr>
+              <tr>
+                <th scope="row">2</th>
+                <td>[점심파티] 점심짬뽕 드실분?</td>
+                <td>전주식당MD</td>
+                <td>"오늘 얼큰하게 차돌짬뽕 먹으러 갈까요?</td>
+              </tr>
+              <tr>
+                <th scope="row">3</th>
+                <td>[점심파티] 점심짬뽕 드실분?</td>
+                <td>전주식당MD</td>
+                <td>"오늘 얼큰하게 차돌짬뽕 먹으러 갈까요?</td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+  
+        </div>
+      </div>
+  
       <!--  테이블 부트스트랩 end   -->
     </div>
   </div>
 </div>
 
-
-<!-- 페이징 -->
-
-<nav aria-label="Page navigation example">
-  <ul class="pagination justify-content-center">
-    <li class="page-item disabled" th:if="${pageMaker.prev}">
-      <a class="page-link"
-         th:href="@{list(pageMaker.startPage-1)}" aria-label="Previous">
-        <span aria-hidden="true">이전페이지</span>
-      </a>
-    </li>
-    <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
-      <li class="page-item">
-<!--        <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>-->
-        <a class="page-link" th:href="@{myPartyList(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
-      </li>
-    </th:block>
-    <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
-      <a class="page-link" th:href="@{list(page=${pageMaker.endPage+1})}" aria-label="Next">
-        <span aria-hidden="true">다음페이지</span>
-      </a>
-    </li>
-  </ul>
-</nav>
-
-<!-- 페이징 end-->
 
 <!-------------------------------구분선-------------------------->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"

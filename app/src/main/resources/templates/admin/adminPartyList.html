@@ -23,6 +23,7 @@
 <!-------------------------------구분선-------------------------->
 <div class="b-example-divider"></div>
 <!------------------------------header------------------------------>
+
 <header class="p-3 mb-3 bg-white border-bottom fixed-top">
   <div class="container">
     <div
@@ -83,7 +84,7 @@
     <div class="collapse navbar-collapse justify-content-md-center " id="navbarsExample08">
       <ul class="navbar-nav fw-bold text-dark ">
         <li class="nav-item p-1">
-          <a class="nav-link" aria-current="page" th:href="@{/board/partyList}">파티게시판</a>
+          <a class="nav-link" aria-current="page" th:href="@{/party/list}">파티게시판</a>
         </li>
         <li class="nav-item p-1">
           <a class="nav-link" href="#">피드게시판</a>
@@ -113,21 +114,12 @@
 <div class="d-flex" id="wrapper">
   <!-- Sidebar-->
   <div class="border-end bg-white" id="sidebar-wrapper">
-    <div class="sidebar-heading border-bottom bg-light">마이페이지</div>
+    <div class="sidebar-heading border-bottom bg-light">관리자페이지</div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myProfile}">개인 정보 수정</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myPartyList}">파티게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myFeedList}">피드게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">참여내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">예약 내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">팔로우 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">1:1 문의 내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">주소지 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/}">사이트 바로가기</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminPartyList}">파티게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminFeedList}">피드게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" href="">이벤트게시물 관리</a>
     </div>
   </div>
   <!-- Page content wrapper-->
@@ -147,13 +139,12 @@
         </tr>
         </thead>
         <tbody class="table-group-divider">
-<!--        <tr th:each="party : ${parties}">-->
-        <tr th:each="party : ${myPartyList}">
-          <th scope="row" th:text="${party.no}"></th>
-          <td th:text="${party.title}"></td>
-          <td th:text="${party.content}"></td>
-          <td th:text="${party.createDate}"></td>
-          <td th:text="${party.viewCnt}"></td>
+        <tr th:each="adminPartylist : ${adminPartylists}">
+          <th scope="row" th:text="${adminPartylist.no}"></th>
+          <td th:text="${adminPartylist.title}"></td>
+          <td th:text="${adminPartylist.content}"></td>
+          <td th:text="${adminPartylist.createDate}"></td>
+          <td th:text="${adminPartylist.viewCnt}"></td>
         </tr>
         </tbody>
       </table>
@@ -162,7 +153,6 @@
     </div>
   </div>
 </div>
-
 
 <!-- 페이징 -->
 
@@ -176,8 +166,7 @@
     </li>
     <th:block th:each="pageNum: ${#numbers.sequence(pageMaker.startPage, pageMaker.endPage)}">
       <li class="page-item">
-<!--        <a class="page-link" th:href="@{list(page=${pageNum})}"><i th:text="${pageNum}"></i></a>-->
-        <a class="page-link" th:href="@{myPartyList(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
+        <a class="page-link" th:href="@{adminPartyList(page=${pageNum})}"><i th:text="${pageNum}"></i></a>
       </li>
     </th:block>
     <li class="page-item" th:if="${pageMaker.next && pageMaker.endPage >0}">
@@ -189,6 +178,7 @@
 </nav>
 
 <!-- 페이징 end-->
+
 
 <!-------------------------------구분선-------------------------->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
