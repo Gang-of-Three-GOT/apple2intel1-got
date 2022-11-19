@@ -1,11 +1,5 @@
 package com.goteatfproject.appgot.web;
 
-import com.goteatfproject.appgot.service.VolunteerService;
-import com.goteatfproject.appgot.vo.AttachedFile;
-import com.goteatfproject.appgot.vo.Comment;
-import com.goteatfproject.appgot.vo.Party;
-import com.goteatfproject.appgot.vo.Member;
-import com.goteatfproject.appgot.vo.Volunteer;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
@@ -24,10 +18,15 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import com.goteatfproject.appgot.service.PartyService;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
+import com.goteatfproject.appgot.service.PartyService;
+import com.goteatfproject.appgot.service.VolunteerService;
+import com.goteatfproject.appgot.vo.AttachedFile;
+import com.goteatfproject.appgot.vo.Comment;
+import com.goteatfproject.appgot.vo.Member;
+import com.goteatfproject.appgot.vo.Party;
 
 @Controller
 @RequestMapping("/party/")
@@ -47,49 +46,50 @@ public class PartyController {
     this.volunteerService = volunteerService;
   }
 
-//  // 파티 게시판 페이징 적용
-//  @GetMapping("list")
-//  public ModelAndView partyList(Criteria cri) throws Exception {
-//
-//    // 기존에는 return에서 보냈으면 mv에서는 여기서 보냄
-////    ModelAndView mv = new ModelAndView("party/partyList");
-//    ModelAndView mv = new ModelAndView();
-//
-//    PageMaker pageMaker = new PageMaker();
-//    pageMaker.setCri(cri);
-//    pageMaker.setTotalCount(50);
-//
-//    List<Map<String, Object>> list = partyService.selectPartyList(cri);
-//    mv.addObject("list", list);
-//    mv.addObject("pageMaker", pageMaker);
-//
-//    mv.setViewName("party/partyList");
-//    return mv;
-//  }
+  //  // 파티 게시판 페이징 적용
+  //  @GetMapping("list")
+  //  public ModelAndView partyList(Criteria cri) throws Exception {
+  //
+  //    // 기존에는 return에서 보냈으면 mv에서는 여기서 보냄
+  ////    ModelAndView mv = new ModelAndView("party/partyList");
+  //    ModelAndView mv = new ModelAndView();
+  //
+  //    PageMaker pageMaker = new PageMaker();
+  //    pageMaker.setCri(cri);
+  //    pageMaker.setTotalCount(50);
+  //
+  //    List<Map<String, Object>> list = partyService.selectPartyList(cri);
+  //    mv.addObject("list", list);
+  //    mv.addObject("pageMaker", pageMaker);
+  //
+  //    mv.setViewName("party/partyList");
+  //    return mv;
+  //  }
 
   // 파티게시판 : 페이징 보류, 카테고리 분류 추가
   @GetMapping("list")
   public String partyList(Model model, String meal, String food, HttpSession session) throws Exception {
+    System.out.println("meal = " + meal);
     model.addAttribute("parties", partyService.list2(meal, food));
     model.addAttribute("meal", meal);
     model.addAttribute("food", food);
     System.out.println("model.getAttribute(\"parties\") = " + model.getAttribute("parties"));
 
-// 참여하기 버튼 ->
-      // 파티 참여신청 버튼 추가 진행중
-//    model.addAttribute("volTest", volunteerService.list());
+    // 참여하기 버튼 ->
+    // 파티 참여신청 버튼 추가 진행중
+    //    model.addAttribute("volTest", volunteerService.list());
 
-//    Member loginMember = (Member) session.getAttribute("loginMember");
-//    model.addAttribute("loginMember", loginMember);
-//
-//    int no = loginMember.getNo();
-//
-//    Map<String, Object> volunteerMap = new HashMap<>();
-//    Volunteer volunteer = volunteerService.get2(no); // 멤버 번호를 저장해서 참여멤버인지 조회
-//    System.out.println("volunteer ======> " + volunteer.getMemberNo());
-//    volunteerMap.put("volTest", volunteer);
-//    System.out.println("loginMember =====> " + model.getAttribute("loginMember"));
-//    System.out.println("volunteerMap ====> " + volunteerMap.get("volTest"));
+    //    Member loginMember = (Member) session.getAttribute("loginMember");
+    //    model.addAttribute("loginMember", loginMember);
+    //
+    //    int no = loginMember.getNo();
+    //
+    //    Map<String, Object> volunteerMap = new HashMap<>();
+    //    Volunteer volunteer = volunteerService.get2(no); // 멤버 번호를 저장해서 참여멤버인지 조회
+    //    System.out.println("volunteer ======> " + volunteer.getMemberNo());
+    //    volunteerMap.put("volTest", volunteer);
+    //    System.out.println("loginMember =====> " + model.getAttribute("loginMember"));
+    //    System.out.println("volunteerMap ====> " + volunteerMap.get("volTest"));
     return "party/partyList";
   }
 
@@ -124,40 +124,40 @@ public class PartyController {
     return "redirect:list?meal=all";
 
     // 첨부 파일을 가져오기 위한 리스트 생성
-//    List<AttachedFile> attachedFiles = new ArrayList<>();
-//
-//    // 첨부파일리스트 객체에서 파일경로를 가져와서 정하기위한 변수
-//    String filePath ="";
-//
-//    party.setWriter((Member) session.getAttribute("loginMember"));
-//
-//    // 첨부파일을 받아온다:  @RequestParam("files") MultipartFile[] files (배열로 던져준다)
-//    party.setAttachedFiles(saveAttachedFiles(files));
-//
-//    //  party의 첨부파일들을 전부 다 콘솔에 출력
-//    System.out.println("party.getAttachedFiles() = " + party.getAttachedFiles());
-//
-//    // List<AttachedFile> attachedFiles 변수에 다시 첨부파일을 전부 담는다? 첫번쨰 파일을 꺼내 오기위해서
-//    attachedFiles = party.getAttachedFiles();
-//
-//    for (AttachedFile attachedFile : attachedFiles) {
-//      // 첨부파일의 경로를 다 가져와서 출력
-//      System.out.println("attachedFile.getFilepath() = " + attachedFile.getFilepath());
-//
-//      // 이 조건을 사용하여 FilePath에 첨부 파일을 들어있으면, for 문 종료되면서 첫번째 파일이 filePath에 저장된다
-//      if (filePath != null) {
-//        filePath =attachedFile.getFilepath();
-//      }
-//      break;
-//    }
-//    // add가 실행 될 때, 첫번째 파일이 Thumbnail 객체에 저장된다
-//    party.setThumbnail(filePath);
-//
-//    System.out.println("filename = " + Arrays.toString(files));
-//    System.out.println("filename2 = " + files);
-//
-//    partyService.add(party);
-//    return "redirect:list";
+    //    List<AttachedFile> attachedFiles = new ArrayList<>();
+    //
+    //    // 첨부파일리스트 객체에서 파일경로를 가져와서 정하기위한 변수
+    //    String filePath ="";
+    //
+    //    party.setWriter((Member) session.getAttribute("loginMember"));
+    //
+    //    // 첨부파일을 받아온다:  @RequestParam("files") MultipartFile[] files (배열로 던져준다)
+    //    party.setAttachedFiles(saveAttachedFiles(files));
+    //
+    //    //  party의 첨부파일들을 전부 다 콘솔에 출력
+    //    System.out.println("party.getAttachedFiles() = " + party.getAttachedFiles());
+    //
+    //    // List<AttachedFile> attachedFiles 변수에 다시 첨부파일을 전부 담는다? 첫번쨰 파일을 꺼내 오기위해서
+    //    attachedFiles = party.getAttachedFiles();
+    //
+    //    for (AttachedFile attachedFile : attachedFiles) {
+    //      // 첨부파일의 경로를 다 가져와서 출력
+    //      System.out.println("attachedFile.getFilepath() = " + attachedFile.getFilepath());
+    //
+    //      // 이 조건을 사용하여 FilePath에 첨부 파일을 들어있으면, for 문 종료되면서 첫번째 파일이 filePath에 저장된다
+    //      if (filePath != null) {
+    //        filePath =attachedFile.getFilepath();
+    //      }
+    //      break;
+    //    }
+    //    // add가 실행 될 때, 첫번째 파일이 Thumbnail 객체에 저장된다
+    //    party.setThumbnail(filePath);
+    //
+    //    System.out.println("filename = " + Arrays.toString(files));
+    //    System.out.println("filename2 = " + files);
+    //
+    //    partyService.add(party);
+    //    return "redirect:list";
   }
 
   private List<AttachedFile> saveAttachedFiles(Part[] files)
@@ -280,7 +280,7 @@ public class PartyController {
       @RequestParam("commentCont") String commentCont, HttpSession session) throws Exception {
     // 게시물 번호를 받음
     // @RequestParam("no") int no
-   // <input type="hidden" name="noo" data-th-value="${party.no}"/>
+    // <input type="hidden" name="noo" data-th-value="${party.no}"/>
 
     // 댓글 내용을 받음
     // @RequestParam("commentCont") String commentCont
