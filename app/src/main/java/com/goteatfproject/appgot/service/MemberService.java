@@ -1,9 +1,7 @@
 package com.goteatfproject.appgot.service;
 
-import com.goteatfproject.appgot.vo.Criteria;
-import com.goteatfproject.appgot.vo.Member;
 import java.util.List;
-import java.util.Map;
+import com.goteatfproject.appgot.vo.Member;
 
 public interface MemberService {
 
@@ -43,7 +41,7 @@ public interface MemberService {
   // 관리자페이지 전체회원 limit 10;
   List<Member> MemberList() throws Exception;
 
-  // 관리자페이지 신규회원 limit 10;
+  // 관리자페이지 오늘 가입한 신규회원;
   List<Member> NewMemberList() throws Exception;
 
   // 관리자페이지 회원 상세정보

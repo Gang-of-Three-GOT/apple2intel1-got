@@ -58,15 +58,15 @@
       <!-- 전체회원 -->
       <div class="container">
         <div class="row">
-          <div class="col-4">
+          <div class="col-5">
             <table class="table">
               <button type="button" class="btn btn-primary position-relative" id="memberBtn">
                 전체회원
                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
                       th:each="member : ${members}"
                       th:text="${memberStat.count}">
-            <span class="visually-hidden">unread messages</span>
-          </span>
+                  <span class="visually-hidden">unread messages</span>
+                </span>
               </button>
               <thead>
               <tr>
@@ -94,8 +94,10 @@
           <div class="col-4">
             <table class="table">
               <button type="button" class="btn btn-primary position-relative" id="memberBtn2">
-                신규회원
-                <!--                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">-->
+                오늘 가입한 신규회원
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                      th:each="newMember : ${newMemberLists}"
+                      th:text="${newMemberStat.count}">
                 <span class="visually-hidden">unread messages</span>
                 </span>
               </button>
@@ -123,7 +125,7 @@
       <!-- 파티 +  피드 + 이벤트 신규 게시글 limit:15 -->
       <div class="container">
         <div class="row">
-          <div class="col-8">
+          <div class="col-10">
             <table class="table">
               <button type="button" class="btn btn-primary position-relative">
                 오늘 등록된 게시글

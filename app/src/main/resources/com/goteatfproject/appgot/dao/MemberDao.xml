@@ -151,17 +151,15 @@
     limit 10;
   </select>
 
-  <!-- 관리자페이지 신규회원 limit 10; -->
+  <!-- 관리자페이지 오늘 가입한 신규회원 -->
   <select id="findByNewMember" resultMap="memberMap">
     select
-    mno,
-    name,
-    id,
-    addr
+	    mno,
+	    name,
+	    id,
+	    addr
     from member
-    order by
-    mno desc
-    limit 10;
+    where createddate = curdate()
   </select>
 
   <!-- 관리자페이지 회원 상세정보 -->
