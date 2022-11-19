@@ -1,14 +1,13 @@
 package com.goteatfproject.appgot.dao;
 
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+import org.apache.ibatis.annotations.Param;
 import com.goteatfproject.appgot.vo.AttachedFile;
 import com.goteatfproject.appgot.vo.Comment;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Party;
-import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
-import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface PartyDao {
@@ -63,5 +62,8 @@ public interface PartyDao {
 
   // 댓글 삭제
   int deleteComment(int no);
+
+  // 마이페이지 파티게시글 연쇄삭제
+  int allDelete(int no);
 
 }

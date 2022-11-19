@@ -1,12 +1,5 @@
 package com.goteatfproject.appgot.web;
 
-import com.goteatfproject.appgot.service.EventService;
-import com.goteatfproject.appgot.service.FeedService;
-import com.goteatfproject.appgot.service.MemberService;
-import com.goteatfproject.appgot.service.PartyService;
-import com.goteatfproject.appgot.vo.Criteria;
-import com.goteatfproject.appgot.vo.Member;
-import com.goteatfproject.appgot.vo.PageMaker;
 import java.io.File;
 import java.util.HashMap;
 import java.util.List;
@@ -24,6 +17,13 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
+import com.goteatfproject.appgot.service.EventService;
+import com.goteatfproject.appgot.service.FeedService;
+import com.goteatfproject.appgot.service.MemberService;
+import com.goteatfproject.appgot.service.PartyService;
+import com.goteatfproject.appgot.vo.Criteria;
+import com.goteatfproject.appgot.vo.Member;
+import com.goteatfproject.appgot.vo.PageMaker;
 
 @Controller
 @RequestMapping("/my")
@@ -42,11 +42,11 @@ public class MyController {
   @Autowired
   ServletContext sc;
 
-//  public MyController(PartyService partyService,FeedService feedService, MemberService memberService) {
-//    this.partyService = partyService;
-//    this.feedService = feedService;
-//    this.memberService = memberService;
-//  }
+  //  public MyController(PartyService partyService,FeedService feedService, MemberService memberService) {
+  //    this.partyService = partyService;
+  //    this.feedService = feedService;
+  //    this.memberService = memberService;
+  //  }
 
   // 마이페이지
   @GetMapping("/main")
@@ -161,6 +161,26 @@ public class MyController {
     return mv;
   }
 
+  //  // 마이페이지 파티게시글 비활성화 선택
+  //  @GetMapping("/partyBlock")
+  //  public String partyBlock(int no) throws Exception {
+  //    partyService.partyBlock(no);
+  //    return "redirect:myPartyList";
+  //  }
+
+  // 마이페이지 파티게시글 비활성화 선택
+  @PostMapping("/partyDeletes")
+  @ResponseBody
+  public String partyDeletes(@RequestParam("checkedValue[]") int[] checkedValue) throws Exception {
+    int valueLength = checkedValue.length;
+
+    for(int i=0; i < valueLength; i++) {
+      System.out.println(checkedValue[i]);
+      partyService.allDelete(checkedValue[i]);
+    }
+    return "비활성화 성공";
+  }
+
 
   // 마이페이지-피드게시글 관리
   @GetMapping("/myFeedList")
@@ -236,6 +256,15 @@ public class MyController {
       System.out.println("model.getAttribute(\"feed\") = " + model.getAttribute("feed"));
     }
     return "mypage/myFeedListDetail";
+  }
+
+  @GetMapping("/myPartyDelete")
+  public String allDelete(int no) throws Exception {
+    partyService.allDelete(no);
+    //    if (!partyService.allDelete(no)) {
+    //      throw new Exception("게시글을 삭제할 수 없습니다.");
+    //    }
+    return "redirect:myPartyList";
   }
 
 }

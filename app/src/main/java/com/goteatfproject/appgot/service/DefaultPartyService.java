@@ -1,5 +1,10 @@
 package com.goteatfproject.appgot.service;
 
+import java.util.List;
+import java.util.Map;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import com.goteatfproject.appgot.dao.BoardDao;
 import com.goteatfproject.appgot.dao.PartyDao;
 import com.goteatfproject.appgot.vo.AttachedFile;
@@ -7,12 +12,6 @@ import com.goteatfproject.appgot.vo.Board;
 import com.goteatfproject.appgot.vo.Comment;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Party;
-import java.util.Map;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
-
-import java.util.List;
-import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class DefaultPartyService implements PartyService {
@@ -23,6 +22,7 @@ public class DefaultPartyService implements PartyService {
   @Autowired
   BoardDao boardDao;
 
+  @Override
   @Transactional
   public void add(Party party) throws Exception {
 
@@ -47,6 +47,7 @@ public class DefaultPartyService implements PartyService {
   }
 
   //페이징
+  @Override
   public List<Map<String, Object>> selectPartyList(Criteria cri) {
     return partyDao.selectPartyList(cri);
   }
@@ -77,10 +78,12 @@ public class DefaultPartyService implements PartyService {
     return partyDao.delete(no) > 0;
   }
 
+  @Override
   public AttachedFile getAttachedFile(int fileNo) throws Exception {
     return partyDao.findFileByNo(fileNo);
   }
 
+  @Override
   public boolean deleteAttachedFile(int fileNo) throws Exception {
     return partyDao.deleteFile(fileNo) > 0;
   }
@@ -139,5 +142,11 @@ public class DefaultPartyService implements PartyService {
   @Override
   public boolean deleteComment(int no) throws Exception {
     return partyDao.deleteComment(no) > 0;
+  }
+
+  //마이페이지 파티게시글 연쇄삭제
+  @Override
+  public boolean allDelete(int no) {
+    return partyDao.allDelete(no) > 0;
   }
 }

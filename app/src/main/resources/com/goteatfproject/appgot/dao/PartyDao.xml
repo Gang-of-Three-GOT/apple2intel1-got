@@ -381,6 +381,16 @@
     where
     prno = #{partyReplyNo}
   </delete>
+  
+ <!--  마이페이지 파티게시글 연쇄삭제 -->
+	<delete id="allDelete">
+		delete from party_reply where pno=#{no};
+		delete from party_file where pno=#{no};
+		delete from volunteer where vno=#{no};
+		delete from partytag where pno=#{no};
+		delete from party where pno=#{no};
+	</delete>
+
 </mapper>
 
 

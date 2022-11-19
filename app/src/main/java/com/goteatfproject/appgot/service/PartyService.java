@@ -1,12 +1,12 @@
 package com.goteatfproject.appgot.service;
 
+import java.util.List;
+import java.util.Map;
 import com.goteatfproject.appgot.vo.AttachedFile;
 import com.goteatfproject.appgot.vo.Board;
 import com.goteatfproject.appgot.vo.Comment;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Party;
-import java.util.List;
-import java.util.Map;
 
 public interface PartyService {
 
@@ -51,4 +51,7 @@ public interface PartyService {
 
   // 댓글 삭제
   boolean deleteComment(int no) throws Exception;
+
+  //마이페이지 파티게시글 연쇄삭제
+  boolean allDelete(int no);
 }
