@@ -1,5 +1,6 @@
 package com.goteatfproject.appgot.vo;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 import lombok.Getter;
@@ -22,7 +23,9 @@ public class Party {
   @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //  @JsonProperty("time")
 //  @JsonFormat(shape= Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
-  private Date time;
+  //date에서 수정 l.d.t
+  private LocalDateTime time;
+
   private int age;
   private int limit;
   private String location;
