@@ -6,6 +6,8 @@ import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Event;
 import java.util.List;
 import java.util.Map;
+
+import com.goteatfproject.appgot.vo.Party;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -94,6 +96,12 @@ public class DefaultEventService implements EventService {
   public boolean eventBlock(int no) {
     return eventDao.eventBlock(no) > 0;
 
+  }
+
+  //메인페이지에서 뽑는 파티리스트
+  @Override
+  public List<Event> mainList() throws Exception {
+    return eventDao.findAllMain();
   }
 
 

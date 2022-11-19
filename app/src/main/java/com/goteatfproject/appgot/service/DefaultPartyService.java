@@ -140,4 +140,10 @@ public class DefaultPartyService implements PartyService {
   public boolean deleteComment(int no) throws Exception {
     return partyDao.deleteComment(no) > 0;
   }
+
+  //메인페이지에서 뽑는 파티리스트
+  @Override
+  public List<Party> mainList() throws Exception {
+    return partyDao.findAllMain();
+  }
 }

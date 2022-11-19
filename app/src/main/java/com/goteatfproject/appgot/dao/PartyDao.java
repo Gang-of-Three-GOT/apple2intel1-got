@@ -64,4 +64,7 @@ public interface PartyDao {
   // 댓글 삭제
   int deleteComment(int no);
 
+//메인페이지 파티게시물 조회
+  List<Party> findAllMain();
+
 }

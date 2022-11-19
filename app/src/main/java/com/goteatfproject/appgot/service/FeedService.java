@@ -36,4 +36,7 @@ public interface FeedService {
 
   // 관리자페이지 피드게시글 비활성화
   boolean feedBlock(int no);
+
+  //메인페이지 노출
+  List<Feed> mainList() throws Exception;
 }

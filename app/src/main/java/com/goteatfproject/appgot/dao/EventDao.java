@@ -5,6 +5,8 @@ import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Event;
 import java.util.List;
 import java.util.Map;
+
+import com.goteatfproject.appgot.vo.Party;
 import org.apache.ibatis.annotations.Mapper;
 
 @Mapper
@@ -40,4 +42,8 @@ public interface EventDao {
 
   //관리자페이지 이벤트게시글 비활성화
   int eventBlock(int no);
+
+  //메인페이지 파티게시물 조회
+  List<Event> findAllMain();
+
 }

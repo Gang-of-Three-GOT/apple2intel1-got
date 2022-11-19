@@ -30,6 +30,7 @@
     <result column="title" property="title"/>
     <result column="cont" property="content"/>
     <result column="lit" property="limit"/>
+    <result column="time" property="time"/>
     <result column="max" property="max"/>
     <result column="loc" property="location"/>
     <result column="addr" property="address"/>
@@ -378,6 +379,33 @@
     where
     prno = #{partyReplyNo}
   </delete>
+<!--메인뽑기-->
+  <select id="findAllMain" resultMap="partyMap">
+    select
+    p.pno,
+    p.title,
+    p.meal,
+    p.food,
+    P.time,
+    p.lit,
+    p.time,
+    p.age,
+    p.gender,
+    p.max,
+    p.viewcnt,
+    p.thumbnail,
+    p.createdate,
+    m.mno,
+    m.nick
+    from
+    party p
+    join member m on m.mno = p.mno
+    order by
+    pno desc
+    limit 8
+  </select>
+
+
 </mapper>
 
 

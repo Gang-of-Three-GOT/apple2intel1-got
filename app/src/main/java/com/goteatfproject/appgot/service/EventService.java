@@ -27,7 +27,8 @@ public interface EventService {
 
   // 관리자페이지 이벤트게시글 비활성화
   boolean eventBlock(int no);
-
-
+  
+ //메인페이지 이벤트게시글 조회
+  List<Event> mainList() throws Exception;
 
 }

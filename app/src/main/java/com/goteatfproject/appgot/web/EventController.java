@@ -50,7 +50,7 @@ public class EventController {
 
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
-    pageMaker.setTotalCount(50);
+    pageMaker.setTotalCount(10);
 
     List<Map<String, Object>> list = eventService.selectEventList(cri);
     mv.addObject("list", list);

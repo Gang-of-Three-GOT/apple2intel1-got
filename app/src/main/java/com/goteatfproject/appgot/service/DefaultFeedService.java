@@ -2,10 +2,8 @@ package com.goteatfproject.appgot.service;
 
 import com.goteatfproject.appgot.dao.FeedDao;
 import com.goteatfproject.appgot.dao.PartyDao;
-import com.goteatfproject.appgot.vo.Criteria;
-import com.goteatfproject.appgot.vo.Feed;
-import com.goteatfproject.appgot.vo.FeedAttachedFile;
-import com.goteatfproject.appgot.vo.Party;
+import com.goteatfproject.appgot.vo.*;
+
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -112,4 +110,9 @@ public class DefaultFeedService implements FeedService {
   public boolean feedBlock(int no) {
     return feedDao.feedBlock(no) > 0;
   }
+  @Override
+  public List<Feed> mainList() throws Exception {
+    return feedDao.findAllMain();
+  }
 }
+

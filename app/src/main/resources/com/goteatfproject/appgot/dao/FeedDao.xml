@@ -266,6 +266,22 @@
     where fno = #{no}
   </update>
 
+  <select id="findAllMain" resultMap="feedMap">
+    select
+    f.fno,
+    m.mno,
+    m.nick,
+    m.addr,
+    f.title,
+    f.cont,
+    f.date,
+    f.thumbnail
+    from
+    feed f
+    join member m on m.mno = f.mno
+    limit 8
+  </select>
+
 </mapper>
 
 
