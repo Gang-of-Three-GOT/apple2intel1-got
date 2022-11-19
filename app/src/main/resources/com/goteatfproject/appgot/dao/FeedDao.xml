@@ -220,6 +220,7 @@
   </delete>
 
   <!-- 마이페이지 피드게시글 본인 작성 글 리스트 -->
+  <!-- and f.pub = false  : 관리자페이지에서 비활성화 시 안보이게  -->
   <select id="selectFeedListByNo" resultMap="feedMap" parameterType="hashmap">
     <![CDATA[
     select
@@ -235,6 +236,7 @@
       feed f
     join member m on m.mno = f.mno
     where f.mno=#{memberNo}
+      and f.pub = false
     order by
       fno desc
     LIMIT #{cri.pageStart}, #{cri.perPageNum}
@@ -252,10 +254,12 @@
     f.title,
     f.cont,
     f.date,
-    f.thumbnail
+    f.thumbnail,
+    ff.path
     from
     feed f
     join member m on m.mno = f.mno
+    left outer join feed_file ff on f.fno = ff.fno
     where
     f.fno = #{value}
   </select>
