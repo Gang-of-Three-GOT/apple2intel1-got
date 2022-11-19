@@ -7,6 +7,7 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.UUID;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -354,5 +355,16 @@ public class PartyController {
       throw new Exception("댓글을 삭제할 수 없습니다.");
     }
     return "1";
+  }
+
+  @GetMapping("modify")
+  public Map<String, Object> modify(int no, HttpSession session) throws Exception {
+    Party party = partyService.get(no);
+
+    // 게시글 수정을 위해 게시물 작성자 번호와 로그인 번호 일치 여부 확인
+    checkOwner(party.getNo(), session);
+    Map<String, Object> map = new HashMap<>();
+    map.put("party", party);
+    return map;
   }
 }

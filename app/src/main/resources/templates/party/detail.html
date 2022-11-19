@@ -51,7 +51,7 @@
 <div class="a-example-divider"></div>
 
 <!---------------------------- 상세보기 ------------------------------>
-<form th:action="@{/party/update}" method="post" enctype="multipart/form-data">
+<!--<form th:action="@{/party/update}" method="post" enctype="multipart/form-data">-->
   <div class="container border rounded">
 
     <!--1줄-->
@@ -62,7 +62,8 @@
       </div>
       <div class="col-2">
       </div>
-      <div class="col-2" th:text="'(3' + '/' + ${party.max} + ')'">
+<!--      <div class="col-2" th:text="'(3' + '/' + ${party.lit} + ')'">-->
+      <div class="col-2" th:text="'(' + ${party.max} + '/' + ${party.limit} + ')'">
       </div>
 
       <div class="col-2">
@@ -125,6 +126,18 @@
       <div class="col-2" th:text="'주소 : ' +'[' + ${party.address} + ']'">
       </div>
     </div>
+
+    <div class="mb-3">
+      <label for="formFileSm" class="form-label">파일</label>
+<!--      <input class="form-control form-control-sm" id="formFileSm" type="file" name="files" multiple>-->
+      <ul class="list-group" data-th-each="file : ${party.attachedFiles}">
+        <li class="list-group-item"><a data-th-href="@{files/{path}(path=${file.filepath})}" data-th-text="${file.filepath}"></a></li>
+      </ul>
+    </div>
+
+    <button data-th-if="${session.loginMember != null}" type="button" class="btn btn-outline-secondary"><a th:href="@{modify(no=${party.no})}">변경</a></button>
+    <button data-th-if="${session.loginMember != null}" type="button" class="btn btn-outline-secondary"><a th:href="@{delete(no=${party.no})}">삭제</a></button>
+
     </div>
 <!--<table border='1'>-->
 <!--  <input name="no" type="number" value="1" th:value="${party.no}" readonly hidden/>-->
@@ -165,9 +178,9 @@
 <!--  </tr>-->
   <!------------ 파일첨부 end------------>
 <!--</table>-->
-  <button type="submit" class="btn btn-outline-secondary">변경</button>
-  <button type="button" class="btn btn-outline-secondary"><a th:href="@{delete(no=${party.no})}">삭제</a></button>
-</form>
+<!--  <button type="button" class="btn btn-outline-secondary"><a th:href="@{modify(no=${party.no})}">변경</a></button>-->
+<!--  <button type="button" class="btn btn-outline-secondary"><a th:href="@{delete(no=${party.no})}">삭제</a></button>-->
+<!--</form>-->
 
 <!--                                onclick="location.href='/auth/logout'"-->
   <h5>Comment : </h5>
