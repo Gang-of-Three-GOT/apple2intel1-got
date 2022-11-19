@@ -1,10 +1,12 @@
 package com.goteatfproject.appgot.service;
 
-import java.util.List;
-import java.util.Map;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Feed;
 import com.goteatfproject.appgot.vo.FeedAttachedFile;
+import com.goteatfproject.appgot.vo.Party;
+
+import java.util.List;
+import java.util.Map;
 
 public interface FeedService {
 
@@ -28,7 +30,10 @@ public interface FeedService {
   // 마이페이지 피드게시글 본인 작성 글 리스트
   List<Map<String, Object>> selectFeedListByNo(Map<String, Object> map);
 
-  //마이페이지 피드게시글 본인 작성 글 상세보기
+  // 마이페이지 피드게시글 본인 작성 글 상세보기
+  // 관리자페이지 피드게시글 회원 작성 글 상세보기
   Feed getMyFeedListDetail(int no) throws Exception;
 
+  // 관리자페이지 피드게시글 비활성화
+  boolean feedBlock(int no);
 }

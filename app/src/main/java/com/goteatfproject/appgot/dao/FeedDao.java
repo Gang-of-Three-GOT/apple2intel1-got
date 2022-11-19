@@ -1,11 +1,13 @@
 package com.goteatfproject.appgot.dao;
 
-import java.util.List;
-import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Feed;
 import com.goteatfproject.appgot.vo.FeedAttachedFile;
+import com.goteatfproject.appgot.vo.Party;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
 
 @Mapper
 
@@ -20,7 +22,6 @@ public interface FeedDao {
   // 추가
   List<Feed> selectListByNick(String nick);
   List<Feed> randomfindAll();
-
   List<Feed> followFindAll(int no);
   List<Feed> simpleProfile(int no);
 
@@ -45,5 +46,10 @@ public interface FeedDao {
   // 마이페이지-피드게시글 관리
   List<Map<String, Object>> selectFeedListByNo(Map<String, Object> map);
 
+  // 마이페이지 피드게시글 본인 작성 글 상세보기
+  // 관리자페이지 피드게시글 회원 작성 글 상세보기
   Feed findByMyFeedListDetail(int no);
+
+  // 관리자페이지 이벤트게시글 비활성화
+  int feedBlock(int no);
 }

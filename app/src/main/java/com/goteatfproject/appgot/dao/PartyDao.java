@@ -1,13 +1,14 @@
 package com.goteatfproject.appgot.dao;
 
-import java.util.List;
-import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
-import org.apache.ibatis.annotations.Param;
 import com.goteatfproject.appgot.vo.AttachedFile;
 import com.goteatfproject.appgot.vo.Comment;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Party;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
+
+import java.util.List;
+import org.apache.ibatis.annotations.Param;
 
 @Mapper
 public interface PartyDao {
@@ -41,19 +42,26 @@ public interface PartyDao {
 
   int deleteFilesByMemberParties(int memberNo);
 
-  // 댓글 테스트
-  public void insertComment(Comment comment);
-
-  public List<Comment> selectCommentList(Comment comment);
-
-  int updateComment(Comment comment);
-
   // 마이페이지 파티게시글 본인 작성 글 리스트
   List<Map<String, Object>> selectPartyListByNo(Map<String, Object> map);
-  
+
   // 마이페이지 파티게시글 본인 작성 글 상세보기
+  // 관리자페이지 파티게시글 회원 작성 글 상세보기
   Party findByMyPartyListDetail(int no);
-  
+
   // 관리자페이지 파티게시글 비활성화
   int partyBlock(int no);
+
+  // 댓글 등록
+  public void insertComment(Comment comment);
+
+  // 댓글 리스트 출력
+  public List<Comment> selectCommentList(Comment comment);
+
+  // 댓글 수정
+  int updateComment(Comment comment);
+
+  // 댓글 삭제
+  int deleteComment(int no);
+
 }

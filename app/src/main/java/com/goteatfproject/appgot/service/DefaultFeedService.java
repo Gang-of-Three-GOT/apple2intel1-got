@@ -1,14 +1,17 @@
 package com.goteatfproject.appgot.service;
 
-import java.util.List;
+import com.goteatfproject.appgot.dao.FeedDao;
+import com.goteatfproject.appgot.dao.PartyDao;
+import com.goteatfproject.appgot.vo.Criteria;
+import com.goteatfproject.appgot.vo.Feed;
+import com.goteatfproject.appgot.vo.FeedAttachedFile;
+import com.goteatfproject.appgot.vo.Party;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import com.goteatfproject.appgot.dao.FeedDao;
-import com.goteatfproject.appgot.vo.Criteria;
-import com.goteatfproject.appgot.vo.Feed;
-import com.goteatfproject.appgot.vo.FeedAttachedFile;
+
+import java.util.List;
 
 @Service
 public class DefaultFeedService implements FeedService {
@@ -32,7 +35,6 @@ public class DefaultFeedService implements FeedService {
     }
   }
 
-  @Override
   public List<Map<String, Object>> selectFeedList(Criteria cri) {
     return feedDao.selectFeedList(cri);
   }
@@ -47,7 +49,6 @@ public class DefaultFeedService implements FeedService {
   public List<Feed> simpleProfile(int no) throws Exception {
     return feedDao.simpleProfile(no);
   }
-
 
   @Override
   public List<Feed> randomlist() throws Exception {
@@ -85,12 +86,10 @@ public class DefaultFeedService implements FeedService {
     return feedDao.delete(no) > 0;
   }
 
-  @Override
   public FeedAttachedFile getFeedAttachedFile(int fileNo) throws Exception {
     return feedDao.findFileByNo(fileNo);
   }
 
-  @Override
   public boolean deleteFeedAttachedFile(int fileNo) throws Exception {
     return feedDao.deleteFile(fileNo) > 0;
   }
@@ -101,8 +100,16 @@ public class DefaultFeedService implements FeedService {
     return feedDao.selectFeedListByNo(map);
   }
 
+  // 마이페이지 피드게시글 본인 작성 글 상세보기
+  // 관리자페이지 피드게시글 회원 작성 글 상세보기
   @Override
   public Feed getMyFeedListDetail(int no) throws Exception {
     return feedDao.findByMyFeedListDetail(no);
+  }
+
+  // 관리자페이지 피드게시글 비활성화
+  @Override
+  public boolean feedBlock(int no) {
+    return feedDao.feedBlock(no) > 0;
   }
 }

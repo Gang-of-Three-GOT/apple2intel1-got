@@ -16,9 +16,7 @@ public interface MemberDao {
 
   Member findByEmailPassword(@Param("id") String id, @Param("password") String password);
 
-
   // 밑에부터는 피드에 필요한 기능들
-
   // 로그인하지 않았을 시 랜덤으로 출력되는 팔로우박스
   List<Member> userList();
 
@@ -27,6 +25,7 @@ public interface MemberDao {
 
   // 유저 번호로 유저 프로필 조회 기능
   Member profileByNo(int no);
+  // 밑에부터는 피드에 필요한 기능들 마지막
 
   // 마이페이지 현재 패스워드 확인
   int currentPasswordCheck(@Param("no") int no, @Param("password") String password);
@@ -55,5 +54,9 @@ public interface MemberDao {
   // 관리자페이지 회원리스트 정보검색
   List<Member> searchMember(String keyword);
 
+  // 관리자페이지 비활성화
+  int memberBlock(int no);
 
+  // 관리자페이지 활성화
+  int memberActive(int no);
 }
