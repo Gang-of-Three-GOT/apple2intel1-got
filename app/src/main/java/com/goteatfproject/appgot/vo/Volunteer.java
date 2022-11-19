@@ -14,16 +14,11 @@ public class Volunteer {
   private String etc;
 
   private int partyNo; // 컬럼 vno
-
   private int memberNo; // 컬럼 mno
 
-
-  //  private int partyNo; // vno
   private Member writer;
   private int urlNo;
 
-  private Party part;
-//  /////
 }
 
 

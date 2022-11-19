@@ -19,9 +19,6 @@ public class Party {
   private String gender;
   private int max;
 
-//  @DateTimeFormat(iso = ISO.DATE, pattern = "yyyy-MM-dd'T'HH:mm:ss")
-//  @JsonProperty("time")
-//  @JsonFormat(shape= Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
   @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //  @JsonProperty("time")
 //  @JsonFormat(shape= Shape.STRING, pattern="yyyy-MM-dd", timezone="Asia/Seoul")
@@ -41,8 +38,5 @@ public class Party {
   private List<AttachedFile> attachedFiles;
 
   private Comment commentList;
-
-  private Volunteer volunteerLink;
-
 
 }

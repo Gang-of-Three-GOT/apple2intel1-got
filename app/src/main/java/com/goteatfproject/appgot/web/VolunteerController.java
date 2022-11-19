@@ -43,21 +43,14 @@ public class VolunteerController {
     System.out.println("url값 = " + volunteer.getUrlNo());
 
     // 파티 번호를 가져와서 해당 번호로 게시물 상세조회 실행 => 리밋, 맥스 가져와서 if문 돌리기
-    Party par = (Party) partyService.get(volunteer.getUrlNo());
-    System.out.println("parLi ========> " + par.getLimit());
-    System.out.println("parNa ========> " + par.getMax());
+    Party parties = (Party) partyService.get(volunteer.getUrlNo());
+    System.out.println("parLi ========> " + parties.getLimit());
+    System.out.println("parNa ========> " + parties.getMax());
 
-    int lit = par.getLimit();
-    int max = par.getMax();
+    int lit = parties.getLimit();
+    int max = parties.getMax();
+
     // 게시물 넘버의 리밋 맥스 가져와서 비교
-//    volunteerService.get2(volunteer.getUrlNo());
-//    int lit = par.getPart().getLimit();
-//    int max = par.getPart().getMax();
-//
-//    System.out.println("lit =======> " + lit);
-//    System.out.println("lit =======> " + max);
-
-//    int no = volunteer.getUrlNo();
     // vno=pno, mno, date 는 nn ,, state, etc는 null
     if (lit != max) {
       checkOwner(volunteer.getUrlNo(), session); // 작성자는 신청불가
@@ -65,7 +58,6 @@ public class VolunteerController {
       System.out.println("sessionId = " + volunteer.getWriter());
       // 파티 참여
       volunteerService.partyJoin(volunteer);
-
       // 파티 참여 카운트
       volunteerService.partyJoinCount(volunteer);
       boolean state = volunteer.getState();
@@ -77,21 +69,9 @@ public class VolunteerController {
       return "3"; // ajax 인원초과
   }
 
-
+  // 모든 게시물 파티참여자 조회
   @GetMapping("list")
   public String volunteerList(Model model, Volunteer volunteer) throws Exception {
-
-//    for (int i = 0; i < volunteer.getNo_list().length; i++) {
-//      volunteer.getNo(volunteer.getNo_list()[i]);
-//      volunteerService.list(volunteer);
-//    }
-//    System.out.println("volunteer = " + volunteer);
-//
-//    List<Volunteer> volList = volunteerService.list();
-//
-//    System.out.println("volList = " + volList);
-
-//    List<Volunteer> volunteers = new ArrayList<>();
 
     model.addAttribute("volList", volunteerService.list());
 //    System.out.println("model.getAttribute(\"volList\") =  " + model.getAttribute("volList"));
@@ -99,8 +79,11 @@ public class VolunteerController {
     return "volunteer/volunteerList";
   }
 
+  // 특정 게시물 파티참여자 조회
   @GetMapping("detail")
   public Map detail(int no) throws Exception {
+    // <button data-th-if="${session.loginMember != null}" type="button" class="btn btn-outline-success"><a th:href="@{../volunteer/detail(no=${party.no})}">참여자정보</a></button>
+    // th:href="@{../volunteer/detail(no=${party.no})}" 게시물 번호를 가져와서 참여자 정보 조회
     List<Volunteer> volunteers = volunteerService.get(no);
 
     if (volunteers == null) {
@@ -112,37 +95,6 @@ public class VolunteerController {
     System.out.println("mapvolunteer = " + map);
     return map;
   }
-
-  // 파티 리스트
-//  @GetMapping("list")
-//  public String partyList(Model model) throws Exception {
-//    model.addAttribute("parties", partyService.list());
-//    return "party/partyList";
-//  }
-
-//    boolean st = volunteer.getState();
-
-    // 파티정보 & 참여자가 넘어온다.
-//    int pno = party.getNo();
-//    int mno = member.getNo();
-//    String id = member.getId();
-//    String password = member.getPassword();
-//
-//    member = memberService.get(mno);
-//    party = partyService.get(pno);
-//
-//    if (member != null) {
-//      session.setAttribute("loginMember", member);
-//    }
-    // 파티 & 참여자 정보를 보낸다.
-
-    // --> 어디로 ? db로
-
-//    if (member == null) {
-//      return "false";
-//    }
-//    return "true";
-//  }
 
   private void checkOwner(int partyNo, HttpSession session) throws Exception {
     Member loginMember = (Member) session.getAttribute("loginMember");
@@ -156,6 +108,5 @@ public class VolunteerController {
     }
     //volunteer에서 no를 꺼내와 겟라이터.겟넘버 == 로그인멤버.넘버와 일치하면 중복 신청 불가능
   }
-
 }
 
