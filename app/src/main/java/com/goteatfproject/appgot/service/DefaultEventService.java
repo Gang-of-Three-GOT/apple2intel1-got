@@ -1,14 +1,14 @@
 package com.goteatfproject.appgot.service;
 
-import com.goteatfproject.appgot.dao.EventDao;
-import com.goteatfproject.appgot.vo.AttachedFile;
-import com.goteatfproject.appgot.vo.Criteria;
-import com.goteatfproject.appgot.vo.Event;
 import java.util.List;
 import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import com.goteatfproject.appgot.dao.EventDao;
+import com.goteatfproject.appgot.vo.AttachedFile;
+import com.goteatfproject.appgot.vo.Criteria;
+import com.goteatfproject.appgot.vo.Event;
 
 @Service
 public class DefaultEventService implements EventService {
@@ -94,6 +94,12 @@ public class DefaultEventService implements EventService {
   public boolean eventBlock(int no) {
     return eventDao.eventBlock(no) > 0;
 
+  }
+
+  // 관리자페이지 이벤트게시글 상세보기
+  @Override
+  public Event getAdminEventListDetail(int no) {
+    return eventDao.findByAdminEventListDetail(no);
   }
 
 

@@ -144,7 +144,7 @@ public class DefaultPartyService implements PartyService {
     return partyDao.deleteComment(no) > 0;
   }
 
-  //마이페이지 파티게시글 연쇄삭제
+  // 마이페이지 피드게시글 강제삭제 -- 1120 추가
   @Override
   public boolean allDelete(int no) {
     return partyDao.allDelete(no) > 0;

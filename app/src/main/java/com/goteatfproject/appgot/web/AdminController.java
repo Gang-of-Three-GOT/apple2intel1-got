@@ -169,6 +169,16 @@ public class AdminController {
     return mv;
   }
 
+  // 관리자페이지 이벤트게시글 상세보기
+  @GetMapping("/adminEventListDetail")
+  public String adminEventListDetail(Model model, int no) throws Exception {
+
+    model.addAttribute("event", eventService.getAdminEventListDetail(no));
+    System.out.println("model.getAttribute(\"event\") = " + model.getAttribute("event"));
+
+    return "admin/adminEventListDetail";
+  }
+
   // 관리자페이지 이벤트게시글 비활성화 선택
   @GetMapping("/eventBlock")
   public String eventBlock(int no) throws Exception {

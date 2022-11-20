@@ -28,7 +28,6 @@
       union select eno no, tname, title, cont, date from event
     order by
       date desc
-    limit 15;
   </select>
   
   <!-- 관리자페이지 파티, 피드, 이벤트 게시글의 오늘 등록된 게시글 개수-->

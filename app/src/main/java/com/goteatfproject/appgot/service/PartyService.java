@@ -52,6 +52,6 @@ public interface PartyService {
   // 댓글 삭제
   boolean deleteComment(int no) throws Exception;
 
-  //마이페이지 파티게시글 연쇄삭제
+  //마이페이지 파티게시글 강제삭제
   boolean allDelete(int no);
 }

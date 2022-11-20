@@ -1,13 +1,11 @@
 package com.goteatfproject.appgot.dao;
 
+import java.util.List;
+import java.util.Map;
+import org.apache.ibatis.annotations.Mapper;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Feed;
 import com.goteatfproject.appgot.vo.FeedAttachedFile;
-import com.goteatfproject.appgot.vo.Party;
-import java.util.Map;
-import org.apache.ibatis.annotations.Mapper;
-
-import java.util.List;
 
 @Mapper
 
@@ -52,4 +50,7 @@ public interface FeedDao {
 
   // 관리자페이지 이벤트게시글 비활성화
   int feedBlock(int no);
+
+  // 마이페이지 피드게시글 강제삭제 -- 1120 추가
+  int allDelete2(int no);
 }

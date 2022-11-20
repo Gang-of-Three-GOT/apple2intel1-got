@@ -45,102 +45,111 @@
   <!-- Sidebar-->
   <div class="border-end bg-white" id="sidebar-wrapper">
     <div class="sidebar-heading border-bottom bg-light">
-      <a th:href="@{/my/main}" style="text-decoration-line: none; color: inherit;">마이페이지</a>
+      <a th:href="@{/admin/main}" style="text-decoration-line: none; color: inherit;">관리자페이지</a>
     </div>
     <div class="list-group list-group-flush">
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myAuthForm}">개인 정보 수정</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myPartyList}">파티게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myFeedList}">피드게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/my/myEventList}">이벤트게시물 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">예약 내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">팔로우 관리</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">1:1 문의 내역</a>
-      <a class="list-group-item list-group-item-action list-group-item-light p-3"
-         href="">주소지 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/}">사이트 바로가기</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminPartyList}">파티게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminFeedList}">피드게시물 관리</a>
+       <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminEventList}">이벤트게시물 관리</a>
+      <a class="list-group-item list-group-item-action list-group-item-light p-3" th:href="@{/admin/adminMemberList}">회원 관리</a>
     </div>
   </div>
   <!-- Page content wrapper-->
   <!-- 상세보기 -->
-  <form th:action="@{/party/update}" method="post" enctype="multipart/form-data" style="margin: 15px">
-    <h2 class="mt-4">파티게시물 상세정보</h2>
+  <form action="/event/update"method="post" enctype="multipart/form-data" style="margin: 15px">
+    <h2 class="mt-4">이벤트게시물 상세정보</h2>
     <div class="container border rounded">
   
       <!--1줄-->
       <div class="row p-3">
-        <div class="col-2"  th:text="'[' + ${party.meal} + '파티]'">
-        </div>
-        <div class="col-2" th:text="'[' + ${party.food} + ']'">
+        <div class="col-2" th:text="'[이벤트 번호:' + ' '+  ${event.no} + ']'">
+      </div>
+        <div class="col-2">
         </div>
         <div class="col-2">
         </div>
-        <div class="col-2" th:text="'(3' + '/' + ${party.max} + ')'">
+        <div class="col-2">
         </div>
   
         <div class="col-2">
-          파티참여
         </div>
         <div class="col-2">
-        <input name="no" type="number" value="1" th:value="${party.no}" readonly hidden/>
       </div>
     </div>
   
-      <!--2줄-->
+      <!-- 2줄 -->
       <div class="row p-3">
-        <div class="col" ><input name='title' type='text'value='제목'th:value="${party.title}" size='93'>
+        <div class="col"><input name='title' type='text'value='제목' th:value="${event.title}" size='93'>
+        <input type="hidden" name="no" data-th-value="${event.no}">
         </div>
       </div>
   
-      <!--3줄-->
+      <!-- 3줄 -->
       <div class="row p-3 border-bottom">
-        <div class="col-2" th:text="${party.writer.nick}">
+        <div class="col-2" th:text="${event.writer.name}">
         </div>
-        <div class="col-2" th:text=" '조회수:' + ${party.viewCnt}">
+        <div class="col-2" th:text=" '조회수:' + ${event.viewCnt}">
         </div>
-        <div class="col-6" th:text=" '작성일:' + ${party.createDate}">
+        <div class="col-6" th:text=" '작성일:' + ${event.createDate}">
         </div>
       
       </div>
       
-      <!--4줄-->
+      <!-- 4줄 -->
       <div class="row p-3 border-bottom" style="height: 300px;">
         <div class="col">
-          <textarea id='content' name='content' th:text="${party.content}"></textarea>
+          <textarea id='content' name='content' th:text="${event.content}" readonly></textarea>
         </div>
       </div>
-      <!--5줄-->
+      <!-- 5줄 -->
       <div class="row p-3">
         <div class="col">
-          참여조건
         </div>
       </div>
-      <!--6줄-->
+      <!-- 6줄 -->
       <div class="row p-3">
-        <div class="col-3" th:text="'성별 : ' + '[' + ${party.gender} + ']'">
+        <div class="col-3">
         </div>
-        <div class="col-3" th:text="'연령대 : ' + '[' + ${party.age} + '대]'">
+        <div class="col-3">
         </div>
       </div>
-      <!--7줄-->
+      
+     <!--  7줄 -->
       <div class="row p-3">
-        <div class="col" th:text="'[' + ${#dates.createNowForTimeZone(party.time)} + '시]'">
+        <div class="col">
         </div>
-      </div>
+      </div> 
   
-      <!--8줄-->
+    <!-- 8줄 -->
       <div class="row p-3">
-        <div class="col-2"><p th:text="'장소명 : ' +'[' + ${party.location} + ']'"></p>
+        <div class="col-5"><p th:text="'장소명 : ' +'[' + ${event.location} + ']'"></p>
         </div>
-        <div class="col-6" th:text="'주소 : ' +'[' + ${party.address} + ']'">
+        <div class="col-7" th:text="'주소 : ' +'[' + ${event.address} + ']'">
         </div>
       </div>
+      <!------------ 파일첨부 ------------>
+  
+   <p>첨부파일</p>
+  
+     <ul>
+       <li data-th-each="file : ${event.attachedFiles}">
+         <a href=""
+            data-th-href="@{files/{path}(path=${file.filepath})}"
+            data-th-text="${file.filepath}">test.gif</a>
+         [<a href="fileDelete?no=1"
+             data-th-href="@{/event/fileDelete(no=${file.no})}">파일삭제</a>]
+       </li>
+     </ul>
+     파일 추가: <input name='files' type="file" multiple>
+  
+  <!------------ 파일첨부 end------------>
     </div>
+    <br>
     <button type="submit" class="btn btn-outline-secondary">수정</button>
-    <button type="button" class="btn btn-outline-secondary"><a th:href="@{myPartyDelete(no=${party.no})}">삭제</a></button>
+    <button type="button" class="btn btn-outline-secondary"><a th:href="@{eventBlock(no=${event.no})}">비활성화</a></button>
     
-  </form> 
+  </form>
   <!---------------------------- 상세보기 end ------------------------------>
 </div>
 
@@ -148,6 +157,7 @@
  <!-------------------------------구분선-------------------------->
  <div class="c-example-divider"></div>
  <!-------------------------------구분선-------------------------->
+
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3"
         crossorigin="anonymous">
@@ -162,7 +172,7 @@ integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
 crossorigin="anonymous"></script>
 <!-- jquery end-->
 <!-- 서머노트 -->
-<script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/summernote@0.8.18/dist/summernote.min.js"></script>
 <!-- 서머노트 end -->
@@ -170,7 +180,7 @@ crossorigin="anonymous"></script>
 <!-- 서머노트 -->
 <script>
   $(document).ready(function() {
-    $('textarea[name=content]').html('[[${party.content}]]')
+    $('textarea[name=content]').html('[[${event.content}]]')
 
     $('textarea[name=content]').summernote({
       toolbar:false,
@@ -182,11 +192,10 @@ crossorigin="anonymous"></script>
       lang: "ko-KR",
       
     });
-
- 
   });
 </script>
 <!-- 서머노트 end-->
 
 </body>
 </html>
+

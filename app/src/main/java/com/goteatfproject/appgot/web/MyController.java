@@ -169,12 +169,12 @@ public class MyController {
     return mv;
   }
 
-  //  // 마이페이지 파티게시글 비활성화 선택
-  //  @GetMapping("/partyBlock")
-  //  public String partyBlock(int no) throws Exception {
-  //    partyService.partyBlock(no);
-  //    return "redirect:myPartyList";
-  //  }
+  // 마이페이지 파티게시글 강제 삭제
+  @GetMapping("/myPartyDelete")
+  public String allDelete(int no) throws Exception {
+    partyService.allDelete(no);
+    return "redirect:myPartyList";
+  }
 
   // 마이페이지 파티게시글 강제삭제 체크박스 선택
   @PostMapping("/partyDeletes")
@@ -186,7 +186,7 @@ public class MyController {
       System.out.println(checkedValue[i]);
       partyService.allDelete(checkedValue[i]);
     }
-    return "비활성화 성공";
+    return "삭제 성공";
   }
 
 
@@ -213,6 +213,26 @@ public class MyController {
     mv.setViewName("mypage/myFeedList");
 
     return mv;
+  }
+
+  // 마이페이지 피드게시글 강제 삭제
+  @GetMapping("/myFeedDelete")
+  public String allDelete2(int no) throws Exception {
+    feedService.allDelete2(no);
+    return "redirect:myFeedList";
+  }
+
+  // 마이페이지 피드게시글 강제삭제 체크박스 선택
+  @PostMapping("/feedDeletes")
+  @ResponseBody
+  public String feedDeletes(@RequestParam("checkedValue[]") int[] checkedValue) throws Exception {
+    int valueLength = checkedValue.length;
+
+    for(int i=0; i < valueLength; i++) {
+      System.out.println(checkedValue[i]);
+      feedService.allDelete2(checkedValue[i]);
+    }
+    return "삭제 성공";
   }
 
   // 마이페이지- 이벤트게시글 관리
@@ -264,13 +284,6 @@ public class MyController {
       System.out.println("model.getAttribute(\"feed\") = " + model.getAttribute("feed"));
     }
     return "mypage/myFeedListDetail";
-  }
-
-  // 마이페이지 파티게시글 강제 삭제
-  @GetMapping("/myPartyDelete")
-  public String allDelete(int no) throws Exception {
-    partyService.allDelete(no);
-    return "redirect:myPartyList";
   }
 
   // 마이페이지 개인정보수정 페이지 패스워드 체크 페이지

@@ -1,11 +1,11 @@
 package com.goteatfproject.appgot.dao;
 
-import com.goteatfproject.appgot.vo.AttachedFile;
-import com.goteatfproject.appgot.vo.Criteria;
-import com.goteatfproject.appgot.vo.Event;
 import java.util.List;
 import java.util.Map;
 import org.apache.ibatis.annotations.Mapper;
+import com.goteatfproject.appgot.vo.AttachedFile;
+import com.goteatfproject.appgot.vo.Criteria;
+import com.goteatfproject.appgot.vo.Event;
 
 @Mapper
 public interface EventDao {
@@ -40,4 +40,6 @@ public interface EventDao {
 
   //관리자페이지 이벤트게시글 비활성화
   int eventBlock(int no);
+
+  Event findByAdminEventListDetail(int no);
 }

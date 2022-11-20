@@ -1,10 +1,10 @@
 package com.goteatfproject.appgot.service;
 
+import java.util.List;
+import java.util.Map;
 import com.goteatfproject.appgot.vo.AttachedFile;
 import com.goteatfproject.appgot.vo.Criteria;
 import com.goteatfproject.appgot.vo.Event;
-import java.util.List;
-import java.util.Map;
 
 public interface EventService {
 
@@ -27,6 +27,11 @@ public interface EventService {
 
   // 관리자페이지 이벤트게시글 비활성화
   boolean eventBlock(int no);
+
+  // 관리자페이지 이벤트게시글 상세보기
+  Event getAdminEventListDetail(int no);
+
+
 
 
 
