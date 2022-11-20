@@ -29,6 +29,9 @@ public interface MemberService {
   // 마이페이지 회원정보 수정
   boolean update(Member member) throws Exception;
 
+  // 마이페이지 개인 정보 수정(새 패스워드 없을때) -- 1120 추가
+  boolean update2(Member member) throws Exception;
+
   // 마이페이지 회원 삭제
   boolean delete(int no) throws Exception;
 

@@ -1,9 +1,9 @@
 package com.goteatfproject.appgot.dao;
 
-import com.goteatfproject.appgot.vo.Member;
 import java.util.List;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
+import com.goteatfproject.appgot.vo.Member;
 
 @Mapper
 public interface MemberDao {
@@ -32,6 +32,9 @@ public interface MemberDao {
 
   // 마이페이지 회원정보 수정
   int update(Member member);
+
+  // 마이페이지 개인 정보 수정(새 패스워드 없을때) -- 추가: 1120
+  int update2(Member member);
 
   // 마이페이지 회원 삭제
   int delete(int no);

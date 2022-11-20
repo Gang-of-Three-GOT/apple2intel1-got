@@ -79,19 +79,16 @@
               <tbody>
               <tr th:each="member : ${memberLists}">
                 <th scope="row" th:text="${member.no}"></th>
-                <td th:text="${member.id}"></td>
+                <td><a href="" th:href="@{/admin/adminMemberDetail(no=${member.no})}" th:text="${member.id}"></a></td>
                 <td th:text="${member.name}"></td>
                 <td th:text="${member.address}"></td>
               </tr>
               </tbody>
             </table>
-
           </div>
-          <div class="col-1"></div>
-
 
           <!-- 신규회원 -->
-          <div class="col-4">
+          <div class="col-5">
             <table class="table">
               <button type="button" class="btn btn-primary position-relative" id="memberBtn2">
                 오늘 가입한 신규회원
@@ -112,7 +109,7 @@
               <tbody>
               <tr th:each="newMember : ${newMemberLists}">
                 <th scope="row" th:text="${newMember.no}"></th>
-                <td th:text="${newMember.id}"></td>
+                <td><a href="" th:href="@{/admin/adminMemberDetail(no=${newMember.no})}" th:text="${newMember.id}"></a></td>
                 <td th:text="${newMember.name}"></td>
                 <td th:text="${newMember.address}"></td>
               </tr>
@@ -125,7 +122,37 @@
       <!-- 파티 +  피드 + 이벤트 신규 게시글 limit:15 -->
       <div class="container">
         <div class="row">
-          <div class="col-10">
+          <div class="col-5">
+            <table class="table">
+              <button type="button" class="btn btn-primary position-relative">
+                전체 게시글
+                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                      th:each="boardCount : ${newBoardCount}"
+                      th:text="${boardCountStat.count}">
+            <span class="visually-hidden">unread messages</span>
+                </span>
+              </button>
+              <thead>
+              <tr>
+                <th scope="col">tname</th>
+                <th scope="col">title</th>
+                <th scope="col">date</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr th:each="board : ${boards}">
+                <td th:text="${board.tableName}"></td>
+                <td th:if="${board.tableName == 'party'}"><a href="" th:href="@{/admin/adminPartyListDetail(no=${board.no})}" th:text="${board.title}"></a></td>
+                <td th:if="${board.tableName == 'feed'}"><a href="" th:href="@{/admin/adminFeedListDetail(no=${board.no})}" th:text="${board.title}"></a></td>
+                <td th:if="${board.tableName == 'event'}"><a href="" th:href="@{/admin/adminEventListDetail(no=${board.no})}" th:text="${board.title}"></a></td>
+                <td th:text="${board.date}"></td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- 파티 +  피드 + 이벤트 오늘 등록된 신규 게시글  -->
+          <div class="col-5">
             <table class="table">
               <button type="button" class="btn btn-primary position-relative">
                 오늘 등록된 게시글
@@ -139,16 +166,16 @@
               <tr>
                 <th scope="col" style="">tname</th>
                 <th scope="col">title</th>
-                <th scope="col">content</th>
                 <th scope="col">date</th>
               </tr>
               </thead>
               <tbody>
-              <tr th:each="board : ${boards}">
-                <td th:text="${board.tableName}"></td>
-                <td th:text="${board.title}"></td>
-                <td th:text="${board.cont}"></td>
-                <td th:text="${board.date}"></td>
+              <tr th:each="boardCount : ${newBoardCount}">
+                <td th:text="${boardCount.tableName}"></td>
+                <td th:if="${boardCount.tableName == 'party'}"><a href="" th:href="@{/admin/adminPartyListDetail(no=${boardCount.no})}" th:text="${boardCount.title}"></a></td>
+                <td th:if="${boardCount.tableName == 'feed'}"><a href="" th:href="@{/admin/adminFeedListDetail(no=${boardCount.no})}" th:text="${boardCount.title}"></a></td>
+                <td th:if="${boardCount.tableName == 'event'}"><a href="" th:href="@{/admin/adminEventListDetail(no=${boardCount.no})}" th:text="${boardCount.title}"></a></td>
+                <td th:text="${boardCount.date}"></td>
               </tr>
               </tbody>
             </table>

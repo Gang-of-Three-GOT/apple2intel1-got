@@ -63,6 +63,12 @@ public class DefaultMemberService implements MemberService {
     return memberDao.update(member) > 0;
   }
 
+  //마이페이지 개인 정보 수정(새 패스워드 없을때) -- 1120 추가
+  @Override
+  public boolean update2(Member member) throws Exception {
+    return memberDao.update2(member) > 0;
+  }
+
   // 마이페이지 회원 삭제
   @Transactional
   @Override

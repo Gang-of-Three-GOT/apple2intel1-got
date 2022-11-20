@@ -61,7 +61,7 @@ public class MyController {
 
   // 마이페이지- 개인 정보 수정 페이지
   @GetMapping("/myProfile")
-  public String myProfile(Model model, HttpSession session) throws Exception {
+  public String myProfile(Model model, HttpSession session, String password) throws Exception {
 
     // 로그인 한 회원의 정보 출력
     // System.out.println("session.getAttribute(\"Loginmember\") = " + session.getAttribute("loginMember"));
@@ -70,6 +70,7 @@ public class MyController {
     Member loginMember = (Member) session.getAttribute("loginMember");
     if (loginMember != null) {
       model.addAttribute("member", memberService.get(loginMember.getNo()));
+      System.out.println("member=" + model.getAttribute("member"));
       return "mypage/myProfile";
     }
     return "redirect:/auth/login";
@@ -88,7 +89,13 @@ public class MyController {
   @PostMapping("/update")
   public String updateMember(Member member) throws Exception {
     System.out.println("member = " + member);
-    memberService.update(member);
+    System.out.println(member.getPassword() == "");
+    // 새로운 패스워드가 없을때는 udpate2()
+    if(member.getPassword() == "") {
+      memberService.update2(member);
+    } else { // 새로운 패스워드 변경이 있을때 update()
+      memberService.update(member);
+    }
     System.out.println("회원정보 수정 완료");
     return "redirect:/my/main";
   }
@@ -130,6 +137,7 @@ public class MyController {
     Member member = (Member) session.getAttribute("loginMember");
     if (member.getNo() == no) {
       memberService.delete(no);
+      session.invalidate();
       return "회원 탈퇴 완료";
     }
     return "회원 탈퇴 실패";
@@ -168,7 +176,7 @@ public class MyController {
   //    return "redirect:myPartyList";
   //  }
 
-  // 마이페이지 파티게시글 비활성화 선택
+  // 마이페이지 파티게시글 강제삭제 체크박스 선택
   @PostMapping("/partyDeletes")
   @ResponseBody
   public String partyDeletes(@RequestParam("checkedValue[]") int[] checkedValue) throws Exception {
@@ -258,13 +266,16 @@ public class MyController {
     return "mypage/myFeedListDetail";
   }
 
+  // 마이페이지 파티게시글 강제 삭제
   @GetMapping("/myPartyDelete")
   public String allDelete(int no) throws Exception {
     partyService.allDelete(no);
-    //    if (!partyService.allDelete(no)) {
-    //      throw new Exception("게시글을 삭제할 수 없습니다.");
-    //    }
     return "redirect:myPartyList";
   }
 
+  // 마이페이지 개인정보수정 페이지 패스워드 체크 페이지
+  @GetMapping("/myAuthForm")
+  public String myAuthForm() throws Exception {
+    return "mypage/myAuthForm";
+  }
 }

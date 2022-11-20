@@ -76,6 +76,17 @@
     where
     mno=#{no}
   </update>
+  
+    <!-- 마이페이지 개인 정보 수정(새 패스워드 없을때) -->
+    <!-- 1120 추가 -->
+  <update id="update2" parameterType="Member">
+    update member set
+    name=#{name},
+    id=#{id},
+    nick=#{nick}
+    where
+    mno=#{no}
+  </update>
 
   <!-- 마이페이지 개인 정보 프로필 사진 수정  -->
   <update id="updateProfile" parameterType="Member">
@@ -152,6 +163,7 @@
   </select>
 
   <!-- 관리자페이지 오늘 가입한 신규회원 -->
+   <!-- 1120 추가 -->
   <select id="findByNewMember" resultMap="memberMap">
     select
 	    mno,
@@ -160,6 +172,8 @@
 	    addr
     from member
     where createddate = curdate()
+    order by
+    mno desc
   </select>
 
   <!-- 관리자페이지 회원 상세정보 -->
