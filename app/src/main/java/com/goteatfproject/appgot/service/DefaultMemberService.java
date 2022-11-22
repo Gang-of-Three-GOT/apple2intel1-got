@@ -59,6 +59,12 @@ public class DefaultMemberService implements MemberService {
     return memberDao.update(member) > 0;
   }
 
+  //마이페이지 개인 정보 수정(새 패스워드 없을때) -- 1120 추가
+  @Override
+  public boolean update2(Member member) throws Exception {
+    return memberDao.update2(member) > 0;
+  }
+
   // 마이페이지 회원 삭제
   @Transactional
   @Override
@@ -110,6 +116,22 @@ public class DefaultMemberService implements MemberService {
   @Override
   public boolean memberActive(int no) {
     return memberDao.memberActive(no) > 0;
+  }
+
+  //아이디 중복체크 mapper 접근
+  @Override
+  public int idCheck(String id) {
+    int cnt = memberDao.idCheck(id);
+    System.out.println("cnt: " + cnt);
+    return cnt;
+  }
+
+  // 닉네임 중복체크 mapper 접근
+  @Override
+  public int nickCheck(String nick) {
+    int cntNick = memberDao.nickCheck(nick);
+    System.out.println("cntNick: " + cntNick);
+    return cntNick;
   }
 
 }

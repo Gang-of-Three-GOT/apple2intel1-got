@@ -64,4 +64,12 @@ public interface PartyDao {
   // 댓글 삭제
   int deleteComment(int no);
 
+  //메인페이지 파티게시물 조회
+  List<Party> findAllMain();
+
+  //메인페이지 파티게시물 조회(@param 으로 값 가져오기)
+  List<Party> findAllMain(@Param("meal") String meal, @Param("food") String food);
+
+  // 마이페이지 파티게시글 연쇄삭제
+  int allDelete(int no);
 }

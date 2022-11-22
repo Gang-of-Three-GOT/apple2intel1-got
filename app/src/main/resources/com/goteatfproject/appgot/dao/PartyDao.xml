@@ -31,6 +31,7 @@
     <result column="cont" property="content"/>
     <result column="lit" property="limit"/>
     <result column="max" property="max"/>
+    <result column="time" property="time"/>
     <result column="loc" property="location"/>
     <result column="addr" property="address"/>
     <result column="viewcnt" property="viewCnt"/>
@@ -92,9 +93,9 @@
     <insert id="insert" parameterType="party"
         useGeneratedKeys="true" keyColumn="pno" keyProperty="no">
       insert into party(mno, meal, food, title, cont, gender, max, time, age,
-      lit, loc, post, addr, viewcnt, createdate, thumbnail)
+      lit, loc, post, addr, viewcnt, createdate, thumbnail, date)
       values(#{writer.no}, #{meal}, #{food}, #{title}, #{content}, #{gender}, #{max},
-      #{time}, #{age}, #{limit}, #{location}, '', #{address}, 0, now(), 'defaultimage.jpg')
+      #{time}, #{age}, #{limit}, #{location}, '', #{address}, 0, now(), 'defaultimage.jpg', now())
 <!--      #{time}, #{age}, #{limit}, #{location}, '', #{address}, 0, now(), #{thumbnail}) TODO 변경1-->
     </insert>
 
@@ -144,8 +145,9 @@
     join member m on m.mno = p.mno
     left outer join party_file pf on p.pno = pf.pno
     <!--meal = all일 경우 if문 실행안되면서 전체 컬럼 값 출력 -->
+    where p.pub = false
     <if test="meal != 'all'">
-      where p.meal = #{meal}
+      and p.meal = #{meal}
     </if>
     <if test="food != null">
       and p.food = #{food}
@@ -215,7 +217,16 @@
     <update id="update" parameterType="party">
       update party set
       title = #{title},
-      cont = #{content}
+      meal = #{meal},
+      food = #{food},
+      lit = #{limit},
+      cont = #{content},
+      gender = #{gender},
+      age = #{age},
+      food = #{food},
+      time = #{time},
+      loc = #{location},
+      addr = #{address}
       where
       pno = #{no}
     </update>
@@ -298,6 +309,7 @@
       party p
       join member m on m.mno = p.mno
       where p.mno=#{memberNo}
+        and p.pub = false
       order by
       pno desc
       LIMIT #{cri.pageStart}, #{cri.perPageNum}
@@ -378,6 +390,45 @@
     where
     prno = #{partyReplyNo}
   </delete>
+
+<!--  간치 -->
+  <!--메인뽑기-->
+  <select id="findAllMain" resultMap="partyMap">
+    select
+    p.pno,
+    p.title,
+    p.meal,
+    p.food,
+    P.time,
+    p.lit,
+    p.time,
+    p.age,
+    p.gender,
+    p.max,
+    p.viewcnt,
+    p.thumbnail,
+    p.createdate,
+    m.mno,
+    m.nick
+    from
+    party p
+    join member m on m.mno = p.mno
+    <if test="meal != 'all'">
+      where p.meal = #{meal}
+    </if>
+    order by
+    pno desc
+    limit 8
+  </select>
+
+  <!--  마이페이지 파티게시글 연쇄삭제 -->
+  <delete id="allDelete">
+    delete from party_reply where pno=#{no};
+    delete from party_file where pno=#{no};
+    delete from volunteer where vno=#{no};
+    delete from party where pno=#{no};
+  </delete>
+
 </mapper>
 
 

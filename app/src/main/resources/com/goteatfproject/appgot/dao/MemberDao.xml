@@ -25,6 +25,16 @@
     #{post}, #{address}, #{subAddr}, #{interest}, #{intro}, 'jj.png')
   </insert>
 
+<!--  <insert id="insert" useGeneratedKeys="true" parameterType="member">-->
+<!--    insert into member (id, pwd, name, nick, birth, tel, gender, createddate, post,-->
+<!--    addr, subaddr, interest, intro, thumbnail)-->
+<!--    values(#{id}, sha2(#{password},256), #{name}, #{nick}, #{birth}, #{tel}, #{gender}, now(),-->
+<!--    #{post}, #{address}, #{subAddr},-->
+<!--    <foreach collection="interest" item="item" separator=",">-->
+<!--      #{item}-->
+<!--    </foreach>,  #{intro}, 'jj.png')-->
+<!--  </insert>-->
+
   <!-- 회원상세정보 -->
   <select id="findByNo" resultMap="memberMap">
     select
@@ -45,7 +55,7 @@
     select 
       mno,
       name,
-      id      <!-- TODO email -> id 수정  -->
+      id
     from 
       member
     order by 
@@ -58,7 +68,8 @@
     mno,
     name,
     id,
-    createddate
+    createddate,
+    thumbnail
     from
     member
     where
@@ -73,6 +84,17 @@
     id=#{id},
     nick=#{nick},
     pwd=sha2(#{password},256)
+    where
+    mno=#{no}
+  </update>
+
+  <!-- 마이페이지 개인 정보 수정(새 패스워드 없을때) -->
+  <!-- 1120 추가 -->
+  <update id="update2" parameterType="Member">
+    update member set
+    name=#{name},
+    id=#{id},
+    nick=#{nick}
     where
     mno=#{no}
   </update>
@@ -115,7 +137,7 @@
     birth,
     gender,
     interest,
-    intro
+    intro,
     thumbnail
     from member
     where mno=#{mno}
@@ -148,10 +170,11 @@
     from member
     order by
     mno
-    limit 10;
+    limit 10
   </select>
 
-  <!-- 관리자페이지 신규회원 limit 10; -->
+  <!-- 관리자페이지 오늘 가입한 신규회원 -->
+  <!-- 1120 추가 -->
   <select id="findByNewMember" resultMap="memberMap">
     select
     mno,
@@ -159,9 +182,9 @@
     id,
     addr
     from member
+    where createddate = curdate()
     order by
     mno desc
-    limit 10;
   </select>
 
   <!-- 관리자페이지 회원 상세정보 -->
@@ -181,7 +204,7 @@
     outstate,
     outdate
     from member
-    where mno=#{value};
+    where mno=#{value}
   </select>
 
   <!-- 관리자페이지 회원 검색기능 추가 -->
@@ -208,7 +231,7 @@
     select
     count(*)
     from member
-    where mno=#{no} and pwd=sha2(#{password},256);
+    where mno=#{no} and pwd=sha2(#{password},256)
   </select>
 
   <!--  마이페이지 개인 정보 수정 회원 탈퇴 -->
@@ -216,7 +239,7 @@
     update member set
     outstate = true,
     outdate = now()
-    where mno=#{value};
+    where mno=#{value}
   </update>
 
   <!-- 관리자페이지 회원 비활성화 (1: 비활성화) -->
@@ -240,5 +263,15 @@
     where
     mno = #{no}
   </update>
+
+<!-- 아이디 중복체크 -->
+  <select id="idCheck" parameterType="String" resultType="int">
+    SELECT COUNT(id) FROM member WHERE id= #{id}
+  </select>
+
+  <!-- 닉네임 중복체크 -->
+  <select id="nickCheck" parameterType="String" resultType="int">
+    SELECT COUNT(nick) FROM member WHERE nick= #{nick}
+  </select>
 
 </mapper>

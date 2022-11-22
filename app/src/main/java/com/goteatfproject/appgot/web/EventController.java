@@ -50,12 +50,11 @@ public class EventController {
 
     PageMaker pageMaker = new PageMaker();
     pageMaker.setCri(cri);
-    pageMaker.setTotalCount(50);
+    pageMaker.setTotalCount(10);
 
     List<Map<String, Object>> list = eventService.selectEventList(cri);
     mv.addObject("list", list);
     mv.addObject("pageMaker", pageMaker);
-
 
     mv.setViewName("event/eventList");
     return mv;
@@ -90,7 +89,6 @@ public class EventController {
 
     eventService.add(event);
     return "redirect:list";
-
   }
 
   private List<AttachedFile> saveAttachedFiles(Part[] files)
@@ -113,7 +111,6 @@ public class EventController {
       throws IOException, ServletException {
     List<AttachedFile> attachedFiles = new ArrayList<>();
     String dirPath = sc.getRealPath("/event/files");
-
 
     for (MultipartFile part : files) {
       if (part.isEmpty()) {
@@ -188,7 +185,6 @@ public class EventController {
     System.out.println("attachedFile.getNo() = " + attachedFile.getFilepath());
     System.out.println("attachedFile.getNo() = " + attachedFile.getEventNo());
 
-
     // 게시글 작성자 일치여부
     Member loginMember = (Member) session.getAttribute("loginMember");
     Event event = eventService.get(attachedFile.getEventNo());
@@ -205,4 +201,32 @@ public class EventController {
     return "redirect:detail?no=" + event.getNo();
   }
 
+
+  //결제정보를 받아오는 컨트롤러
+  @ResponseBody
+  @GetMapping("ticketing")
+  public String ticketing(@RequestParam HashMap<String, Object> map, HttpSession session) {
+
+    Member member = (Member) session.getAttribute("loginMember");
+
+    map.put("mno",member.getNo());
+    System.out.println(map);
+//    System.out.println(map.get("eno"));
+//    System.out.println(map.get("paycnt"));
+    boolean result = false;
+
+    result = eventService.ticketing(map);
+
+    if(result == true){
+      return "1";
+    }else {
+      return "0";
+    }
+  }
+
+  @GetMapping("test")
+  public String test() {
+    return "event/test";
+  }
 }
+

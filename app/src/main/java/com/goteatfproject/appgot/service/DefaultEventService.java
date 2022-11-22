@@ -34,7 +34,6 @@ public class DefaultEventService implements EventService {
     return eventDao.findAll();
   }
 
-
   //페이징
   @Override
   public List<Map<String, Object>> selectEventList(Criteria cri) {
@@ -96,5 +95,26 @@ public class DefaultEventService implements EventService {
 
   }
 
+  //메인페이지에서 뽑는 파티리스트
+  @Override
+  public List<Event> mainList() throws Exception {
+    return eventDao.findAllMain();
+  }
 
+  // 관리자페이지 이벤트게시글 상세보기
+  // 사용안함
+  @Override
+  public Event getAdminEventListDetail(int no) {
+    return eventDao.findByAdminEventListDetail(no);
+  }
+
+  //결제 수량
+  public int getPayCnt(){
+    return eventDao.payCnt();
+  }
+  //결제 여부
+  public boolean ticketing(Map<String, Object> ticket){
+    return eventDao.ticketing(ticket);
+  }
 }
+

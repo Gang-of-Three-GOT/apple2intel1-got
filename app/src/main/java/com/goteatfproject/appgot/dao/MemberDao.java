@@ -33,6 +33,9 @@ public interface MemberDao {
   // 마이페이지 회원정보 수정
   int update(Member member);
 
+  // 마이페이지 개인 정보 수정(새 패스워드 없을때) -- 추가: 1120
+  int update2(Member member);
+
   // 마이페이지 회원 삭제
   int delete(int no);
 
@@ -59,4 +62,12 @@ public interface MemberDao {
 
   // 관리자페이지 활성화
   int memberActive(int no);
+
+  // 회원가입 아이디 중복체크
+  public int idCheck(String id);
+
+  // 회원가입 닉네임 중복체크
+  public int nickCheck(String nick);
+
+
 }
