@@ -1,32 +1,36 @@
 package com.goteatfproject.appgot.web;
 
-import com.fasterxml.jackson.core.JsonToken;
+import java.io.File;
+import java.io.IOException;
+import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.UUID;
+import javax.servlet.ServletContext;
+import javax.servlet.ServletException;
+import javax.servlet.http.HttpSession;
+import javax.servlet.http.Part;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import com.goteatfproject.appgot.service.FeedLikeService;
 import com.goteatfproject.appgot.service.FeedService;
 import com.goteatfproject.appgot.service.FollowerService;
 import com.goteatfproject.appgot.service.MemberService;
-import com.goteatfproject.appgot.vo.*;
-
-import java.io.File;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.UUID;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletException;
-import javax.servlet.http.Part;
-
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.*;
-
-import javax.servlet.http.HttpSession;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import org.springframework.web.multipart.MultipartFile;
+import com.goteatfproject.appgot.vo.Feed;
+import com.goteatfproject.appgot.vo.FeedAttachedFile;
+import com.goteatfproject.appgot.vo.FeedLike;
+import com.goteatfproject.appgot.vo.Follower;
+import com.goteatfproject.appgot.vo.Member;
 
 @Controller
 @RequestMapping("/feed")
@@ -92,19 +96,17 @@ public class FeedController {
 
 
     // 한 유저의 게시물 출력 홈페이지
-    System.out.println("dd");
+    System.out.println("dd=====");
     // 아이디로 회원 정보 조회
     Member member = memberService.profileByNick(nick);
+    System.out.println("member1 =======> " + member.getNick());
     if(nick == null) {
       member = memberService.profileByNick(loginMember.getNick());
-      System.out.println(member + "ㅎㅅㅎㅅ");
+      System.out.println("member2=====>" + member);
     }
-
-
 
     System.out.println(member);
     // 로그인한 회원 정보 담기
-
 
     // 개인페이지의 유저 번호 가져오기
     int memberNo = member.getNo();
@@ -194,33 +196,33 @@ public class FeedController {
   }
 
   //  @GetMapping("/list")
-//  public String list(Model model, HttpSession session) throws Exception {
-//
-//    Member loginMember = (Member) session.getAttribute("loginMember");
-//
-//    // 피드 팔로우 기능
-//    if(loginMember != null) {
-//      List<Follower> followList = followerService.selectFollowList(loginMember.getNo());
-//      model.addAttribute("follows", followList);
-//      model.addAttribute("members", memberService.randomList());
-//    } else {
-//      model.addAttribute("members", memberService.randomList());
-//    }
-//
-//    // 피드 리스트 출력
-//    if(loginMember != null) {
-//      model.addAttribute("followfeeds", feedService.followFindAll(loginMember.getNo()));
-//    } else {
-//      model.addAttribute("feeds", feedService.randomlist());
-//    }
-//
-//    // 로그인멤버 간단 프로필 출력
-//    if(loginMember != null) {
-//      model.addAttribute("simples", feedService.simpleProfile(loginMember.getNo()));
-//    } else {} // -> 로그인을 안했으면 css 히든 넣기 -> 근데 방법을 모름
-//
-//    return "feed/feedList";
-//  }
+  //  public String list(Model model, HttpSession session) throws Exception {
+  //
+  //    Member loginMember = (Member) session.getAttribute("loginMember");
+  //
+  //    // 피드 팔로우 기능
+  //    if(loginMember != null) {
+  //      List<Follower> followList = followerService.selectFollowList(loginMember.getNo());
+  //      model.addAttribute("follows", followList);
+  //      model.addAttribute("members", memberService.randomList());
+  //    } else {
+  //      model.addAttribute("members", memberService.randomList());
+  //    }
+  //
+  //    // 피드 리스트 출력
+  //    if(loginMember != null) {
+  //      model.addAttribute("followfeeds", feedService.followFindAll(loginMember.getNo()));
+  //    } else {
+  //      model.addAttribute("feeds", feedService.randomlist());
+  //    }
+  //
+  //    // 로그인멤버 간단 프로필 출력
+  //    if(loginMember != null) {
+  //      model.addAttribute("simples", feedService.simpleProfile(loginMember.getNo()));
+  //    } else {} // -> 로그인을 안했으면 css 히든 넣기 -> 근데 방법을 모름
+  //
+  //    return "feed/feedList";
+  //  }
 
 
   @GetMapping("/list")
@@ -321,6 +323,7 @@ public class FeedController {
         continue;
       }
       String filename = UUID.randomUUID().toString();
+      System.out.println("filename:" + filename);
       part.write(dirPath + "/" + filename);
       feedAttachedFiles.add(new FeedAttachedFile(filename));
     }
@@ -339,21 +342,23 @@ public class FeedController {
 
       String filename = UUID.randomUUID().toString();
       part.transferTo(new File(dirPath + "/" + filename));
+      System.out.println("path:" + filename);
       feedAttachedFiles.add(new FeedAttachedFile(filename));
+
     }
     return feedAttachedFiles;
   }
 
   // 파티 게시물 상세보기
   @GetMapping("detail")
-  public Map detail(int no) throws Exception {
+  public Map<String, Object> detail(int no) throws Exception {
 
     Feed feed = feedService.get(no);
 
     if (feed == null) {
       throw new Exception("해당 번호의 게시글이 없습니다!");
     }
-    Map map = new HashMap();
+    Map<String, Object> map = new HashMap<>();
     map.put("feed", feed);
     return map;
   }
@@ -371,12 +376,18 @@ public class FeedController {
   // 피드 게시물 수정
   @PostMapping("update")
   public String update(Feed feed, Model model, HttpSession session) throws Exception {
+
+    System.out.println("session4 =---> " + session.getAttribute("loginMember"));
+
+    String nick = URLEncoder.encode(feed.getWriter().getNick(), "UTF-8");
+    System.out.println("nick = " + nick);
+
     checkOwner(feed.getNo(), session);
 
     if (!feedService.update(feed)) {
       throw new Exception("게시글을 변경할 수 없습니다.");
     }
-    return "redirect:personal";
+    return "redirect:personal?nick=" + nick;
   }
 
   private void checkOwner(int feedNo, HttpSession session) throws Exception {
@@ -389,12 +400,15 @@ public class FeedController {
 
   @GetMapping("delete")
   public String delete(int no, HttpSession session) throws Exception {
+
+    //    String nick = feedService.get(no).getWriter().getNick();
+    String nick = URLEncoder.encode(feedService.get(no).getWriter().getNick(), "UTF-8");
+    System.out.println("deleteNick ====> " + nick);
     checkOwner(no, session);
     feedService.delete(no);
-//    if (!feedService.delete(no)) {
-//      throw new Exception("게시글을 삭제할 수 없습니다.");
-//    }
-    return "redirect:personal";
+
+    //    return "redirect:personal";
+    return "redirect:personal?nick=" + nick;
   }
 
   @GetMapping("fileDelete")

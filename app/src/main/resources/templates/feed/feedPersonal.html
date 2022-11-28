@@ -110,13 +110,12 @@
               </div>
             </div>
             <div class="post-right">
-              <button  th:if="${session.loginMember.no} == ${member.no}"th:onclick="|location.href='/../feed/@{updateForm(no=${personal.no})}'|"
-                       class="btn btn-outline-secondary" role="button" data-bs-toggle="button">수정</button>
+              <button th:if="${session.loginMember.no} == ${member.no}" th:onclick="|location.href='/../feed/@{updateForm(no=${personal.no})}'|" class="btn btn-outline-secondary" role="button" data-bs-toggle="button">수정</button>
             </div>
           </div>
 
           <div class="post-content">
-            <a th:href="@{personal(nick=${member.nick})}"><img id="thumbNail" th:src="@{/feed/files/{path}(path=${personal.thumbnail})}"
+            <a th:href="@{personal(nick=${member.nick})}"><img th:src="@{/feed/files/{path}(path=${personal.thumbnail})}"
                                                                class="img-thumbnail" alt="이미지가 없습니다." height="300" width="300">
             </a>
           </div>
@@ -297,10 +296,10 @@
 </footer>
 
 
-<!--jquery-->
+<!-- jquery -->
 <script src="https://code.jquery.com/jquery-3.6.1.js"
         integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
-<!--jquery end-->
+<!-- jquery end-->
 </body>
 </html>

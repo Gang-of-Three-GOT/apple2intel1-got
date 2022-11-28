@@ -71,10 +71,11 @@
 
 <!-- 아이디(이메일) -->
   <div class="hstack gap-3">
-    <div class="col-1"><span style="color: lightpink">*</span> 아이디</div>
+    <div class="col-1"><span style="color: lightpink">*</span> 아이디(이메일)</div>
 <!--    <input class="form-control me-auto" type="text" placeholder="Add your item here..." aria-label="Add your item here...">-->
-    <input class="form-control me-auto" type="text" id="id" name="id" placeholder="Add your item here..." aria-label="Add your item here..." oninput="idCheck()">
-    <button type="button" class="btn btn-secondary col-1 xx-id-check">중복확인</button>
+    <input class="form-control me-auto" type="email" id="id" name="id" placeholder="이메일을 입력해 주세요." aria-label="Add your item here..." oninput="idCheck()">
+    <div class="col-1"></div>
+<!--    <button type="button" class="btn btn-secondary col-1 xx-id-check">중복확인</button>-->
   </div>
     <!-- id ajax 중복체크 -->
     <div class="hstack gap-3">
@@ -88,14 +89,14 @@
 <!-- 비밀번호  -->
   <div class="hstack gap-3">
     <div class="col-1"><span style="color: lightpink">*</span> 비밀번호</div>
-    <input class="form-control me-auto xx-password1" type="password" id="password1" name="password" placeholder="Add your item here..." aria-label="Add your item here...">
+    <input class="form-control me-auto xx-password1" type="password" id="password1" name="password" placeholder="비밀번호를 입력해 주세요." aria-label="Add your item here...">
     <div class="col-1"></div>
   </div>
 
   <!-- 비밀번호 안전등급   -->
     <div class="hstack gap-3">
       <div class="col-1"></div>
-    <span class="me-auto" style="font-size: 15px">비밀번호 6~15 - 영어 소문자 대문자 특수문자 숫자가 포함되면 안전등급 올라감
+    <span class="me-auto" style="font-size: 15px">비밀번호 6~15 - 영어 소문자 대문자 특수문자 숫자가 포함되면 안전 등급이 올라갑니다
     <br>안전등급 <progress max="4" value="0" id="meter"></progress>
       <div class="xx-textbox"></div></span>
       <div class="col-1"></div>
@@ -105,7 +106,7 @@
 
   <div class="hstack gap-3">
     <div class="col-1"><span style="color: lightpink">*</span> 비밀번호 확인</div>
-    <input class="form-control me-auto xx-password2" type="password" id="password2" placeholder="Add your item here..." aria-label="Add your item here...">
+    <input class="form-control me-auto xx-password2" type="password" id="password2" placeholder="비밀번호를 입력해 주세요." aria-label="Add your item here...">
     <div class="col-1"></div>
   </div>
 
@@ -119,7 +120,7 @@
 
   <div class="hstack gap-3">
     <div class="col-1"><span style="color: lightpink">*</span> 이름</div>
-    <input class="form-control me-auto" type="text" name="name" placeholder="Add your item here..." aria-label="Add your item here...">
+    <input class="form-control me-auto" type="text" name="name" placeholder="이름을 입력해 주세요." aria-label="Add your item here...">
     <div class="col-1"></div>
   </div>
 
@@ -128,8 +129,9 @@
 <!-- 닉네임 -->
   <div class="hstack gap-3">
     <div class="col-1"><span style="color: lightpink">*</span> 닉네임</div>
-    <input class="form-control me-auto" type="text" id="nick" name="nick" placeholder="Add your item here..." aria-label="Add your item here..." oninput="nickCheck()">
-    <button type="button" class="btn btn-secondary col-1 xx-nick-check">중복확인</button>
+    <input class="form-control me-auto" type="text" id="nick" name="nick" placeholder="닉네임을 입력해 주세요." aria-label="Add your item here..." oninput="nickCheck()">
+    <div class="col-1"></div>
+<!--    <button type="button" class="btn btn-secondary col-1 xx-nick-check">중복확인</button>-->
   </div>
     <!-- nick ajax 중복체크 -->
     <div class="hstack gap-3">
@@ -187,15 +189,16 @@
 
   <div class="hstack gap-3">
     <div class="col-1"><span style="color: lightpink">*</span> 휴대폰</div>
-    <input class="form-control me-auto" type="text" name="tel" placeholder="Add your item here..." aria-label="Add your item here...">
-    <button type="button" class="btn btn-secondary col-1">인증확인</button>
+    <input class="form-control me-auto" type="text" name="tel" placeholder="010-0000-0000" aria-label="Add your item here...">
+    <div class="col-1"></div>
+<!--    <button type="button" class="btn btn-secondary col-1">인증확인</button>-->
   </div>
 
   <div style="height: 1.5rem"></div>
 
   <div class="hstack gap-3">
     <div class="col-1"><span style="color: lightpink">*</span> 생년월일</div>
-    <input class="form-control me-auto" type="text" name="birth" placeholder="Add your item here..." aria-label="Add your item here...">
+    <input class="form-control me-auto" type="date" name="birth" placeholder="0000-00-00" aria-label="Add your item here...">
     <div class="col-1"></div>
   </div>
 
@@ -230,7 +233,7 @@
     <div class="hstack gap-3">
               <div class="col-1"><span style="color: lightpink">*</span> 관심사</div>
 <!--          <select class="form-select form-select-sm xx-select-interest" name="interest" id="xx-select-interest" aria-label=".form-select-sm example">-->
-            <select class="form-select xx-select-interest" name="interest" id="xx-select-interest" aria-label="Default select example">
+            <select class="form-select xx-select-interest" id="xx-select-interest" aria-label="Default select example">
             <option selected="">관심사 선택</option>
             <option value="코딩">코딩</option>
             <option value="여행">여행</option>

@@ -9,6 +9,7 @@
     <result column="date" property="date"/>
     <result column="state" property="state"/>
     <result column="etc" property="etc"/>
+    <result column="FCFS" property="fcfs"/>
 
     <association property="writer" javaType="member">
       <id column="mno" property="no"/>
@@ -19,44 +20,15 @@
 <!--      <id column="no" property="mno"/>-->
 <!--      <result column="nick" property="nick"/>-->
 <!--    </collection>-->
-    <!--    컬렉션 짱짱맨 간치 -->
-
   </resultMap>
 
-
-  <!--  <select id="findAll" resultMap="volunteerMap">-->
-  <!--    select-->
-  <!--      v.date,-->
-  <!--      p.pno,-->
-  <!--      v.vno,-->
-  <!--      v.mno-->
-  <!--    from member m-->
-  <!--      join volunteer v on m.mno = v.mno-->
-  <!--      join party p on v.vno = p.pno-->
-  <!--    where-->
-  <!--      vno = #{no}-->
-  <!--    order by-->
-  <!--      vno, date desc;-->
-  <!--  </select>-->
-
+<!-- 파티 참여 -->
   <insert id="partyJoin" parameterType="volunteer">
     insert into volunteer (vno, mno, date)
     values (#{urlNo}, #{writer.no}, now())
   </insert>
 
-<!--  <update id="partyJoinCount" parameterType="volunteer">-->
-<!--    update-->
-<!--      party-->
-<!--    set max = max + 1-->
-<!--    where (lit, pno) in-->
-<!--      (select-->
-<!--        p.lit, v.vno-->
-<!--      from party p-->
-<!--      join volunteer v on p.pno = v.vno-->
-<!--      where-->
-<!--        vno = #{urlNo})-->
-<!--  </update>-->
-
+<!-- 파티 참여자 카운트  -->
   <update id="partyJoinCount" parameterType="volunteer">
     <![CDATA[
     update
@@ -73,6 +45,7 @@
     ]]>
   </update>
 
+<!-- 모든 게시물 파티참여자 조회 -->
   <select id="findAll" resultMap="volunteerMap">
     select
     v.date,
@@ -84,47 +57,69 @@
     order by vno, date desc;
   </select>
 
+<!-- 특정 게시물 파티참여자 조회 -->
   <select id="findByNo" resultMap="volunteerMap">
+<!--    select-->
+<!--    v.date,-->
+<!--    v.vno,-->
+<!--    v.mno,-->
+<!--    m.nick-->
+<!--    from member m-->
+<!--    join volunteer v on m.mno = v.mno-->
+<!--    where vno = #{value}-->
+<!--    order by vno, date asc-->
+    <![CDATA[
     select
+    @ROWNUM := @ROWNUM +1 AS FCFS,
     v.date,
     v.vno,
     v.mno,
     m.nick
     from member m
     join volunteer v on m.mno = v.mno
-    where vno = #{value}
-    order by vno, date asc
+    , (select @ROWNUM := 0) TMP
+    where v.vno = #{value}
+    order by v.vno, v.date asc
+    ]]>
   </select>
 
+<!-- 테스트 -->
   <select id="findByNo2" resultMap="volunteerMap">
-<!--    select-->
-<!--    *-->
-<!--    v.date,-->
-<!--    v.vno,-->
-<!--    v.mno,-->
-<!--    m.nick,-->
-<!--    m.mno-->
-<!--    from member m-->
-<!--    join volunteer v on m.mno = v.mno-->
-<!--    where m.mno = #{value}-->
-<!--    order by vno, date asc;-->
     select
-    *
+    v.vno,
+    v.mno
     from party p
     join volunteer v on p.pno = v.vno
     where vno = #{urlNo}
   </select>
 
-  <!--  select-->
-  <!--  v.date,-->
-  <!--  #        m.mno,-->
-  <!--  p.pno,-->
-  <!--  v.vno,-->
-  <!--  v.mno-->
-  <!--  from member m-->
-  <!--  join volunteer v on m.mno = v.mno-->
-  <!--  join party p on v.vno = p.pno-->
-  <!--  where vno = 3-->
-  <!--  order by vno, date desc;-->
+<!-- 파티나가기 -->
+  <delete id="partyOut">
+    delete from volunteer
+    where (vno, mno) in (
+    select p.pno, v.mno
+    from party p
+    join volunteer v on p.pno = v.vno
+    where
+    vno = #{urlNo}
+    and
+    v.mno = #{memberNo}
+    )
+  </delete>
+
+<!-- 파티나가기 카운트 -->
+  <update id="partyOutCount" parameterType="volunteer">
+    update
+    party
+    set max = max - 1
+    where (lit, pno) in
+    (select
+    p.lit, v.vno
+    from party p
+    join volunteer v on p.pno = v.vno
+    where
+    vno = #{urlNo})
+    and max > 0
+  </update>
 
 </mapper>
