@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.goteatfproject.appgot.dao.TestDao">
+
+  <!-- 자바 객체의 프로퍼티와 컬럼 이름을 연결한다 -->
+
+  <insert id="insert">
+	 insert into test(title, content, writer, date)
+	 values (#{title}, #{content}, #{writer}, #{date})
+  </insert>
+  
+  <select id="findAll" resultType="test">
+  select
+	  title,
+	  content,
+	  writer,
+	  date
+  from
+    test
+  </select>
+
+
+</mapper>

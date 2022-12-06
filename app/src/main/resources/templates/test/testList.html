@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>연습용 게시판 생성</title>
+</head>
+<body>
+<table>
+  <thead>
+    <th>제목</th>
+    <th>내용</th>
+    <th>작성자</th>
+    <th>등록일</th>
+  </thead>
+    <td th:text="${title}"></td>
+    <td th:text="${content}"></td>
+    <td th:text="${writer}"></td>
+    <td th:text="${date}"></td>
+</table>
+</body>
+</html>
