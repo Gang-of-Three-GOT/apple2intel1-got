@@ -10,4 +10,11 @@ public interface TestDao {
   int insert(Test t);
 
   List<Test> findAll();
+
+  // 내가 짠 쿼리의 결과와 일치하는 vo 객체(Test)에 담아서 리턴
+  Test detail(int no);
+
+  int update(Test test);
+
+  int remove(int no);
 }

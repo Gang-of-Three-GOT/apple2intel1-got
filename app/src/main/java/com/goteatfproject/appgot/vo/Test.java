@@ -7,6 +7,7 @@ public class Test {
   private String content;
   private String writer;
   private String date;
+  private int no;
 
   public String getTitle() {
     return title;
@@ -32,11 +33,17 @@ public class Test {
   public void setDate(String date) {
     this.date = date;
   }
+  public int getNo() {
+    return no;
+  }
+  public void setNo(int no) {
+    this.no = no;
+  }
 
   @Override
   public String toString() {
     return "Test [title=" + title + ", content=" + content + ", writer=" + writer + ", date=" + date
-        + "]";
+        + ", no=" + no + "]";
   }
 
 }

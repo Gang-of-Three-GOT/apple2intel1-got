@@ -20,7 +20,7 @@ public class TestService {
 
     // 실무에서는 sql 사용
     Date nowDate = new Date();
-    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHHmmss"); 
+    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("yyyyMMddHmmss"); 
     String date = simpleDateFormat.format(nowDate); 
     System.out.println("포맷 지정 후 : " + date);
 
@@ -33,6 +33,22 @@ public class TestService {
 
   public List<Test> findAll() throws Exception {
     return testDao.findAll();
+  }
+
+  public Test detail(int no) {
+    System.out.println("ts datail 확인:" + no);
+    return testDao.detail(no);
+  }
+
+  // insert/ delete / update = int형
+  public int update(Test test) {
+    System.out.println("ts update 확인:" + test);
+    return testDao.update(test);
+  }
+
+  public int remove(int no) {
+    System.out.println("ts remove 확인:" + no);
+    return testDao.remove(no);
   }
 
 }
