@@ -15,8 +15,8 @@ public class TestService {
   @Autowired
   TestDao testDao;
 
-  public void insert(Test t) throws Exception {
-    System.out.println("tService:" + t);
+  public void insert(Test test) throws Exception {
+    System.out.println("tService:" + test);
 
     // 실무에서는 sql 사용
     Date nowDate = new Date();
@@ -24,11 +24,11 @@ public class TestService {
     String date = simpleDateFormat.format(nowDate); 
     System.out.println("포맷 지정 후 : " + date);
 
-    t.setDate(date);
-    System.out.println(t);
+    test.setDate(date);
+    System.out.println("포맷 지정 후: " + test);
 
     // insert, delete, update = 결과값 int형
-    System.out.println("db:"+ testDao.insert(t));
+    System.out.println("db:"+ testDao.insert(test));
   }
 
   public List<Test> findAll() throws Exception {

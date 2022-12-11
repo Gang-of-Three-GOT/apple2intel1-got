@@ -31,13 +31,13 @@
 	    <th>작성자</th>
 	    <th>등록일</th>
     </tr>
-    <tr th:each="tf : ${tf}">
-      <td th:text="${tf.no}">번호</td>
-	    <!-- <td th:text="${tf.title}">제목</td> -->
-	    <td><a th:href="@{/test/test-detail(no=${tf.no})}" th:text="${tf.title}"></a></td>
-	    <td th:text="${tf.content}">내용</td>
-	    <td th:text="${tf.writer}">작성자</td>
-	    <td th:text="${tf.date}">등록일</td>
+    <tr th:each="test : ${testList}">
+      <td th:text="${test.no}">번호</td>
+	    <!-- <td th:text="${test.title}">제목</td> -->
+	    <td><a th:href="@{/test/test-detail(no=${test.no})}" th:text="${test.title}"></a></td>
+	    <td th:text="${test.content}">내용</td>
+	    <td th:text="${test.writer}">작성자</td>
+	    <td th:text="${test.date}">등록일</td>
   </tr>
  </table>
 </body>

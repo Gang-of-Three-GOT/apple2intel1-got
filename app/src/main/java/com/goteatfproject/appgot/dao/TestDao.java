@@ -7,7 +7,7 @@ import com.goteatfproject.appgot.vo.Test;
 @Mapper
 public interface TestDao {
 
-  int insert(Test t);
+  int insert(Test test);
 
   List<Test> findAll();
 
